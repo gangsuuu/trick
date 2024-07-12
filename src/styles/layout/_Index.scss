@@ -1,0 +1,25 @@
+@use '../abstracts/variables';
+
+%index-section {
+  width: 100vw;
+  height: 100vh;
+}
+
+.index-section-01{
+  @extend %index-section;
+
+}
+
+
+
+.index-section-02{
+  @extend %index-section;
+
+}
+
+
+
+.index-section-03{
+  @extend %index-section;
+
+}

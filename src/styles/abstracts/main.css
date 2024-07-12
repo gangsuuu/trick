@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "TheJamsil5Bold";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -47,4 +53,66 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+header {
+  width: 100vw;
+  height: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-family: "TheJamsil5Bold";
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.headerWrapper {
+  position: relative;
+  width: 95vw;
+  height: 100%;
+  padding: 0 2.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerLogoWrapper {
+  position: absolute;
+  top: 0;
+  background-color: red;
+  opacity: 0.2;
+  left: 2.5vw;
+  height: 100%;
+  margin-right: 40vw;
+}
+.headerLogoWrapper .headerLogo {
+  height: 100%;
+  width: 100px;
+  cursor: pointer;
+}
+
+.headerNavWrapper {
+  display: flex;
+  gap: 5vw;
+}
+
+.headerNav span {
+  display: inline-block;
+  width: 15px;
+  font-size: 12px;
+  transform: scale(1);
+  transform-origin: bottom;
+  transition: 0.25s;
+}
+
+.headerNav:hover span {
+  transform: scale(1.4);
+}
+
+.index-section-03, .index-section-02, .index-section-01 {
+  width: 100vw;
+  height: 100vh;
 }/*# sourceMappingURL=main.css.map */

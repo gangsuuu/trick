@@ -1,0 +1,56 @@
+@use '../abstracts/variables';
+
+header {
+  width: 100vw;
+  height: 40px;
+  border-bottom: 1px solid variables.$bd-01;  
+  @include variables.jamsil(700);
+  text-transform: uppercase;
+}
+
+.headerWrapper {
+  position: relative;
+  width: 95vw;
+  height: 100%;
+  padding: 0 2.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerLogoWrapper{
+  position: absolute;
+  top: 0;
+  background-color: red;
+  opacity: 0.2;
+  left:2.5vw;
+  height: 100%;
+  margin-right: 40vw;
+  .headerLogo {
+    height: 100%;
+    width: 100px;
+    cursor: pointer;
+  }
+}
+
+.headerNavWrapper {
+  display: flex;
+  gap: 5vw;
+
+}
+.headerNav {
+  span {
+    display: inline-block;
+    width: 15px;
+    font-size: 12px;
+    transform: scale(1);
+    transform-origin: bottom;
+    transition: 0.25s;
+  }
+}
+.headerNav:hover {
+
+  span {
+    transform: scale(1.4);
+  }
+}
