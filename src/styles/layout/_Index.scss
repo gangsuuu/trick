@@ -7,10 +7,42 @@
 
 .index-section-01{
   @extend %index-section;
-
+  height: 100vh - variables.$header-height;
+  position: relative;
 }
 
+.index-section01-videoWrapper {
+  width: 100%;
+  height: 100%;
+}
 
+.index-section01-video {
+  width: 100%;
+  height: 100%;
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+  }
+}
+
+.index-section01-Control {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.index-section01-playBtn {
+  position: absolute;
+  left: 50%;
+  bottom: 100px;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: blue;
+}
 
 .index-section-02{
   @extend %index-section;
