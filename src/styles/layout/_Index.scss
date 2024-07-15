@@ -3,7 +3,12 @@
 
 
 
-
+%index-FJcSbR{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
 %index-section {
   width: 100vw;
   height: 100vh;
@@ -223,6 +228,7 @@
 .index-section-02{
   @extend %index-section;
   position: relative;
+  display: none;
 }
 
 .index-section02--wrapper {
@@ -253,21 +259,103 @@
   width: 100%;
   justify-content: center;
   gap: 120px;
+  align-items: flex-start;
+
   .index-section02--textWrapper {
     width: 220px;
+    border: 1px solid variables.$bd-01;
+    border-radius: 20px;
+    padding: 20px 15px;;
+    cursor: pointer;
+
     .index-section02--subTitle{
       @include variables.jamsil(500);
       color: rgba(0,0,0,.5);
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 1.2px;
+      line-height: 22px;
       margin-bottom: 15px;
     }
 
+    .index-section02--subWrapper {
+      width: 100%;
+      height: 0px;
+      overflow: hidden;
+    }
+
     .index-section02--content{
+      width: 100%;
       @include variables.jamsil(400);
-      font-size: 18px;
-      letter-spacing: 1.2px;
+      font-family: "jsRegular";
+      font-size: 17px;
+      letter-spacing: 1px;
       line-height: 21px;
+      word-spacing: 3px;
+    }
+    .index-section02--showIconWrapper {
+      position: relative;
+      width: 100%;
+      height: 30px;
+    }
+    .index-section02--showText {
+      position: absolute;
+      bottom: 0;
+      left: 0%;
+      width: 100%;
+      height: 40px;
+      font-size: 18px;
+      overflow: hidden;
+      p {
+        position: absolute;
+        opacity: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        @include variables.jamsil(400);
+        transition: 0.35s ease;
+      }
+    }
+    .index-section02--icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      transition: 0.25s ease;
+      overflow: hidden;
+
+      .index-section02--arrowIcon{
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 20px;
+        transition: 0.25s ease;
+      }
+
+      .arrowOne{
+        transform: translate(-50%,-50%);    
+      }
+      .arrowTwo{
+        transform: translate(-150%,150%);    
+      }
+    }
+  }
+
+  .index-section02--textWrapper:hover {
+    .index-section02--subTitle{
+      color: #000;
+    }
+    .index-section02--showText p{
+      transform: translateX(0%);
+      opacity: 1;
+    }
+    
+    .arrowOne{
+      transform: translate(150%,-150%);    
+    }
+    .arrowTwo{
+      transform: translate(-50%,-50%);    
     }
   }
 }
@@ -277,11 +365,13 @@
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: -1;
   .index-section02--image{
     position: absolute;
     width: 260px;
     height: 180px;
     border: 1px solid #000;
+    background-color: rgba(0,0,255,.5);
 
     img {
       width: 100%;
@@ -294,4 +384,69 @@
 .index-section-03{
   @extend %index-section;
 
+}
+.index-section03--wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 0 10%;
+  position: relative;
+  .index-section03--reasonFirst,
+  .index-section03--reasonFirst {
+    @extend %index-FJcSbR
+  }
+
+}
+.index-section03--reasonFirst {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .index-section03--whatIsAnimation {
+    width: 350px;
+    position: relative;
+    .index-section03--whatIsAnimation-black,
+    .index-section03--whatIsAnimation-gray {
+      position: absolute;
+      top: 0;
+      left: 0;
+      p {
+        @include variables.jamsil(400);
+        font-size: 20px;
+        word-spacing: 6px;
+        line-height: 29px;
+      }
+    }
+    .index-section03--whatIsAnimation-black p{
+      color: #000;
+    }
+    .index-section03--whatIsAnimation-gray p{
+      color: #6c6c6c;
+    }
+
+
+
+  }
+  .index-section03--experienceAni {
+    width: 750px;
+    height: 500px;
+    background-color: blue;
+    opacity: 0.5;
+  }
+}
+
+.index-section03--reasonSecond {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+
+  .index-section03--titleWrapper {
+    
+    .index-section03--titles p{
+      font-size: 140px;
+      @include variables.jamsil(800);
+    }
+  }
 }
