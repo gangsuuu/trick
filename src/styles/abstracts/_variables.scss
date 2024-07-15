@@ -1,14 +1,63 @@
 @font-face {
-  font-family: 'TheJamsil5Bold';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
+  font-family: 'jsExtraBold'; 
+  src: url('../../assets/fonts/Jamsil/The_Jamsil_OTF_ExtraBold.otf') format('opentype'); /* otf 파일 경로 */
+  font-weight: 800; 
+  font-style: normal;  
+}
+@font-face {
+  font-family: 'jsBold'; 
+  src: url('../../assets/fonts/Jamsil/The_Jamsil_OTF_Bold.otf') format('opentype'); /* otf 파일 경로 */
+  font-weight: 700; 
+  font-style: normal;  
+}
+@font-face {
+  font-family: 'jsMedium'; 
+  src: url('../../assets/fonts/Jamsil/The_Jamsil_OTF_Medium.otf') format('opentype'); /* otf 파일 경로 */
+  font-weight: 500; 
+  font-style: normal;  
+}
+@font-face {
+  font-family: 'jsRegular'; 
+  src: url('../../assets/fonts/Jamsil/The_Jamsil_OTF_Regular.otf') format('opentype'); /* otf 파일 경로 */
+  font-weight: 400; 
+  font-style: normal;  
+}
+@font-face {
+  font-family: 'jsLight'; 
+  src: url('../../assets/fonts/Jamsil/The_Jamsil_OTF_Light.otf') format('opentype'); /* otf 파일 경로 */
+  font-weight: 300; 
+  font-style: normal;  
+}
+@font-face {
+  font-family: 'jsThin'; 
+  src: url('../../assets/fonts/Jamsil/The_Jamsil_OTF_Thin.otf') format('opentype'); /* otf 파일 경로 */
+  font-weight: 100; 
+  font-style: normal;  
 }
 
+
 @mixin jamsil($fw){
-  font-family: 'TheJamsil5Bold';
-  font-weight: $fw;
+  @if $fw == 100 {
+    font-family: 'jsThin';
+  } @else if $fw == 300 {
+    font-family: 'jsLight';
+  } @else if $fw == 400 {
+    font-family: 'jsRegular';
+  } @else if $fw == 500 {
+    font-family: 'jsMedium';
+  } @else if $fw == 700 {
+    font-family: 'jsBold';
+  } @else if $fw == 800 {
+    font-family: 'jsExtraBold';
+  }
+  
 }
+
+@mixin centerX(){
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 
 $bd-01 : rgba(0, 0, 0, .1);
 
@@ -16,3 +65,4 @@ $bd-01 : rgba(0, 0, 0, .1);
 $bua : rgba(0,0,0,.5);
 $ba : rgba(0,0,0,1);
 $header-height : 5vh;
+
