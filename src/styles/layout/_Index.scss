@@ -12,6 +12,8 @@
 %index-section {
   width: 100vw;
   height: 100vh;
+  
+  display: none;
 }
 @mixin border($po1,$po2){
   width: 9px;
@@ -61,8 +63,6 @@
 
 
 .index-section-01{
-  display: none;
-
   @extend %index-section;
   height: 100vh - variables.$header-height;
   position: relative;
@@ -228,7 +228,6 @@
 .index-section-02{
   @extend %index-section;
   position: relative;
-  display: none;
 }
 
 .index-section02--wrapper {
@@ -438,15 +437,28 @@
 .index-section03--reasonSecond {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: flex-end;
   width: 100%;
 
   .index-section03--titleWrapper {
-    
+    position: absolute;
+    left: 0;
+    top: -130px;
     .index-section03--titles p{
-      font-size: 140px;
+      font-size: 85px;
+      padding-bottom:  45px;
       @include variables.jamsil(800);
+    }
+  }
+
+  .index-section03--whyDoIMade {
+    width: 40%;
+    p{
+      @include variables.jamsil(400);
+      font-size: 15px;
+      word-spacing: 6px;
+      line-height: 26px;
     }
   }
 }

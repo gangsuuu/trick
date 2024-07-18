@@ -92,12 +92,103 @@ a {
   color: black;
 }
 
+.footer-info--emailWrp .footer-info-email, .footer-info--phone .footer-info--number {
+  margin-top: 8px;
+  font-size: 25px;
+}
+
+footer {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.footer-infomation {
+  position: absolute;
+  width: 100%;
+  height: 35%;
+  padding: 0 2.5vw;
+  bottom: 0;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+}
+
+.footer-left {
+  display: flex;
+  height: 80%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 10%;
+}
+
+.footer-title p {
+  font-size: 75px;
+  transform: scaleY(1.05);
+  font-family: "jsMedium";
+  letter-spacing: -1px;
+}
+
+.footer-navToFrist a {
+  font-size: 15px;
+  font-family: "jsLight";
+  color: #cdcdcd;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.footer-navToFrist a:hover {
+  font-size: 15px;
+  color: #000;
+}
+
+.footer-right {
+  display: flex;
+  font-size: 13px;
+  align-items: start;
+  font-family: "jsRegular";
+}
+
+.footer-info--first {
+  margin-right: 50px;
+}
+
+.footer-info--phone {
+  margin-bottom: 8px;
+}
+.footer-info--addressWra .footer-info--address {
+  letter-spacing: 0.5px;
+  word-spacing: 4px;
+}
+.footer-info--addressWra .footer-info--address p {
+  margin-top: 8px;
+}
+
+.footer-info--emailWrp {
+  margin-bottom: 8px;
+}
+.footer-info--emailWrp .footer-info-email {
+  text-transform: uppercase;
+}
+
+.footer-info--SNS p {
+  margin-bottom: 8px;
+}
+
+.footer-info-secondeDown {
+  position: absolute;
+  bottom: 0;
+  font-size: 20px;
+}
+
 header {
+  position: fixed;
+  top: 0;
   width: 100vw;
   height: 5vh;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   font-family: "jsBold";
   text-transform: uppercase;
+  z-index: 1000;
 }
 
 .headerWrapper {
@@ -163,6 +254,7 @@ header {
 .index-section-03, .index-section-02, .index-section-01 {
   width: 100vw;
   height: 100vh;
+  display: none;
 }
 
 @keyframes borderColor {
@@ -195,7 +287,6 @@ header {
   }
 }
 .index-section-01 {
-  display: none;
   height: 95vh;
   position: relative;
 }
@@ -374,7 +465,6 @@ header {
 
 .index-section-02 {
   position: relative;
-  display: none;
 }
 
 .index-section02--wrapper {
@@ -563,11 +653,26 @@ header {
 .index-section03--reasonSecond {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: flex-end;
   width: 100%;
 }
+.index-section03--reasonSecond .index-section03--titleWrapper {
+  position: absolute;
+  left: 0;
+  top: -130px;
+}
 .index-section03--reasonSecond .index-section03--titleWrapper .index-section03--titles p {
-  font-size: 140px;
+  font-size: 85px;
+  padding-bottom: 45px;
   font-family: "jsExtraBold";
+}
+.index-section03--reasonSecond .index-section03--whyDoIMade {
+  width: 40%;
+}
+.index-section03--reasonSecond .index-section03--whyDoIMade p {
+  font-family: "jsRegular";
+  font-size: 15px;
+  word-spacing: 6px;
+  line-height: 26px;
 }/*# sourceMappingURL=main.css.map */

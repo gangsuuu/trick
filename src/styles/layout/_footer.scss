@@ -1,0 +1,112 @@
+@use '../abstracts/variables';
+@use "sass:math";
+
+%footer-main{
+  margin-top: 8px;
+  font-size: 25px;
+}
+
+footer {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.footer-imagesContent {
+
+}
+
+.footer-infomation{
+  position: absolute;
+  width: 100%;
+  height: 35%;
+  padding: 0 2.5vw;
+  bottom: 0;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+}
+
+.footer-left { 
+  display: flex;
+  height: 80%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 10%;
+}
+.footer-title {
+  p{
+    font-size: 75px;
+    transform: scaleY(1.05);
+    @include variables.jamsil(500);
+    letter-spacing: -1px;
+  }
+}
+.footer-navToFrist {
+  a{
+    font-size: 15px;
+    @include variables.jamsil(300);
+    color: #cdcdcd;
+    cursor: pointer;
+    transition: .25s;
+  }
+  a:hover {
+    font-size: 15px;
+    color: #000;
+  }
+}
+
+.footer-right {
+  display: flex;
+  font-size: 13px;
+  align-items: start;
+  @include variables.jamsil(400);
+}
+
+.footer-info--first {
+  margin-right: 50px;
+}
+.footer-info--phone {
+  margin-bottom: 8px;
+  .footer-info--number {
+    @extend %footer-main
+  }
+}
+
+.footer-info--addressWra {
+  .footer-info--address {
+    letter-spacing: .5px;
+    word-spacing: 4px;
+    p {
+      margin-top: 8px;
+    }
+  }
+}
+
+.footer-info--seconde {
+
+  .footer-info-secondeUp {
+
+  }
+  .footer-info-secondeDown {
+    
+  }
+}
+
+.footer-info--emailWrp {
+  margin-bottom: 8px;
+  .footer-info-email{
+    @extend %footer-main;
+    text-transform: uppercase;
+  }
+}
+
+.footer-info--SNS{
+  p{
+    margin-bottom: 8px;
+  }
+}
+.footer-info-secondeDown {
+  position: absolute;
+  bottom: 0;
+  font-size: 20px;
+}
