@@ -21,30 +21,26 @@ footer {
   height: 35%;
   padding: 0 2.5vw;
   bottom: 0;
-  display: flex;
-  justify-content: start;
+  @include variables.flexjc(start);
   align-items: flex-start;
 }
 
 .footer-left { 
-  display: flex;
+  @include variables.flexjc(space-between);
   height: 80%;
   flex-direction: column;
-  justify-content: space-between;
   padding-right: 10%;
 }
 .footer-title {
   p{
-    font-size: 75px;
     transform: scaleY(1.05);
-    @include variables.jamsil(500);
+    @include variables.jamsil(500, 75px);
     letter-spacing: -1px;
   }
 }
 .footer-navToFrist {
   a{
-    font-size: 15px;
-    @include variables.jamsil(300);
+    @include variables.jamsil(300, 15px);
     color: #cdcdcd;
     cursor: pointer;
     transition: .25s;
@@ -57,9 +53,8 @@ footer {
 
 .footer-right {
   display: flex;
-  font-size: 13px;
   align-items: start;
-  @include variables.jamsil(400);
+  @include variables.jamsil(400, 13px);
 }
 
 .footer-info--first {

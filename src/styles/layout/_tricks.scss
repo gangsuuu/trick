@@ -1,3 +1,51 @@
+@use '../abstracts/variables';
+@use "sass:math";
+
+
+@keyframes showContent {
+  0%{
+    border-top-right-radius: 100%;
+    border-top-left-radius: 100%;
+    bottom: -50px;
+  }
+  1%{
+    border-top-right-radius: 100%;
+    border-top-left-radius: 100%;
+    bottom: -44px;
+  }
+  100%{
+    border-top-right-radius: 0%;
+    border-top-left-radius: 0%;
+    bottom: 0px;
+  }
+}
+
+@keyframes showTexts {
+  0%{
+    color: rgba(0, 0, 0, 0);
+    transform: translateY(5px);
+  }
+  100%{
+    color: rgba(0, 0, 0, 1);
+    transform: translateY(0px);
+  }
+}
+@keyframes showBtn {
+  0%{
+    color: rgba(0, 0, 0, 0);
+    transform: translateY(5px);
+  }
+  100%{
+    color: variables.$zzz04;
+    transform: translateY(0px);
+  }
+}
+
+%showTexts{
+  animation: showTexts .7s ease-in forwards;
+}
+
+
 .tricksList{
   padding-top: 6vh;
 }
@@ -8,30 +56,131 @@
 .tricksGrid {
   width: 100%;
   height: 100%;
-
-  display: grid;
-  column-gap: 2px;
-  row-gap: 10px;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .tricks-list--entrance{
-  grid-column: span 2;
   width: 100%;
   height: 100%;
+  padding: 1% 2%;
+  @include variables.flexjc(space-between);
+  flex-direction: column;
+  border-radius: 5px;
+  .tricks-list--title {
+
+    h1 {
+      @include variables.jamsil(100, 80px);
+      text-transform: uppercase;
+      letter-spacing: 20px;
+    }
+  }
+  .tricks-list--whatIs {
+    @include variables.flexjc(space-between);
+
+    .tricks-list--intro{
+      p{
+        @include variables.jamsil(100, 17px);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+    }
+    .tricks-list--count {
+      @include variables.jamsil(300, 18px);
+      color: variables.$zzz04;
+    }
+  }
 }
 
 .trickWrapper{
-  display: inline-grid;
   width: 100%;
   height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-top: 1px solid black;
 }
+
 .trick {
-  width: 98%;
-  height: 98%;
-  border: 1px dashed #000;
-  border-radius: 2px;
+  position: relative;
+  width: 97%;
+  height: 96%;
+  border: 1px dashed variables.$zzz04;
+  border-radius: 5px;
+  overflow: hidden;
+
+  .trick-content--Wrapper {
+    position: absolute;
+    bottom: -55px;
+    overflow: hidden;
+    width: 100%;
+    padding: 2% 3%;
+    background-color: rgba(255,255,255,.4);
+    backdrop-filter: blur(2px);
+    border-top: 1px dashed rgba(0, 0, 0, 0.4);
+    border-top-right-radius: 100%;
+    border-top-left-radius: 100%;
+    .trick-content--title {
+      @include variables.jamsil(700, 17px);
+      margin-bottom: 6px;
+    }
+    .trick-content--infos {
+      width: 100%;
+      text-transform: uppercase;
+      @include variables.flexjc(space-between);
+      @include variables.jamsil(700, 12px);
+      align-items: center;
+      margin-bottom: 4px;
+      .trick-content--right{
+        @include variables.flexjc(space-between);
+        align-items: center;
+        button {
+          outline: none;
+          border: none;
+          background: transparent;
+          text-transform: uppercase;
+          padding: 0;
+          @include variables.jamsil(700, 12px);
+          cursor: pointer;
+          transition: .25s;
+        }
+      }
+    }
+  }
+  
+  &:hover .trick-content--Wrapper{
+    animation: showContent 1s forwards;
+    .trick-content--title,
+    .trick-content--infos
+    {
+      @extend %showTexts;
+    }
+    button {
+      animation: showBtn .7s ease-in forwards;
+
+      &:hover{
+        color: black !important;
+      }
+    }
+  }
+
+  &:hover .trick-video--Wrapper {
+    height: 100%;
+  }
 }
+
+.trick-video--Wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+}
+.trick-video--video {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+}
+
+

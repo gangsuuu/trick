@@ -120,14 +120,12 @@
     font-weight: 700;
   }
   .index-section01--welcome p{
-    @include variables.jamsil(400);
-    font-size: 18px;
+    @include variables.jamsil(400, 18px);
     letter-spacing: 3px;
     line-height: 35px;
   }
   .index-section01--title h3{
-    @include variables.jamsil(500);
-    font-size: 32px;
+    @include variables.jamsil(500, 32px);
   }
   
 }
@@ -185,9 +183,8 @@
 
   .index-section01--creator {
     text-transform: uppercase;
-    font-size: 17px;
     letter-spacing: 1px;
-    @include variables.jamsil(300);
+    @include variables.jamsil(300, 17px);
     color: rgba(255,255,255,0.4)
   }
 }
@@ -241,10 +238,9 @@
   width: 100%;
   position: relative;
   h2 {
-    @include variables.jamsil(700);
+    @include variables.jamsil(700, 25px);
     text-transform: uppercase;
     margin: 70px 0;
-    font-size: 25px;
     letter-spacing: 1.5px;
     word-spacing: 15px; 
     position: relative;
@@ -268,9 +264,8 @@
     cursor: pointer;
 
     .index-section02--subTitle{
-      @include variables.jamsil(500);
+      @include variables.jamsil(500, 13px);
       color: rgba(0,0,0,.5);
-      font-size: 13px;
       letter-spacing: 1.2px;
       line-height: 22px;
       margin-bottom: 15px;
@@ -284,9 +279,8 @@
 
     .index-section02--content{
       width: 100%;
-      @include variables.jamsil(400);
+      @include variables.jamsil(400, 17px);
       font-family: "jsRegular";
-      font-size: 17px;
       letter-spacing: 1px;
       line-height: 21px;
       word-spacing: 3px;
@@ -309,7 +303,7 @@
         opacity: 0;
         bottom: 0;
         transform: translateX(-100%);
-        @include variables.jamsil(400);
+        @include variables.jamsil(400, 0);
         transition: 0.35s ease;
       }
     }
@@ -410,8 +404,7 @@
       top: 0;
       left: 0;
       p {
-        @include variables.jamsil(400);
-        font-size: 20px;
+        @include variables.jamsil(400, 20px);
         word-spacing: 6px;
         line-height: 29px;
       }
@@ -446,17 +439,15 @@
     left: 0;
     top: -130px;
     .index-section03--titles p{
-      font-size: 85px;
       padding-bottom:  45px;
-      @include variables.jamsil(800);
+      @include variables.jamsil(800, 85px);
     }
   }
 
   .index-section03--whyDoIMade {
     width: 40%;
     p{
-      @include variables.jamsil(400);
-      font-size: 15px;
+      @include variables.jamsil(400, 15px);
       word-spacing: 6px;
       line-height: 26px;
     }

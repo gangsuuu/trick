@@ -6,7 +6,7 @@ header {
   width: 100vw;
   height: variables.$header-height;
   border-bottom: 1px solid variables.$bd-01;  
-  @include variables.jamsil(700);
+  @include variables.jamsil(700, 0);
   text-transform: uppercase;
   z-index: 1000;
 }

@@ -36,7 +36,7 @@
 }
 
 
-@mixin jamsil($fw){
+@mixin jamsil($fw,$fz){
   @if $fw == 100 {
     font-family: 'jsThin';
   } @else if $fw == 300 {
@@ -50,7 +50,10 @@
   } @else if $fw == 800 {
     font-family: 'jsExtraBold';
   }
-  
+  @if $fz == 0 {
+  } @else {
+    font-size: $fz;
+  }
 }
 
 @mixin centerX(){
@@ -58,10 +61,15 @@
   transform: translateX(-50%);
 }
 
+@mixin flexjc($jc){
+  display: flex;
+  justify-content: $jc;
+}
+
 
 $bd-01 : rgba(0, 0, 0, .1);
 
-
+$zzz04 : rgba(0,0,0,.4);
 $bua : rgba(0,0,0,.5);
 $ba : rgba(0,0,0,1);
 $header-height : 5vh;

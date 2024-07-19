@@ -116,22 +116,22 @@ footer {
 
 .footer-left {
   display: flex;
+  justify-content: space-between;
   height: 80%;
   flex-direction: column;
-  justify-content: space-between;
   padding-right: 10%;
 }
 
 .footer-title p {
-  font-size: 75px;
   transform: scaleY(1.05);
   font-family: "jsMedium";
+  font-size: 75px;
   letter-spacing: -1px;
 }
 
 .footer-navToFrist a {
-  font-size: 15px;
   font-family: "jsLight";
+  font-size: 15px;
   color: #cdcdcd;
   cursor: pointer;
   transition: 0.25s;
@@ -143,9 +143,9 @@ footer {
 
 .footer-right {
   display: flex;
-  font-size: 13px;
   align-items: start;
   font-family: "jsRegular";
+  font-size: 13px;
 }
 
 .footer-info--first {
@@ -428,9 +428,9 @@ header {
 }
 .index-section01--videoControlsWrapper .index-section01--creator {
   text-transform: uppercase;
-  font-size: 17px;
   letter-spacing: 1px;
   font-family: "jsLight";
+  font-size: 17px;
   color: rgba(255, 255, 255, 0.4);
 }
 
@@ -478,9 +478,9 @@ header {
 }
 .index-section02--title h2 {
   font-family: "jsBold";
+  font-size: 25px;
   text-transform: uppercase;
   margin: 70px 0;
-  font-size: 25px;
   letter-spacing: 1.5px;
   word-spacing: 15px;
   position: relative;
@@ -505,8 +505,8 @@ header {
 }
 .index-section02--textWrappers .index-section02--textWrapper .index-section02--subTitle {
   font-family: "jsMedium";
-  color: rgba(0, 0, 0, 0.5);
   font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
   letter-spacing: 1.2px;
   line-height: 22px;
   margin-bottom: 15px;
@@ -519,8 +519,8 @@ header {
 .index-section02--textWrappers .index-section02--textWrapper .index-section02--content {
   width: 100%;
   font-family: "jsRegular";
-  font-family: "jsRegular";
   font-size: 17px;
+  font-family: "jsRegular";
   letter-spacing: 1px;
   line-height: 21px;
   word-spacing: 3px;
@@ -662,9 +662,9 @@ header {
   top: -130px;
 }
 .index-section03--reasonSecond .index-section03--titleWrapper .index-section03--titles p {
-  font-size: 85px;
   padding-bottom: 45px;
   font-family: "jsExtraBold";
+  font-size: 85px;
 }
 .index-section03--reasonSecond .index-section03--whyDoIMade {
   width: 40%;
@@ -674,6 +674,48 @@ header {
   font-size: 15px;
   word-spacing: 6px;
   line-height: 26px;
+}
+
+@keyframes showContent {
+  0% {
+    border-top-right-radius: 100%;
+    border-top-left-radius: 100%;
+    bottom: -50px;
+  }
+  1% {
+    border-top-right-radius: 100%;
+    border-top-left-radius: 100%;
+    bottom: -44px;
+  }
+  100% {
+    border-top-right-radius: 0%;
+    border-top-left-radius: 0%;
+    bottom: 0px;
+  }
+}
+@keyframes showTexts {
+  0% {
+    color: rgba(0, 0, 0, 0);
+    transform: translateY(5px);
+  }
+  100% {
+    color: rgb(0, 0, 0);
+    transform: translateY(0px);
+  }
+}
+@keyframes showBtn {
+  0% {
+    color: rgba(0, 0, 0, 0);
+    transform: translateY(5px);
+  }
+  100% {
+    color: rgba(0, 0, 0, 0.4);
+    transform: translateY(0px);
+  }
+}
+.trick:hover .trick-content--Wrapper .trick-content--title,
+.trick:hover .trick-content--Wrapper .trick-content--infos {
+  animation: showTexts 0.7s ease-in forwards;
 }
 
 .tricksList {
@@ -688,31 +730,126 @@ header {
 .tricksGrid {
   width: 100%;
   height: 100%;
-  display: grid;
-  -moz-column-gap: 2px;
-       column-gap: 2px;
-  row-gap: 10px;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .tricks-list--entrance {
-  grid-column: span 2;
   width: 100%;
   height: 100%;
+  padding: 1% 2%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: 5px;
+}
+.tricks-list--entrance .tricks-list--title h1 {
+  font-family: "jsThin";
+  font-size: 80px;
+  text-transform: uppercase;
+  letter-spacing: 20px;
+}
+.tricks-list--entrance .tricks-list--whatIs {
+  display: flex;
+  justify-content: space-between;
+}
+.tricks-list--entrance .tricks-list--whatIs .tricks-list--intro p {
+  font-family: "jsThin";
+  font-size: 17px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.tricks-list--entrance .tricks-list--whatIs .tricks-list--count {
+  font-family: "jsLight";
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .trickWrapper {
-  display: inline-grid;
   width: 100%;
   height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-top: 1px solid black;
 }
 
 .trick {
-  width: 98%;
-  height: 98%;
-  border: 1px dashed #000;
-  border-radius: 2px;
+  position: relative;
+  width: 97%;
+  height: 96%;
+  border: 1px dashed rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.trick .trick-content--Wrapper {
+  position: absolute;
+  bottom: -55px;
+  overflow: hidden;
+  width: 100%;
+  padding: 2% 3%;
+  background-color: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  border-top: 1px dashed rgba(0, 0, 0, 0.4);
+  border-top-right-radius: 100%;
+  border-top-left-radius: 100%;
+}
+.trick .trick-content--Wrapper .trick-content--title {
+  font-family: "jsBold";
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+.trick .trick-content--Wrapper .trick-content--infos {
+  width: 100%;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  font-family: "jsBold";
+  font-size: 12px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.trick .trick-content--Wrapper .trick-content--infos .trick-content--right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.trick .trick-content--Wrapper .trick-content--infos .trick-content--right button {
+  outline: none;
+  border: none;
+  background: transparent;
+  text-transform: uppercase;
+  padding: 0;
+  font-family: "jsBold";
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.trick:hover .trick-content--Wrapper {
+  animation: showContent 1s forwards;
+}
+.trick:hover .trick-content--Wrapper button {
+  animation: showBtn 0.7s ease-in forwards;
+}
+.trick:hover .trick-content--Wrapper button:hover {
+  color: black !important;
+}
+.trick:hover .trick-video--Wrapper {
+  height: 100%;
+}
+
+.trick-video--Wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+}
+
+.trick-video--video {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
 }/*# sourceMappingURL=main.css.map */
