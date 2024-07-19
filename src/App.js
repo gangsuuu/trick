@@ -7,7 +7,7 @@ import TrickDetail from './page/trick/TrickDetail';
 
 function App() {
   return (
-    <>
+    <>  
       <Header />
       {/* <Index></Index> */}
       {/* <Tricks></Tricks> */}
