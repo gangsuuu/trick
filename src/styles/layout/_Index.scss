@@ -19,6 +19,7 @@
   #{$po2} : 0;
   border-#{$po1}: 2px solid rgba(255,255,255,0.4);
   border-#{$po2}: 2px solid rgba(255,255,255,0.4);
+  pointer-events: none;
 }
 
 @keyframes borderColor {
@@ -269,7 +270,7 @@
   }
   .index-section01--controls--videoRangeWrapper {
     width: 100%;
-    padding: 4% 2.5vw;
+    padding: 3% 2.5vw;
     height: 10px;
     position: relative;
     top: 0;
@@ -293,6 +294,7 @@
         left: 0;
         width: 0%;
         border-top: 1px solid white;
+        transition: .1s;
       }
       .index-section01--controls--rangeControl {
         position: absolute;
@@ -301,9 +303,9 @@
         border-radius: 100%;
         background-color: wheat;
         top: -50%;
-        left: 20%;
-        transition: .2s;
+        transition: .1s;
         z-index: 999;
+        cursor: pointer;
         &:hover{
           background-color: gray;
         }
@@ -317,27 +319,29 @@
 .index-section01--controls--closeBtn {
   position: relative;
 
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background-color: gray;
   display: flex;
   overflow: hidden;
   align-items: center;
   
-  top: 50%;
-  left: 50%;
+  transform: scale(1);
+  transition: .1s;
   button {
+    @include variables.flexjc(center);
+    display: inline-block;
     width: 100%;
     height: 100%;
-    display: inline-block;
-    background-color: transparent;
     border-radius: 50%;
-    border: none;
-    cursor: pointer;
     pointer-events: all;
-    @include variables.flexjc(center);
     align-items: center;
+
+    @include variables.resBtn();
+    
+    opacity: 1;
+    transition: .25s;
     span{
       @include variables.jamsil(100, 22px);
       margin-top: -2px;
@@ -346,13 +350,90 @@
 
   &.hide{
     pointer-events: none;
-    width: 10px;
-    height: 10px;
+    transform: scale(0.2);
     button {
-      display: none;
+      opacity: 0;
     }
   }
 }
+
+.index-section01--controls--BtnWrapper {
+  width: 100%;
+  height: 30px;
+  position: relative;
+
+  .index-section01--controls--Btn{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include variables.centerX();
+    cursor: pointer;
+
+    span{
+      position: absolute;
+      width: 40px;
+      border: 2px solid white;
+      background-color: white;
+      transform-origin: right;
+      transition: .3s;
+    }
+
+    &.pause{
+      span:nth-child(1){
+        transform: rotate(-20deg);
+      }
+      span:nth-child(2){
+        transform: rotate(20deg);
+      }
+    }
+
+    &.play {
+      span:nth-child(1){
+        transform: rotate(0deg);
+      }
+      span:nth-child(2){
+        transform: rotate(0deg);
+      }
+    }
+  }
+}
+
+.index-section01--controls--Btn--mute { 
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 2.5vw;
+  overflow: hidden;
+  
+  .index-section01--controls--Btn--effect{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: -100%;
+    border: 1px solid white;
+    transition: .25s;
+
+    &.mute{
+      left: 0;
+    }
+  }
+
+  button {
+    @include variables.resBtn();
+    span {
+      text-transform: uppercase;
+      @include variables.jamsil(300, 20px);
+      color: white;
+    }
+  }
+}
+
+
+
+
 .index-section-02{
   @extend %index-section;
   position: relative;
@@ -406,6 +487,9 @@
       width: 100%;
       height: 0px;
       overflow: hidden;
+      transition: .3s;
+      &.show {
+      }
     }
 
     .index-section02--content{
