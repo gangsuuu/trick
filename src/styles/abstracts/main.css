@@ -188,6 +188,7 @@ header {
   font-family: "jsBold";
   text-transform: uppercase;
   z-index: 1000;
+  background-color: white;
 }
 
 .headerWrapper {
@@ -253,7 +254,6 @@ header {
 .index-section-03, .index-section-02, .index-section-01 {
   width: 100vw;
   height: 100vh;
-  display: none;
 }
 
 @keyframes borderColor {
@@ -286,13 +286,15 @@ header {
   }
 }
 .index-section-01 {
-  height: 95vh;
+  height: 100vh;
   position: relative;
 }
 
 .index-section01-videoWrapper {
   width: 100%;
   height: 100%;
+  position: absolute;
+  z-index: 0;
 }
 
 .index-section01-video {
@@ -312,6 +314,14 @@ header {
   height: 100%;
   top: 0;
   left: 0;
+  opacity: 1;
+  transition: 0.5s;
+  z-index: 2;
+}
+.index-section01-Control.hide {
+  top: 10%;
+  opacity: 0;
+  z-index: -10;
 }
 
 .index-section01-playBtn {
@@ -353,7 +363,7 @@ header {
   font-size: 32px;
 }
 
-.index-section01--videoControlsWrapper {
+.index-section01--videoControls--OpenWrapper {
   position: absolute;
   color: white;
   left: 0;
@@ -363,7 +373,7 @@ header {
   justify-content: start;
   align-items: center;
 }
-.index-section01--videoControlsWrapper .index-section01--openBtnWrp {
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp {
   position: relative;
   width: 25px;
   height: 25px;
@@ -372,10 +382,23 @@ header {
   transition: transform 0.35s;
   cursor: pointer;
 }
-.index-section01--videoControlsWrapper .index-section01--openBtnWrp div {
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp div {
   position: absolute;
 }
-.index-section01--videoControlsWrapper .index-section01--openBtnWrp .index-section01-openBtn:nth-child(1) {
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp .index-section01--openBtnContainer {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp .index-section01--openBtnContainer .index-section01--openBtn {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp .index-section01--openBtnSide:nth-child(2) {
   width: 9px;
   height: 9px;
   top: 0;
@@ -383,7 +406,7 @@ header {
   border-top: 2px solid rgba(255, 255, 255, 0.4);
   border-left: 2px solid rgba(255, 255, 255, 0.4);
 }
-.index-section01--videoControlsWrapper .index-section01--openBtnWrp .index-section01-openBtn:nth-child(2) {
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp .index-section01--openBtnSide:nth-child(3) {
   width: 9px;
   height: 9px;
   top: 0;
@@ -391,7 +414,7 @@ header {
   border-top: 2px solid rgba(255, 255, 255, 0.4);
   border-right: 2px solid rgba(255, 255, 255, 0.4);
 }
-.index-section01--videoControlsWrapper .index-section01--openBtnWrp .index-section01-openBtn:nth-child(3) {
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp .index-section01--openBtnSide:nth-child(4) {
   width: 9px;
   height: 9px;
   bottom: 0;
@@ -399,7 +422,7 @@ header {
   border-bottom: 2px solid rgba(255, 255, 255, 0.4);
   border-right: 2px solid rgba(255, 255, 255, 0.4);
 }
-.index-section01--videoControlsWrapper .index-section01--openBtnWrp .index-section01-openBtn:nth-child(4) {
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp .index-section01--openBtnSide:nth-child(5) {
   width: 9px;
   height: 9px;
   bottom: 0;
@@ -407,26 +430,26 @@ header {
   border-bottom: 2px solid rgba(255, 255, 255, 0.4);
   border-left: 2px solid rgba(255, 255, 255, 0.4);
 }
-.index-section01--videoControlsWrapper .index-section01--openBtnWrp:hover {
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp:hover {
   transform: scale(1.1);
 }
-.index-section01--videoControlsWrapper .index-section01--openBtnWrp:hover .index-section01-openBtn:nth-child(1) {
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp:hover .index-section01--openBtnSide:nth-child(2) {
   animation: borderColor 1.5s ease-in-out 0s infinite;
   animation-delay: 0s, 3s;
 }
-.index-section01--videoControlsWrapper .index-section01--openBtnWrp:hover .index-section01-openBtn:nth-child(2) {
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp:hover .index-section01--openBtnSide:nth-child(3) {
   animation: borderColor 1.5s ease-in-out 0.25s infinite;
   animation-delay: 0.25s, 3.25s;
 }
-.index-section01--videoControlsWrapper .index-section01--openBtnWrp:hover .index-section01-openBtn:nth-child(3) {
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp:hover .index-section01--openBtnSide:nth-child(4) {
   animation: borderColor 1.5s ease-in-out 0.4s infinite;
   animation-delay: 0.4s, 3.4s;
 }
-.index-section01--videoControlsWrapper .index-section01--openBtnWrp:hover .index-section01-openBtn:nth-child(4) {
+.index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp:hover .index-section01--openBtnSide:nth-child(5) {
   animation: borderColor 1.5s ease-in-out 0.5s infinite;
   animation-delay: 0.5s, 3.5s;
 }
-.index-section01--videoControlsWrapper .index-section01--creator {
+.index-section01--videoControls--OpenWrapper .index-section01--creator {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: "jsLight";
@@ -460,6 +483,109 @@ header {
   left: 50%;
   transform: translateX(-50%);
   animation: scrollBall 1.7s ease-in-out 0.7s infinite;
+}
+
+.index-section01--videoControlsWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: 0.5s;
+  z-index: 2;
+}
+.index-section01--videoControlsWrapper.hide {
+  top: 10%;
+  opacity: 0;
+  z-index: 0;
+}
+.index-section01--videoControlsWrapper .index-section01--detailControls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+}
+.index-section01--videoControlsWrapper .index-section01--controls--videoRangeWrapper {
+  width: 100%;
+  padding: 4% 2.5vw;
+  height: 10px;
+  position: relative;
+  top: 0;
+}
+.index-section01--videoControlsWrapper .index-section01--controls--videoRangeWrapper .index-section01--controls--rangeLow {
+  position: relative;
+  width: 100%;
+  height: 23px;
+  border-radius: 1px;
+}
+.index-section01--videoControlsWrapper .index-section01--controls--videoRangeWrapper .index-section01--controls--rangeLow .index-section01--controls--range {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+.index-section01--videoControlsWrapper .index-section01--controls--videoRangeWrapper .index-section01--controls--rangeLow .index-section01--controls--rangePass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  border-top: 1px solid white;
+}
+.index-section01--videoControlsWrapper .index-section01--controls--videoRangeWrapper .index-section01--controls--rangeLow .index-section01--controls--rangeControl {
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  border-radius: 100%;
+  background-color: wheat;
+  top: -50%;
+  left: 20%;
+  transition: 0.2s;
+  z-index: 999;
+}
+.index-section01--videoControlsWrapper .index-section01--controls--videoRangeWrapper .index-section01--controls--rangeLow .index-section01--controls--rangeControl:hover {
+  background-color: gray;
+}
+
+.index-section01--controls--closeBtn {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: gray;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+}
+.index-section01--controls--closeBtn button {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  background-color: transparent;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  pointer-events: all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.index-section01--controls--closeBtn button span {
+  font-family: "jsThin";
+  font-size: 22px;
+  margin-top: -2px;
+}
+.index-section01--controls--closeBtn.hide {
+  pointer-events: none;
+  width: 10px;
+  height: 10px;
+}
+.index-section01--controls--closeBtn.hide button {
+  display: none;
 }
 
 .index-section-02 {

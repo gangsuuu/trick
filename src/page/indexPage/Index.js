@@ -13,38 +13,33 @@ export default function Index () {
 }
 
 function SectionFirst (){
-  let [videoControl,setVideoControl] = useState(false)
+  let [showControl,setShowControl] = useState(true)
+  let [onControler,setOnControler] = useState(false)
   
-  const sourceRef = useRef()
-  const videoRef = useRef()
-  const playRef = useRef()
   useEffect(() => {
+    console.log('test');
   },[])
 
-  const handleLoadedData = () =>{
-    sourceRef.autoPlay = true;
-  }
 
 
   return(
     <section className="index-section-01">
       <div className="index-section01-videoWrapper">
         <div className="index-section01-video">
-          <video 
-          ref={videoRef}
-          onLoadedData={handleLoadedData}
-          >
+          <video>
             <source  
-            ref={sourceRef}
             src={video} type="video/mp4"></source>
           </video>
         </div>
-        <div className='index-section01-Control'>
-          <div 
-            className='index-section01-playBtn'
-            ref={playRef}
-          >
-          </div>
+        
+        <div 
+        className={`index-section01-Control 
+          ${showControl == true
+            ? 'hide'
+            : ''
+          }`
+        }
+        >
           <div className="index-section01--textWrapper">
             <div className='index-section01--welcome'>
               <p>welcome to the site</p>
@@ -53,27 +48,57 @@ function SectionFirst (){
               <h3>the trick of web publish</h3>
             </div>
           </div>
-        </div>
-        <div className='index-section01--videoControlsWrapper'>
-          <div className='index-section01--openBtnWrp'>
-            <div className='index-section01-openBtn'></div>
-            <div className='index-section01-openBtn'></div>
-            <div className='index-section01-openBtn'></div>
-            <div className='index-section01-openBtn'></div>
+          <div
+            className='index-section01--videoControls--OpenWrapper'
+          >
+            <div 
+              className='index-section01--openBtnWrp'
+            >
+              <div className='index-section01--openBtnContainer'>
+                <button 
+                  className='index-section01--openBtn'
+                  onClick={()=> {
+                    setShowControl(true)
+                  }}
+                  ></button>
+              </div>
+              <div className='index-section01--openBtnSide'></div>
+              <div className='index-section01--openBtnSide'></div>
+              <div className='index-section01--openBtnSide'></div>
+              <div className='index-section01--openBtnSide'></div>
+            </div>
+            <div className='index-section01--creator'>create by huck</div>      
           </div>
-          <div className='index-section01--creator'>create by huck</div>
-          <div className='index-section01--detailControls'></div>
+          <div className='index-section01--howToUse'>
+            <div className='index-section01-scrollIcon'></div>
+          </div>
         </div>
 
-        {
-          videoControl == false  ?
-           <div className='index-section01--howToUse'>
-            <div className='index-section01-scrollIcon'>
+        <div className={`index-section01--videoControlsWrapper
+           ${showControl == true
+            ? ''
+            : 'hide'
+          }`}>
+          <div className='index-section01--detailControls'>
+            <div className='index-section01--controls--videoRangeWrapper'>
+              <div className='index-section01--controls--rangeLow'>
+                <div className='index-section01--controls--range'></div>
+                <div className='index-section01--controls--rangePass'></div>
+                <div className='index-section01--controls--rangeControl'></div>
+              </div>
+            </div>
+            <div className='index-section01--controls--BtnWrapper'>
+              <div className='index-section01--controls--Btn play'></div>
+              <div className='index-section01--controls--Btn mute'></div>
             </div>
           </div>
-          : null
-        }
-      
+          <div className={`index-section01--controls--closeBtn
+            ${
+              onControler == true
+              ? 'hide'
+              : ''
+            }`}><button><span>x</span></button></div>
+        </div>
       </div>
     </section>
   )

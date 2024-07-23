@@ -9,6 +9,8 @@ header {
   @include variables.jamsil(700, 0);
   text-transform: uppercase;
   z-index: 1000;
+
+  background-color: white;
 }
 
 .headerWrapper {
