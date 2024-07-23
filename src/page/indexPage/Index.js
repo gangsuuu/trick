@@ -1,8 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import video from '../../assets/videos/videoAssets.mp4'
 
 export default function Index () {
-
 
   return (
     <>
@@ -14,6 +13,8 @@ export default function Index () {
 }
 
 function SectionFirst (){
+  let [videoControl,setVideoControl] = useState(false)
+  
   const sourceRef = useRef()
   const videoRef = useRef()
   const playRef = useRef()
@@ -63,10 +64,16 @@ function SectionFirst (){
           <div className='index-section01--creator'>create by huck</div>
           <div className='index-section01--detailControls'></div>
         </div>
-        <div className='index-section01--howToUse'>
-          <div className='index-section01-scrollIcon'>
+
+        {
+          videoControl == false  ?
+           <div className='index-section01--howToUse'>
+            <div className='index-section01-scrollIcon'>
+            </div>
           </div>
-        </div>
+          : null
+        }
+      
       </div>
     </section>
   )

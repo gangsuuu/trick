@@ -42,7 +42,6 @@ export default function TrickDetail (){
             </div>
             <div className="trickDetail-content-video--imageWrapper">
               <div className="trickDetail-content-video--content">
-
               </div>
             </div>
           </div>

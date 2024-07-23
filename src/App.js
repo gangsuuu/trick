@@ -9,9 +9,9 @@ function App() {
   return (
     <>  
       <Header />
-      {/* <Index></Index> */}
+      <Index></Index>
       {/* <Tricks></Tricks> */}
-      <TrickDetail></TrickDetail>
+      {/* <TrickDetail></TrickDetail> */}
       {/* <Footer /> */}
     </>
   );
