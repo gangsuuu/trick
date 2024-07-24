@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import video from '../../assets/videos/videoAssets.mp4'
+import axios from 'axios'
 
 export default function Index () {
 
@@ -237,6 +238,7 @@ function SectionFirst (){
 
 function SectionSecond (){
   const [textShowed, setTextShowed] = useState([false,false,false])
+  const [contents, setContents] = useState(null)
   const imgWraRef = useRef(null)
   const textRef = useRef([])
 
@@ -247,6 +249,19 @@ function SectionSecond (){
       img.style.top = Math.random() * 100 +'%'
       img.style.transform = `scale(${(Math.random()*(105 - 60 + 1) + 60)/100})`
     })
+
+    const content = async () => {
+
+      try {
+        const data = await axios.get('./../assets/json/index.json')
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+
+    content()
   },[])
 
   const showText = (target,i) => {
@@ -274,10 +289,16 @@ function SectionSecond (){
             )
            }
         </div>
+
         <div className='index-section02--title'>
           <h2>what i made in</h2>
         </div>
         <div className='index-section02--textWrappers'>
+          
+
+
+
+
           <div className='index-section02--textWrapper'
             onClick={(e) => showText(e.currentTarget.children[1],0)}
           >
