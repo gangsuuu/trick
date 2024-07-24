@@ -681,16 +681,30 @@ header {
   position: relative;
 }
 .index-section02--title h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 0);
+          clip-path: polygon(0 0, 0 0, 0 0);
+}
+.index-section02--title .index-section02--titleSpans {
+  width: 100%;
+  margin: 70px 0;
+  text-align: center;
+  overflow: hidden;
+}
+.index-section02--title .index-section02--titleSpans span {
   font-family: "jsBold";
   font-size: 25px;
   text-transform: uppercase;
-  margin: 70px 0;
-  letter-spacing: 1.5px;
-  word-spacing: 15px;
-  position: relative;
+  text-align: center;
   display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  transform: translateY(30px);
+}
+.index-section02--title .index-section02--titleSpans span.space {
+  width: 18px;
 }
 
 .index-section02--textWrappers {
@@ -699,6 +713,8 @@ header {
   justify-content: center;
   gap: 120px;
   align-items: flex-start;
+  position: relative;
+  z-index: 2;
 }
 .index-section02--textWrappers .index-section02--textWrapper {
   width: 220px;
@@ -714,6 +730,9 @@ header {
   letter-spacing: 1.2px;
   line-height: 22px;
   margin-bottom: 15px;
+}
+.index-section02--textWrappers .index-section02--textWrapper .index-section02--subTitle.show {
+  color: #000;
 }
 .index-section02--textWrappers .index-section02--textWrapper .index-section02--subWrapper {
   width: 100%;
@@ -752,6 +771,11 @@ header {
   font-family: "jsRegular";
   transition: 0.35s ease;
 }
+.index-section02--textWrappers .index-section02--textWrapper .index-section02--showText.open p {
+  opacity: 1;
+  transform: translateX(0);
+  color: rgba(0, 0, 0, 0.4);
+}
 .index-section02--textWrappers .index-section02--textWrapper .index-section02--icon {
   position: absolute;
   top: 0;
@@ -783,6 +807,9 @@ header {
   transform: translateX(0%);
   opacity: 1;
 }
+.index-section02--textWrappers .index-section02--textWrapper:hover .open p {
+  color: #000;
+}
 .index-section02--textWrappers .index-section02--textWrapper:hover .arrowOne {
   transform: translate(150%, -150%);
 }
@@ -792,24 +819,159 @@ header {
 
 .index-section02--imagesWrapper {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
+  height: 32%;
+  margin-bottom: 8%;
+  display: flex;
+  justify-content: space-between;
+}
+.index-section02--imagesWrapper .index-section02--imageSlides {
+  display: flex;
+  align-items: end;
+  margin-right: 2.5vw;
+  gap: 10px;
+}
+.index-section02--imagesWrapper .index-section02--imageSlides .index-section02--imageSlide {
+  width: 100px;
+  height: 60px;
+  background-color: red;
+}
+.index-section02--imagesWrapper .index-section02--imageSlides .index-section02--imageSlide .index-section02--imageCover {
+  width: 100%;
   height: 100%;
-  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: 0.2s;
 }
-.index-section02--imagesWrapper .index-section02--image {
-  position: absolute;
-  width: 260px;
-  height: 180px;
-  border: 1px solid #000;
-  background-color: rgba(0, 0, 255, 0.5);
+.index-section02--imagesWrapper .index-section02--imageSlides .index-section02--imageSlide.selected .index-section02--imageCover {
+  background-color: rgba(0, 0, 0, 0);
 }
-.index-section02--imagesWrapper .index-section02--image img {
+.index-section02--imagesWrapper .index-section02--imageSlides .index-section02--imageSlide:hover .index-section02--imageCover {
+  background-color: rgba(0, 0, 0, 0);
+}
+.index-section02--imagesWrapper .index-section02--imageSlides .index-section02--imageSlide img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.index-section02--imagesWrapper .index-section02--imageLargeBoxWrapper {
+  height: 100%;
+  margin-left: 2.5vw;
+  display: flex;
+  align-items: end;
+}
+.index-section02--imagesWrapper .index-section02--imageLargeBoxWrapper .index-section02--imageLargeBox {
+  width: 400px;
+  height: 100%;
+  overflow: hidden;
+}
+.index-section02--imagesWrapper .index-section02--imageLargeBoxWrapper .index-section02--imageLargeBox .index-section02--imageLarge {
+  width: 100%;
+  height: 100%;
+  background-color: blue;
+}
+.index-section02--imagesWrapper .index-section02--imageLargeBoxWrapper .index-section02--imageLargeBox .index-section02--imageLarge img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.index-section02--animationControll {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin-left: 40px;
+}
+.index-section02--animationControll .index-section02--top {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 18px solid rgba(0, 0, 0, 0.4);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top: none;
+  top: -18px;
+}
+.index-section02--animationControll .index-section02--top.selected {
+  border-color: black;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top: none;
+}
+.index-section02--animationControll .index-section02--top:hover {
+  border-color: black;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top: none;
+}
+.index-section02--animationControll .index-section02--left {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 18px solid rgba(0, 0, 0, 0.4);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left: none;
+  left: -18px;
+}
+.index-section02--animationControll .index-section02--left.selected {
+  border-color: black;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left: none;
+}
+.index-section02--animationControll .index-section02--left:hover {
+  border-color: black;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left: none;
+}
+.index-section02--animationControll .index-section02--right {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 18px solid rgba(0, 0, 0, 0.4);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right: none;
+  right: -4px;
+}
+.index-section02--animationControll .index-section02--right.selected {
+  border-color: black;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right: none;
+}
+.index-section02--animationControll .index-section02--right:hover {
+  border-color: black;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right: none;
+}
+.index-section02--animationControll .index-section02--bottom {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 18px solid rgba(0, 0, 0, 0.4);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom: none;
+  bottom: -4px;
+}
+.index-section02--animationControll .index-section02--bottom.selected {
+  border-color: black;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom: none;
+}
+.index-section02--animationControll .index-section02--bottom:hover {
+  border-color: black;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom: none;
 }
 
 .index-section03--wrapper {

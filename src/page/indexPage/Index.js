@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import video from '../../assets/videos/videoAssets.mp4'
 import axios from 'axios'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
+import { wait } from '@testing-library/user-event/dist/utils'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function Index () {
-
   return (
     <>
       <SectionFirst></SectionFirst>
@@ -239,37 +243,62 @@ function SectionFirst (){
 function SectionSecond (){
   const [textShowed, setTextShowed] = useState([false,false,false])
   const [contents, setContents] = useState(null)
-  const imgWraRef = useRef(null)
+  const [direction, setDirection] = useState(null)
+  const [selected, setSelected] = useState(null)
+  const titleH2Ref = useRef(null)
+  const titleSpanWrapRef = useRef(null)
   const textRef = useRef([])
 
   
   useEffect(()=>{
-    Array.from(imgWraRef.current.children).forEach((img)=> {
-      img.style.left = Math.random() * 100 +'%'
-      img.style.top = Math.random() * 100 +'%'
-      img.style.transform = `scale(${(Math.random()*(105 - 60 + 1) + 60)/100})`
-    })
-
     const content = async () => {
-
       try {
-        const data = await axios.get('./../assets/json/index.json')
-        console.log(data);
+        const data = await axios.get('https://raw.githubusercontent.com/gangsuuu/trick/main/src/assets/json/index.json')
+        if(data == null){
+          return
+        }
+        setContents(data.data)
       } catch (error) {
         console.log(error);
       }
     }
-
-
     content()
+    getTitleSpan(titleH2Ref.current, titleSpanWrapRef.current)
   },[])
+
+
+  const getTitleSpan = (h2, wrap) => {
+    // const texts = h2.innerHTML.split('')
+    h2.innerHTML.split('').map((t,i) => {
+      const span = document.createElement('span')
+      span.innerHTML = t
+      if(t == ' '){
+        span.classList.add('space')
+      }
+      wrap.appendChild(span)
+    })
+
+    ScrollTrigger.create({
+      trigger:wrap,
+      start:'start center',
+      end:'bottom center',
+      onEnter: () => {
+        gsap.to(wrap.children,{
+          y:0,
+          duration: .4,
+          stagger: 0.05,
+          ease: 'power4.inOut'
+        })
+      }
+    })
+  }
 
   const showText = (target,i) => {
     const ary = [...textShowed]
     ary[i] = !ary[i]
 
     ary[i] === true
-    ? target.style.height = textRef.current[i].offsetHeight + 'px'
+    ? target.style.height = (textRef.current[i].offsetHeight + 10) + 'px'
     : target.style.height = '0px'
 
     setTextShowed(ary)
@@ -278,87 +307,94 @@ function SectionSecond (){
   return(
     <section className="index-section-02">
       <div className="index-section02--wrapper">
-        <div 
-          className='index-section02--imagesWrapper'
-          ref={imgWraRef}
-        >
-          { Array(0).fill(
-              <div className='index-section02--image'>
-                {/* <img src=""></img> */}
-              </div>
-            )
-           }
-        </div>
-
         <div className='index-section02--title'>
-          <h2>what i made in</h2>
+          <h2 ref={titleH2Ref}>what i made in</h2>
+          <div className='index-section02--titleSpans' ref={titleSpanWrapRef}>
+
+          </div>
         </div>
         <div className='index-section02--textWrappers'>
-          
-
-
-
-
-          <div className='index-section02--textWrapper'
-            onClick={(e) => showText(e.currentTarget.children[1],0)}
-          >
-            <p className='index-section02--subTitle'>GSAP, Gsap ScrollTriger 등의 라이브러리 활용</p>
-            <div className='index-section02--subWrapper'>
-              <p 
-              className='index-section02--content'
-              ref={(e) =>{textRef.current[0] = e}}
-              >GSAP를 이용하여 간단한 트랜지션부터 복잡한 인트로까지 작업 가능하며, GSAP Scrolltriger을 통해 사용자의 진행도에 따른 애니메이션을 출력할 수 있습니다.</p>
+          {
+              contents ===  null
+              ? ''
+              :contents.map((c,i) =>{
+                return (
+                  <div className='index-section02--textWrapper'
+                    onClick={(e) => 
+                      showText(e.currentTarget.children[1],i)
+                    }
+                    key={i}
+                  >
+                    <p className={`index-section02--subTitle ${
+                      textShowed[i] === true ? 'show' : ''
+                    }`}>{c.subtitle}</p>
+                    <div className='index-section02--subWrapper'>
+                      <p className='index-section02--content'
+                      ref={(e) =>{textRef.current[i] = e}}
+                      >{c.content}</p>
+                    </div>
+                    <div className='index-section02--showIconWrapper'>
+                      <div className={`index-section02--showText
+                        ${textShowed[i] === true ? 'open' : ''}
+                      `}>
+                        <p>{textShowed[i] === true ? '닫기' : '보기'}</p>
+                      </div>
+                      <div className='index-section02--icon'>
+                      {textShowed[i] === true ? 
+                      (<>
+                        <p className='index-section02--arrowIcon arrowOne'>⬈</p>
+                        <p className='index-section02--arrowIcon arrowTwo'>⬈</p>
+                      </>) 
+                      : (<>
+                        <p className='index-section02--arrowIcon arrowOne'>⬊</p>
+                        <p className='index-section02--arrowIcon arrowTwo'>⬊</p>
+                      </>) 
+                      }
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+          }
+        </div>
+        <div className='index-section02--imagesWrapper'>
+          <div className='index-section02--imageLargeBoxWrapper'>
+            <div className='index-section02--imageLargeBox'>
+              <div className='index-section02--imageLarge'></div>
             </div>
-            <div className='index-section02--showIconWrapper'>
-              <div className='index-section02--showText'>
-                <p>보기</p>
-              </div>
-              <div className='index-section02--icon'>
-                <p className='index-section02--arrowIcon arrowOne'>⬈</p>
-                <p className='index-section02--arrowIcon arrowTwo'>⬈</p>
-              </div>
-            </div>
-          </div> 
-          <div className='index-section02--textWrapper'
-            onClick={(e) => showText(e.currentTarget.children[1],1)}
-          >
-            <p className='index-section02--subTitle'>JavaScript, Canvas, Three.js 스크립트 애니메이션</p>
-            <div className='index-section02--subWrapper'>
-              <p className='index-section02--content'
-              ref={(e) =>{textRef.current[1] = e}}
-              >JavaScript를 요소들을 추가 및 제거등 관리하며 동적인 애니메이션을 관리할 수 있습니다. canvas와 three.js를 통해 css를 활용하기 표현하기 힘든 디테일한 애니메이션과 요소 및 물리법칙을 구현하고, img, video등이 컨텐츠의 요소를 관리할 수 있습니다.  </p>
-            </div>
-            <div className='index-section02--showIconWrapper'>
-              <div className='index-section02--showText'>
-                <p>보기</p>
-              </div>
-              <div className='index-section02--icon'>
-                <p className='index-section02--arrowIcon arrowOne'>⬊</p>
-                <p className='index-section02--arrowIcon arrowTwo'>⬊</p>
+            <div className='index-section02--animationControll'>
+              <div className='index-section02--directions'>
+                <div className='index-section02--top selected'> </div>
+                <div className='index-section02--left'> </div>
+                <div className='index-section02--right'> </div>
+                <div className='index-section02--bottom'> </div>
               </div>
             </div>
           </div>
-          <div className='index-section02--textWrapper'
-            onClick={(e) => showText(e.currentTarget.children[1],2)}
-          >
-            <p className='index-section02--subTitle'>기본 css에서 제공하는 기능</p>
-            <div className='index-section02--subWrapper'>
-             <p className='index-section02--content'
-            ref={(e) =>{textRef.current[2] = e}}
-              >단순한 요소의 요소의 애니메이션은 KeyFrame, transition을 통해 출력해낼 수 있으며, 유저와 웹의 상호작용을 위해, ui 사용 가이드라인을 제공 할 hover, focus, active 등에 접근할 수 있습니다. 상대적으로 많이 다루지 않는 blend-mode, filter, clip-path를 활용하여 디테일의 수준이나, 연출가능한 스펙트럼을 넓히는 것에도큰 심여를 기울이고 있습니다. </p>
+          <div className='index-section02--imageSlides'>
+            <div className='index-section02--imageSlide selected'>
+              <div className='index-section02--imageCover'></div>
             </div>
-            <div className='index-section02--showIconWrapper'>
-              <div className='index-section02--showText'>
-                <p>보기</p>
-              </div>
-              <div className='index-section02--icon'>
-                <p className='index-section02--arrowIcon arrowOne'>⬈</p>
-                <p className='index-section02--arrowIcon arrowTwo'>⬈</p>
-              </div>
+            <div className='index-section02--imageSlide'>
+              <div className='index-section02--imageCover'></div>
+            </div>
+            <div className='index-section02--imageSlide'>
+              <div className='index-section02--imageCover'></div>
+            </div>
+            <div className='index-section02--imageSlide'>
+              <div className='index-section02--imageCover'></div>
+            </div>
+            <div className='index-section02--imageSlide'>
+              <div className='index-section02--imageCover'></div>
+            </div>
+            <div className='index-section02--imageSlide'>
+              <div className='index-section02--imageCover'></div>
+            </div>
+            <div className='index-section02--imageSlide'>
+              <div className='index-section02--imageCover'></div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   )

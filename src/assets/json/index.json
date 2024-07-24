@@ -4,11 +4,11 @@
     "content" : "GSAP를 이용하여 간단한 트랜지션부터 복잡한 인트로까지 작업 가능하며, GSAP Scrolltriger을 통해 사용자의 진행도에 따른 애니메이션을 출력할 수 있습니다."
   },
   {
- "subtitle": "JavaScript, Canvas, Three.js 스크립트 애니메이션",
+  "subtitle": "JavaScript, Canvas, Three.js 스크립트 애니메이션",
     "content" : "JavaScript를 요소들을 추가 및 제거등 관리하며 동적인 애니메이션을 관리할 수 있습니다. canvas와 three.js를 통해 css를 활용하기 표현하기 힘든 디테일한 애니메이션과 요소 및 물리법칙을 구현하고, img, video등이 컨텐츠의 요소를 관리할 수 있습니다."
   },
   {
- "subtitle": "기본 css에서 제공하는 기능",
+  "subtitle": "기본 css에서 제공하는 기능",
     "content" : "단순한 요소의 요소의 애니메이션은 KeyFrame, transition을 통해 출력해낼 수 있으며, 유저와 웹의 상호작용을 위해, ui 사용 가이드라인을 제공 할 hover, focus, active 등에 접근할 수 있습니다. 상대적으로 많이 다루지 않는 blend-mode, filter, clip-path를 활용하여 디테일의 수준이나, 연출가능한 스펙트럼을 넓히는 것에도큰 심여를 기울이고 있습니다."
   }
 ]

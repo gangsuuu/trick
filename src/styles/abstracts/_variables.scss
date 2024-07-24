@@ -82,7 +82,14 @@
   cursor: pointer;
 }
 
-
+@mixin textHide(){
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 0 0, 0 0);
+}
 
 $bd-01 : rgba(0, 0, 0, .1);
 
