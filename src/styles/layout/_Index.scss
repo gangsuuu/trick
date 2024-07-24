@@ -637,13 +637,15 @@
     margin-right: 2.5vw;
     gap: 10px;
     .index-section02--imageSlide {
-      width: 100px;
-      height: 60px;
-      background-color: red;
+      position: relative;
+      width: 110px;
+      height: 70px;
       .index-section02--imageCover{
+        position: absolute;
+        top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,.2);
+        background-color: rgba(0,0,0, .4);
         transition: .2s;
       }
       &.selected{
@@ -678,7 +680,6 @@
       .index-section02--imageLarge{
         width: 100%;
         height: 100%;
-        background-color: blue;
         img {
           width: 100%;
           height: 100%;

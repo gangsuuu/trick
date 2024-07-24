@@ -32,8 +32,8 @@ function SectionFirst (){
   let clicked
 
   const moveCloseBtn = (x,y,p) =>{
-    if(closeBtn == null) return
-    if(closeBtn == p) {
+    if(closeBtn === null) return
+    if(closeBtn === p) {
       closeBtn.style.transition = `0s`
       closeBtn.style.transform = `translate(${x}px,${y}px) scale(0.2)`
       closeBtn.style.transition = `.25s`
@@ -41,7 +41,7 @@ function SectionFirst (){
     }
     let w = closeBtn.offsetWidth
     let h = closeBtn.offsetHeight
-    if(onControler == true){
+    if(onControler === true){
       closeBtn.style.transform = `translate(${x - w}px,${y - h}px) scale(0.2)`
       closeBtn.style.transition = `.25s`
     } else {
@@ -161,7 +161,7 @@ function SectionFirst (){
               progressControlRef.current.style.transition = '.1s'
               rangePassedRef.current.style.transition = '.1s'
 
-              if(play == true){
+              if(play === true){
                 videoRef.current.play()
               }
 
@@ -243,8 +243,9 @@ function SectionFirst (){
 function SectionSecond (){
   const [textShowed, setTextShowed] = useState([false,false,false])
   const [contents, setContents] = useState(null)
+  const [images, setImages] = useState(null)
   const [direction, setDirection] = useState(null)
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState(0)
   const titleH2Ref = useRef(null)
   const titleSpanWrapRef = useRef(null)
   const textRef = useRef([])
@@ -252,15 +253,17 @@ function SectionSecond (){
   
   useEffect(()=>{
     const content = async () => {
-      try {
-        const data = await axios.get('https://raw.githubusercontent.com/gangsuuu/trick/main/src/assets/json/index.json')
-        if(data == null){
-          return
+      Promise.all([
+        axios.get('https://raw.githubusercontent.com/gangsuuu/trick/main/src/assets/json/index.json')
+        ,axios.get('https://raw.githubusercontent.com/gangsuuu/trick/main/src/assets/json/index02.json')
+      ]).then((r) => {
+        console.log(r);
+        if(r[0] == null || r[1] == null){
+          return;
         }
-        setContents(data.data)
-      } catch (error) {
-        console.log(error);
-      }
+        setContents(r[0].data)
+        setImages(r[1].data)
+      })
     }
     content()
     getTitleSpan(titleH2Ref.current, titleSpanWrapRef.current)
@@ -269,10 +272,10 @@ function SectionSecond (){
 
   const getTitleSpan = (h2, wrap) => {
     // const texts = h2.innerHTML.split('')
-    h2.innerHTML.split('').map((t,i) => {
+    h2.innerHTML.split('').map((t) => {
       const span = document.createElement('span')
       span.innerHTML = t
-      if(t == ' '){
+      if(t === ' '){
         span.classList.add('space')
       }
       wrap.appendChild(span)
@@ -360,7 +363,15 @@ function SectionSecond (){
         <div className='index-section02--imagesWrapper'>
           <div className='index-section02--imageLargeBoxWrapper'>
             <div className='index-section02--imageLargeBox'>
-              <div className='index-section02--imageLarge'></div>
+              <div className='index-section02--imageLarge'>
+                {
+                   <img src={
+                    images == null
+                    ?''
+                    : images[selected].url
+                   } />
+                }
+              </div>
             </div>
             <div className='index-section02--animationControll'>
               <div className='index-section02--directions'>
@@ -372,27 +383,29 @@ function SectionSecond (){
             </div>
           </div>
           <div className='index-section02--imageSlides'>
-            <div className='index-section02--imageSlide selected'>
-              <div className='index-section02--imageCover'></div>
-            </div>
-            <div className='index-section02--imageSlide'>
-              <div className='index-section02--imageCover'></div>
-            </div>
-            <div className='index-section02--imageSlide'>
-              <div className='index-section02--imageCover'></div>
-            </div>
-            <div className='index-section02--imageSlide'>
-              <div className='index-section02--imageCover'></div>
-            </div>
-            <div className='index-section02--imageSlide'>
-              <div className='index-section02--imageCover'></div>
-            </div>
-            <div className='index-section02--imageSlide'>
-              <div className='index-section02--imageCover'></div>
-            </div>
-            <div className='index-section02--imageSlide'>
-              <div className='index-section02--imageCover'></div>
-            </div>
+              {
+                images == null
+                ? ""
+                : images.map((c,i) => {
+                  return(
+                    <>
+                  <div className={`index-section02--imageSlide
+                      ${
+                        i === selected
+                        ? 'selected'
+                        : ''
+                      }`
+                    }
+                    onClick={() => {setSelected(i)}}
+                    key={i}
+                  >
+                    <img src={c.url}></img>
+                    <div className='index-section02--imageCover'>
+                    </div>
+                  </div>
+                  </>
+                )})
+              }
           </div>
         </div>
       </div>
