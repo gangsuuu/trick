@@ -3,7 +3,7 @@ import video from '../../assets/videos/videoAssets.mp4'
 import axios from 'axios'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
-import { wait } from '@testing-library/user-event/dist/utils'
+import { getValue, wait } from '@testing-library/user-event/dist/utils'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -32,7 +32,7 @@ function SectionFirst (){
   let clicked
 
   const moveCloseBtn = (x,y,p) =>{
-    if(closeBtn === null) return
+    if(closeBtn === undefined) return
     if(closeBtn === p) {
       closeBtn.style.transition = `0s`
       closeBtn.style.transform = `translate(${x}px,${y}px) scale(0.2)`
@@ -125,7 +125,6 @@ function SectionFirst (){
                 <button 
                   className='index-section01--openBtn'
                   onClick={(e)=> {
-                    moveCloseBtn(e.clientX,e.clientY)
                     setShowControl(true)
                   }}
                   ></button>
@@ -244,20 +243,23 @@ function SectionSecond (){
   const [textShowed, setTextShowed] = useState([false,false,false])
   const [contents, setContents] = useState(null)
   const [images, setImages] = useState(null)
-  const [direction, setDirection] = useState(null)
+  const [direction, setDirection] = useState('top')
   const [selected, setSelected] = useState(0)
+  const [duration, setDuration] = useState(.5)
+  const [inOut, setInout] = useState('inOut')
+  const [power, setPower] = useState('power4')
   const titleH2Ref = useRef(null)
   const titleSpanWrapRef = useRef(null)
   const textRef = useRef([])
-
+  const LargeBoxRef = useRef(null)
   
+
   useEffect(()=>{
     const content = async () => {
       Promise.all([
         axios.get('https://raw.githubusercontent.com/gangsuuu/trick/main/src/assets/json/index.json')
         ,axios.get('https://raw.githubusercontent.com/gangsuuu/trick/main/src/assets/json/index02.json')
       ]).then((r) => {
-        console.log(r);
         if(r[0] == null || r[1] == null){
           return;
         }
@@ -268,6 +270,44 @@ function SectionSecond (){
     content()
     getTitleSpan(titleH2Ref.current, titleSpanWrapRef.current)
   },[])
+
+  useEffect(() =>{
+    if(images == null) return
+
+    const large = document.createElement('div')
+    large.classList.add('index-section02--imageLarge')
+    const newImage = document.createElement('img')
+    newImage.src = images[selected].url
+
+    large.appendChild(newImage)
+    LargeBoxRef.current.appendChild(large)
+    switch(direction){
+        case 'top':
+          large.style.transform = `translateY(${large.offsetHeight}px)`
+          break;
+        case 'right':
+          large.style.transform = `translateX(${large.offsetWidth * -1}px)`
+          break;
+        case 'left':
+          large.style.transform = `translateX(${large.offsetWidth}px)`
+          break;
+        case 'bottom':
+          large.style.transform = `translateY(${large.offsetHeight * -1}px)`
+          break;
+      }
+      
+      var ease = power+inOut
+      gsap.to(large, {
+        x: 0,
+        y: 0,
+        duration : duration,
+        ease: ease,
+        onComplete : () => {
+          LargeBoxRef.current.firstChild.remove()
+        }
+      })
+  },[selected,direction])
+
 
 
   const getTitleSpan = (h2, wrap) => {
@@ -290,7 +330,7 @@ function SectionSecond (){
           y:0,
           duration: .4,
           stagger: 0.05,
-          ease: 'power4.inOut'
+          ease: 'power4.inOut' 
         })
       }
     })
@@ -307,6 +347,12 @@ function SectionSecond (){
     setTextShowed(ary)
   }
 
+  const changeDuration = (e) => {
+    var gradient_value = 100 / e.attributes.max.value;
+
+    e.style.background = 'linear-gradient(to right, #FFE283 0%, #FFE283 '+gradient_value * e.value +'%, rgb(236, 236, 236) ' +gradient_value *  e.value + '%, rgb(236, 236, 236) 100%)';
+    setDuration(e.value);
+  }
   return(
     <section className="index-section-02">
       <div className="index-section02--wrapper">
@@ -322,7 +368,9 @@ function SectionSecond (){
               ? ''
               :contents.map((c,i) =>{
                 return (
-                  <div className='index-section02--textWrapper'
+                  <div className={`index-section02--textWrapper
+                    ${textShowed[i] === true ? 'open' : ''}
+                    `}
                     onClick={(e) => 
                       showText(e.currentTarget.children[1],i)
                     }
@@ -362,7 +410,9 @@ function SectionSecond (){
         </div>
         <div className='index-section02--imagesWrapper'>
           <div className='index-section02--imageLargeBoxWrapper'>
-            <div className='index-section02--imageLargeBox'>
+            <div className='index-section02--imageLargeBox'
+                 ref={LargeBoxRef}
+            >
               <div className='index-section02--imageLarge'>
                 {
                    <img src={
@@ -375,10 +425,47 @@ function SectionSecond (){
             </div>
             <div className='index-section02--animationControll'>
               <div className='index-section02--directions'>
-                <div className='index-section02--top selected'> </div>
-                <div className='index-section02--left'> </div>
-                <div className='index-section02--right'> </div>
-                <div className='index-section02--bottom'> </div>
+                <div className={`index-section02--top ${direction === 'top'? 'selected' : ''}`}
+                  onClick={() => setDirection('top')}
+                > </div>
+                <div className={`index-section02--left ${direction === 'left'? 'selected' : ''}`}
+                  onClick={() => setDirection('left')}
+                > </div>
+                <div className={`index-section02--right ${direction === 'right'? 'selected' : ''}`}
+                  onClick={() => setDirection('right')}
+                > </div>
+                <div className={`index-section02--bottom ${direction === 'bottom'? 'selected' : ''}`}
+                  onClick={() => setDirection('bottom')}
+                > </div>
+              </div>
+              <div className='index-section02--stateControl'>
+                <div className='index-section02--duration'>
+                  <div>Duration</div>
+                  <div className='index-section02-durationBox'>
+                    <input type='range'
+                      max="1" min="0" step="0.01"
+                      onChange={(e) => {
+                        changeDuration(e.target)
+                      }}
+                    /> <span>{duration}</span>
+                  </div>
+                </div>
+                <div className='index-section02--ease'>
+                  <div>Ease</div>
+                  <div className='index-section02--easeOption'>
+                    <select onChange={(e) => { setPower(e.target.value)}}>
+                      <option value='power1'>1</option>
+                      <option value='power2'>2</option>
+                      <option value='power3'>3</option>
+                      <option value='power4'>4</option>
+                    </select>
+                    <select onChange={(e) => {setInout(e.target.value)}}>
+                      <option value='.in'>In</option>
+                      <option value='.out'>Out</option>
+                      <option value='.inOut'>InOut</option>
+                    </select>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
@@ -414,23 +501,68 @@ function SectionSecond (){
 }
 
 function SectionThird (){
+  const grayRef = useRef(null)
+  const blackRef = useRef(null)
+
+  useEffect(() => {
+    const words = blackRef.current.firstChild.innerHTML.split(' ')
+    blackRef.current.firstChild.innerHTML = ''
+
+    words.map((w,i) => {
+      const span = document.createElement('span')
+      const span1 = document.createElement('span')
+      span.innerHTML = w + '&nbsp'
+      span1.innerHTML = w + '&nbsp'
+      
+      grayRef.current.firstChild.appendChild(span1)
+      blackRef.current.firstChild.appendChild(span)
+      // if(i == 0) return
+      const top = span1.getBoundingClientRect()
+      console.log(top,w);
+      
+    })
+
+    let count = grayRef.current.firstChild.children.length
+
+    
+    ScrollTrigger.create({
+      trigger: blackRef.current,
+      start:'top 80%',
+      end:'top 35%',
+      onUpdate: (e) => {
+        const progress = Math.floor((e.progress)*100)
+        
+        console.log(progress);
+        //전체 100를 카운터로 나눈다
+        //현재 레인지가 소속된 아이템을 찾는다.
+        // 
+        
+        //색깔이 바뀐다
+        //다음 아이템을 찾는다
+        //색깔이 바뀐다
+      }
+    })
+
+
+  },[])
+
+
   return(
     <section className="index-section-03">
       <div className='index-section03--wrapper'>
         <div className='index-section03--reasonFirst'>
           <div className='index-section03--whatIsAnimation'>
-            <div className='index-section03--whatIsAnimation-black'>
+            <div className='index-section03--whatIsAnimation-black'
+              ref={blackRef}>
               <p>웹페이지는 사용자가 브랜드에 접근할 수 있게 해주는 매개체로서 역할만 수행한다고 생각하지 않습니다.
                 브랜드결과 일치하며, 목적에 맞는 UI디자인으로 만들어진 웹페이지는 단순한 홈페이지가 아닌 브랜드의 가치를 대변하는 수단입니다.
                 애니메이션 요소는 웹에 에너지를 불어넣고, 사용자가 홈페이지와 상호작용하고 있음을 알려줍니다.
                 잘 만들어진 애니메이션은 사용자의 이목을 집중시킬 수 있으며 브랜드 경험을 만들어 줄 것 입니다.
               </p>
             </div>
-            <div className='index-section03--whatIsAnimation-gray'>
-              <p>웹페이지는 사용자가 브랜드에 접근할 수 있게 해주는 매개체로서 역할만 수행한다고 생각하지 않습니다.
-                브랜드결과 일치하며, 목적에 맞는 UI디자인으로 만들어진 웹페이지는 단순한 홈페이지가 아닌 브랜드의 가치를 대변하는 수단입니다.
-                애니메이션 요소는 웹에 에너지를 불어넣고, 사용자가 홈페이지와 상호작용하고 있음을 알려줍니다.
-                잘 만들어진 애니메이션은 사용자의 이목을 집중시킬 수 있으며 브랜드 경험을 만들어 줄 것 입니다.
+            <div className='index-section03--whatIsAnimation-gray'
+            ref={grayRef}>
+              <p>
               </p>
             </div>
             

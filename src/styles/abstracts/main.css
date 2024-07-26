@@ -567,7 +567,6 @@ header {
   overflow: hidden;
   align-items: center;
   transform: scale(1);
-  transition: 0.1s;
 }
 .index-section01--controls--closeBtn button {
   display: flex;
@@ -722,6 +721,10 @@ header {
   border-radius: 20px;
   padding: 20px 15px;
   cursor: pointer;
+  transition: 0.5s;
+}
+.index-section02--textWrappers .index-section02--textWrapper.open {
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 .index-section02--textWrappers .index-section02--textWrapper .index-section02--subTitle {
   font-family: "jsMedium";
@@ -822,6 +825,7 @@ header {
   bottom: 0;
   left: 0;
   width: 100%;
+  padding: 0 2.5vw;
   height: 32%;
   margin-bottom: 8%;
   display: flex;
@@ -830,8 +834,8 @@ header {
 .index-section02--imagesWrapper .index-section02--imageSlides {
   display: flex;
   align-items: end;
-  margin-right: 2.5vw;
   gap: 10px;
+  width: 50%;
 }
 .index-section02--imagesWrapper .index-section02--imageSlides .index-section02--imageSlide {
   position: relative;
@@ -860,16 +864,18 @@ header {
 }
 .index-section02--imagesWrapper .index-section02--imageLargeBoxWrapper {
   height: 100%;
-  margin-left: 2.5vw;
+  width: 100%;
   display: flex;
   align-items: end;
 }
 .index-section02--imagesWrapper .index-section02--imageLargeBoxWrapper .index-section02--imageLargeBox {
-  width: 400px;
+  min-width: 400px;
   height: 100%;
   overflow: hidden;
+  position: relative;
 }
 .index-section02--imagesWrapper .index-section02--imageLargeBoxWrapper .index-section02--imageLargeBox .index-section02--imageLarge {
+  position: absolute;
   width: 100%;
   height: 100%;
 }
@@ -882,9 +888,15 @@ header {
 
 .index-section02--animationControll {
   position: relative;
+  margin-left: 40px;
+  display: flex;
+  gap: 50px;
+  align-items: flex-end;
+}
+.index-section02--animationControll .index-section02--directions {
+  position: relative;
   width: 50px;
   height: 50px;
-  margin-left: 40px;
 }
 .index-section02--animationControll .index-section02--top {
   position: absolute;
@@ -974,12 +986,61 @@ header {
   border-right-color: transparent;
   border-bottom: none;
 }
+.index-section02--animationControll .index-section02--stateControl {
+  font-family: "jsRegular";
+  font-size: 15px;
+  min-width: 120px;
+}
+.index-section02--animationControll .index-section02--stateControl .index-section02--duration {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.index-section02--animationControll .index-section02--stateControl .index-section02--duration .index-section02-durationBox {
+  display: flex;
+  width: 100%;
+}
+.index-section02--animationControll .index-section02--stateControl .index-section02--duration input {
+  width: 100%;
+  height: 11px;
+  background: linear-gradient(to right, #FFE283 0%, #FFE283 50%, #ececec 50%, #ececec 100%);
+  border-radius: 2px;
+  display: inline-block;
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+  accent-color: #ffca1d;
+}
+.index-section02--animationControll .index-section02--stateControl .index-section02--duration span {
+  display: inline-block;
+}
+.index-section02--animationControll .index-section02--stateControl .index-section02--easeOption {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+.index-section02--animationControll .index-section02--stateControl .index-section02--easeOption select {
+  width: 45%;
+  border-radius: 1px;
+  box-shadow: none;
+  font-family: "jsLight";
+  font-size: 15px;
+}
+.index-section02--animationControll .index-section02--stateControl .index-section02--easeOption select:focus {
+  outline: none;
+}
+
+.index-section-03 {
+  height: auto;
+}
 
 .index-section03--wrapper {
   width: 100%;
-  height: 100%;
+  height: auto;
   padding: 0 10%;
   position: relative;
+  flex-direction: column;
+  display: flex;
+  align-items: end;
 }
 .index-section03--reasonFirst {
   width: 100%;
@@ -988,7 +1049,7 @@ header {
   justify-content: space-between;
 }
 .index-section03--reasonFirst .index-section03--whatIsAnimation {
-  width: 350px;
+  width: 400px;
   position: relative;
 }
 .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black,
@@ -997,8 +1058,9 @@ header {
   top: 0;
   left: 0;
 }
-.index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black p,
-.index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray p {
+.index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black p, .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black span,
+.index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray p,
+.index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray span {
   font-family: "jsRegular";
   font-size: 20px;
   word-spacing: 6px;
@@ -1010,9 +1072,12 @@ header {
 .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray p {
   color: #6c6c6c;
 }
+.index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray p span {
+  color: #6c6c6c;
+}
 .index-section03--reasonFirst .index-section03--experienceAni {
   width: 750px;
-  height: 500px;
+  height: 450px;
   background-color: blue;
   opacity: 0.5;
 }
@@ -1023,14 +1088,16 @@ header {
   justify-content: end;
   align-items: flex-end;
   width: 100%;
+  height: 50%;
+  margin-bottom: 1%;
 }
 .index-section03--reasonSecond .index-section03--titleWrapper {
   position: absolute;
   left: 0;
-  top: -130px;
+  top: -90px;
 }
 .index-section03--reasonSecond .index-section03--titleWrapper .index-section03--titles p {
-  padding-bottom: 45px;
+  padding-bottom: 30px;
   font-family: "jsExtraBold";
   font-size: 85px;
 }
