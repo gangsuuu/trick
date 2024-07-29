@@ -102,24 +102,44 @@ a {
 
 footer {
   width: 100%;
-  height: 100vh;
   position: relative;
+  z-index: 100;
+}
+
+.footer-imagesContent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  -webkit-clip-path: polygon(0 0, 0 0, 100% 0, 100% 0);
+          clip-path: polygon(0 0, 0 0, 100% 0, 100% 0);
+}
+
+.footer-infomation--Wrapper {
+  position: absolute;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
 }
 
 .footer-infomation {
-  position: absolute;
+  background-color: #757575;
+  position: relative;
   width: 100%;
-  height: 35%;
-  padding: 0 2.5vw;
+  height: 300px;
+  top: 300px;
+  padding: 1vw 2.5vw;
   bottom: 0;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: flex-start;
 }
 
 .footer-left {
   display: flex;
   justify-content: space-between;
+  width: 40%;
   height: 80%;
   flex-direction: column;
   padding-right: 10%;
@@ -130,6 +150,7 @@ footer {
   font-family: "jsMedium";
   font-size: 75px;
   letter-spacing: -1px;
+  width: 100%;
 }
 
 .footer-navToFrist a {
@@ -191,6 +212,7 @@ header {
   font-family: "jsBold";
   text-transform: uppercase;
   z-index: 1000;
+  font-size: 1em;
   background-color: white;
 }
 
@@ -225,15 +247,6 @@ header {
 
 .headerNav {
   color: rgba(0, 0, 0, 0.5);
-}
-.headerNav span {
-  display: inline-block;
-  width: 15px;
-  font-size: 12px;
-  transform: scale(1);
-  transform-origin: bottom;
-  transition: 0.25s;
-  color: rgba(0, 0, 0, 0.5) ease-in-out;
 }
 .headerNav a {
   color: rgba(0, 0, 0, 0.5);
@@ -1035,21 +1048,22 @@ header {
 
 .index-section03--wrapper {
   width: 100%;
-  height: auto;
+  height: 100vh;
   padding: 0 10%;
   position: relative;
   flex-direction: column;
   display: flex;
-  align-items: end;
+  justify-content: end;
 }
 .index-section03--reasonFirst {
   width: 100%;
+  height: 40%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 }
 .index-section03--reasonFirst .index-section03--whatIsAnimation {
-  width: 400px;
+  width: 50%;
   position: relative;
 }
 .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black,
@@ -1062,24 +1076,44 @@ header {
 .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray p,
 .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray span {
   font-family: "jsRegular";
-  font-size: 20px;
-  word-spacing: 6px;
-  line-height: 29px;
+  font-size: 1.4em;
+  word-spacing: 0.5em;
+  line-height: 1.2em;
 }
 .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black p {
+  width: 100%;
+  -webkit-clip-path: polygon(0 0, 0% 0%, 0% 0%, 0% 0%);
+          clip-path: polygon(0 0, 0% 0%, 0% 0%, 0% 0%);
+  transition: 0.5s;
   color: #000;
 }
 .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray p {
+  transition: 0.5s;
   color: #6c6c6c;
 }
 .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray p span {
   color: #6c6c6c;
+  opacity: 0.3;
 }
 .index-section03--reasonFirst .index-section03--experienceAni {
-  width: 750px;
-  height: 450px;
+  width: 50%;
+  height: 100%;
   background-color: blue;
   opacity: 0.5;
+}
+.index-section03--reasonFirst .index-section03--titleWrapper {
+  position: absolute;
+  top: 100%;
+  z-index: 2;
+}
+.index-section03--reasonFirst .index-section03--titleWrapper .index-section03--titles p {
+  padding-bottom: 0.5em;
+  font-family: "jsExtraBold";
+  font-size: 6em;
+  transition: 0.2s;
+}
+.index-section03--reasonFirst .index-section03--titleWrapper .index-section03--titles p:hover {
+  letter-spacing: 0.1em;
 }
 
 .index-section03--reasonSecond {
@@ -1091,24 +1125,14 @@ header {
   height: 50%;
   margin-bottom: 1%;
 }
-.index-section03--reasonSecond .index-section03--titleWrapper {
-  position: absolute;
-  left: 0;
-  top: -90px;
-}
-.index-section03--reasonSecond .index-section03--titleWrapper .index-section03--titles p {
-  padding-bottom: 30px;
-  font-family: "jsExtraBold";
-  font-size: 85px;
-}
 .index-section03--reasonSecond .index-section03--whyDoIMade {
   width: 40%;
 }
 .index-section03--reasonSecond .index-section03--whyDoIMade p {
   font-family: "jsRegular";
-  font-size: 15px;
-  word-spacing: 6px;
-  line-height: 26px;
+  font-size: 1.3em;
+  word-spacing: 0.6em;
+  line-height: 1.2em;
 }
 
 @keyframes showContent {
@@ -1162,15 +1186,20 @@ header {
   padding: 0 2.5vw;
 }
 
-.tricksGrid {
+.tricks-list--row {
   width: 100%;
-  height: 100%;
+  height: 200px;
   display: flex;
-  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: 0.25s ease-in-out;
+}
+.tricks-list--row.close {
+  height: 0px;
 }
 
 .tricks-list--entrance {
-  width: 100%;
+  width: 40%;
   height: 100%;
   padding: 1% 2%;
   display: flex;
@@ -1201,12 +1230,12 @@ header {
 }
 
 .trickWrapper {
-  width: 100%;
+  width: 20%;
   height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid black;
+  margin: 3 px 0;
 }
 
 .trick {
@@ -1219,7 +1248,7 @@ header {
 }
 .trick .trick-content--Wrapper {
   position: absolute;
-  bottom: -55px;
+  bottom: -80px;
   overflow: hidden;
   width: 100%;
   padding: 2% 3%;
@@ -1252,14 +1281,18 @@ header {
 }
 .trick .trick-content--Wrapper .trick-content--infos .trick-content--right button {
   outline: none;
-  border: none;
   background: transparent;
+  border: none;
   text-transform: uppercase;
   padding: 0;
   font-family: "jsBold";
   font-size: 12px;
   cursor: pointer;
   transition: 0.25s;
+}
+.trick .trick-content--Wrapper .trick-content--infos .trick-content--skills span {
+  font-family: "jsBold";
+  font-size: 11px;
 }
 .trick:hover .trick-content--Wrapper {
   animation: showContent 1s forwards;
@@ -1271,20 +1304,78 @@ header {
   color: black !important;
 }
 .trick:hover .trick-video--Wrapper {
+  width: 100%;
+  height: 100%;
+}
+.trick:hover .trick-video--Wrapper .trick-video--video {
+  width: 98%;
+  height: 98%;
+  border-radius: 5px;
+}
+.trick:hover .trick-video--Wrapper video {
+  width: 100%;
   height: 100%;
 }
 
 .trick-video--Wrapper {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   transition: 1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .trick-video--video {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: red;
+  width: 94%;
+  height: 96%;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.25s;
+}
+.trick-video--video video {
+  width: 130%;
+  height: 130%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: 0.25s;
+}
+
+.trick-showMore {
+  width: 100vw;
+  padding: 2em;
+}
+
+.trick-showMore-BtnBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trick-showMore-BtnBox button {
+  width: 120px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  transition: 0.4s;
+}
+.trick-showMore-BtnBox button span {
+  transition: 0.4s;
+  font-family: "jsLight";
+  font-size: 1.3em;
+  color: #c9c9c9;
+}
+.trick-showMore-BtnBox button:hover {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+.trick-showMore-BtnBox button:hover span {
+  color: #000000;
+}
+.trick-showMore-BtnBox .trick-showMore--end {
+  font-family: "jsLight";
+  font-size: 1.5em;
 }/*# sourceMappingURL=main.css.map */

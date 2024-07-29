@@ -8,25 +8,40 @@
 
 footer {
   width: 100%;
-  height: 100vh;
   position: relative;
+  z-index: 100;
 }
+
 .footer-imagesContent {
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  clip-path: polygon(0 0, 0 0, 100% 0, 100% 0);
 }
 
-.footer-infomation{
+.footer-infomation--Wrapper {
   position: absolute;
   width: 100%;
-  height: 35%;
-  padding: 0 2.5vw;
+  height: 300px;
+  overflow: hidden;
+}
+.footer-infomation{
+  background-color: #757575;
+  position: relative;
+  width: 100%;
+  height: 300px;
+  top: 300px;
+  padding: 1vw 2.5vw;
   bottom: 0;
-  @include variables.flexjc(start);
+  @include variables.flexjc(space-between);
   align-items: flex-start;
 }
 
 .footer-left { 
   @include variables.flexjc(space-between);
+  width: 40%;
   height: 80%;
   flex-direction: column;
   padding-right: 10%;
@@ -36,6 +51,8 @@ footer {
     transform: scaleY(1.05);
     @include variables.jamsil(500, 75px);
     letter-spacing: -1px;
+    width: 100%;
+
   }
 }
 .footer-navToFrist {

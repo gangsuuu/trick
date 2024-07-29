@@ -57,7 +57,6 @@ function SectionFirst (){
 
   const controllMove = (x) => {
     if(!clicked) return
-
     let start = rangeRef.current.getBoundingClientRect().left
     let rangePosition = (x - start)
     let range =  (rangePosition / rangeRef.current.offsetWidth) * 100
@@ -96,6 +95,7 @@ function SectionFirst (){
             >
             <source  
             src={video} type="video/mp4"></source>
+
           </video>
         </div>
         
@@ -255,6 +255,7 @@ function SectionSecond (){
   
 
   useEffect(()=>{
+    
     const content = async () => {
       Promise.all([
         axios.get('https://raw.githubusercontent.com/gangsuuu/trick/main/src/assets/json/index.json')
@@ -504,45 +505,90 @@ function SectionThird (){
   const grayRef = useRef(null)
   const blackRef = useRef(null)
 
+
   useEffect(() => {
     const words = blackRef.current.firstChild.innerHTML.split(' ')
-    blackRef.current.firstChild.innerHTML = ''
-
-    words.map((w,i) => {
-      const span = document.createElement('span')
-      const span1 = document.createElement('span')
-      span.innerHTML = w + '&nbsp'
-      span1.innerHTML = w + '&nbsp'
-      
-      grayRef.current.firstChild.appendChild(span1)
-      blackRef.current.firstChild.appendChild(span)
-      // if(i == 0) return
-      const top = span1.getBoundingClientRect()
-      console.log(top,w);
-      
-    })
-
-    let count = grayRef.current.firstChild.children.length
-
+    let pG = document.createElement('p')
+    let pB = document.createElement('p')
     
+    blackRef.current.firstChild.innerHTML = ''
+    
+    // blackRef.current.appendChild(divB)
+    // grayRef.current.appendChild(divG)
+    grayRef.current.appendChild(pG)
+    blackRef.current.appendChild(pB)
+    
+    
+    words.map((w,i) => {
+      const spanG = document.createElement('span')
+      const spanB = document.createElement('span')
+      let prevWord, prevBottom, prevTop, lastChildB, lastChildG
+      spanG.innerHTML = w + '&nbsp'
+      spanB.innerHTML = w + '&nbsp'
+      if(pG.children.length !== 0){
+        lastChildG = pG.lastChild 
+        lastChildB = pB.lastChild 
+        prevWord = lastChildG.innerHTML.split('&')
+        prevWord = lastChildB.innerHTML.split('&')
+        prevBottom = Math.floor(lastChildG.getBoundingClientRect().bottom)
+        prevTop = Math.floor(lastChildG.getBoundingClientRect().top)
+      }
+      pG.appendChild(spanG)
+      pB.appendChild(spanB)
+      const top = Math.floor(spanG.getBoundingClientRect().top)
+      const bottom = Math.floor(spanG.getBoundingClientRect().bottom)
+      
+
+      // 가장 첫번 째 아이템
+      if(pG.children.length === 1 && pB.children.length === 1){ 
+        return
+      }
+
+      // 이전 생성된 아이템과 탑과 바텀이 서로 일치하는지 비교한다
+
+      
+
+      if(top === prevTop && bottom === prevBottom) return
+      
+      lastChildG.innerHTML = prevWord[0] + `\n`
+      lastChildB.innerHTML = prevWord[0] + `\n`
+
+
+      pG.lastChild.remove()
+      pB.lastChild.remove()
+
+
+      pG = document.createElement('p')
+      pB = document.createElement('p')
+      grayRef.current.appendChild(pG)
+      blackRef.current.appendChild(pB)
+
+      pG.appendChild(spanG)
+      pB.appendChild(spanB)
+    })
+    
+
+
+
+    let blackText = blackRef.current.children
+    let count = blackText.length
+
     ScrollTrigger.create({
       trigger: blackRef.current,
-      start:'top 80%',
-      end:'top 35%',
+      start:'top 70%',
+      end:'top 25%',
       onUpdate: (e) => {
         const progress = Math.floor((e.progress)*100)
-        
-        console.log(progress);
-        //전체 100를 카운터로 나눈다
-        //현재 레인지가 소속된 아이템을 찾는다.
-        // 
-        
-        //색깔이 바뀐다
-        //다음 아이템을 찾는다
-        //색깔이 바뀐다
+        const currentNum =   Math.floor(progress / (100 / count));
+        let currentTarget =  blackText[currentNum];
+        if(currentTarget != null){
+          for(let i = 0; i <= currentNum; i++){
+            blackText[i].style.clipPath = 'polygon(0 0, 0 100%, 100% 100%, 100% 0%)';
+          }
+        }
+
       }
     })
-
 
   },[])
 
@@ -552,25 +598,23 @@ function SectionThird (){
       <div className='index-section03--wrapper'>
         <div className='index-section03--reasonFirst'>
           <div className='index-section03--whatIsAnimation'>
+            <div className='index-section03--whatIsAnimation-gray'
+            ref={grayRef}>
+            </div>
             <div className='index-section03--whatIsAnimation-black'
               ref={blackRef}>
-              <p>웹페이지는 사용자가 브랜드에 접근할 수 있게 해주는 매개체로서 역할만 수행한다고 생각하지 않습니다.
+              <div className='textRef'>웹페이지는 사용자가 브랜드에 접근할 수 있게 해주는 매개체로서 역할만 수행한다고 생각하지 않습니다.
                 브랜드결과 일치하며, 목적에 맞는 UI디자인으로 만들어진 웹페이지는 단순한 홈페이지가 아닌 브랜드의 가치를 대변하는 수단입니다.
                 애니메이션 요소는 웹에 에너지를 불어넣고, 사용자가 홈페이지와 상호작용하고 있음을 알려줍니다.
                 잘 만들어진 애니메이션은 사용자의 이목을 집중시킬 수 있으며 브랜드 경험을 만들어 줄 것 입니다.
-              </p>
+              </div>
             </div>
-            <div className='index-section03--whatIsAnimation-gray'
-            ref={grayRef}>
-              <p>
-              </p>
-            </div>
-            
+
+
+
           </div>
           <div className='index-section03--experienceAni'>
-          </div>
-        </div>
-        <div className='index-section03--reasonSecond'>
+          </div>      
           <div className='index-section03--titleWrapper'>
             <div className='index-section03--titles'>
               <div><p>What Is Animation</p></div>
@@ -578,6 +622,9 @@ function SectionThird (){
               <div><p>Why Do I Made</p></div>
             </div>
           </div>
+        </div>
+        <div className='index-section03--reasonSecond'>
+
           <div className='index-section03--whyDoIMade'>
             <div>
               <p>

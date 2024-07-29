@@ -768,16 +768,15 @@
 .index-section-03{
   @extend %index-section;
   height: auto;
-
 }
 .index-section03--wrapper {
   width: 100%;
-  height: auto;
+  height: 100vh;
   padding: 0 10%;
   position: relative;
   flex-direction: column;
   display: flex;
-  align-items: end;
+  justify-content: end;
   .index-section03--reasonFirst,
   .index-section03--reasonFirst {
     @extend %index-FJcSbR
@@ -786,11 +785,13 @@
 }
 .index-section03--reasonFirst {
   width: 100%;
+  height: 40%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   .index-section03--whatIsAnimation {
-    width: 400px;
+    // width: 400px;
+    width: 50%;
     position: relative;
     .index-section03--whatIsAnimation-black,
     .index-section03--whatIsAnimation-gray {
@@ -798,18 +799,25 @@
       top: 0;
       left: 0;
       p,span {
-        @include variables.jamsil(400, 20px);
-        word-spacing: 6px;
-        line-height: 29px;
+        @include variables.jamsil(400, 1.4em);
+        // @include variables.jamsil(400, 20px);
+        // @include variables.jamsil(400, 1.4em);
+        word-spacing: .5em;
+        line-height: 1.2em;
       }
     }
     .index-section03--whatIsAnimation-black p{
+      width: 100%;
+      clip-path: polygon(0 0, 0% 0%, 0% 0%, 0% 0%);
+      transition: .5s;
       color: #000;
     }
     .index-section03--whatIsAnimation-gray p{
+      transition: .5s;
       color: #6c6c6c;
       span{
         color: #6c6c6c;
+        opacity: 0.3;
       }
     }
 
@@ -817,10 +825,25 @@
 
   }
   .index-section03--experienceAni {
-    width: 750px;
-    height: 450px;
+    width: 50%;
+    height: 100%;
     background-color: blue;
     opacity: 0.5;
+  }
+
+  .index-section03--titleWrapper {
+    position: absolute;
+    top: 100%;
+    
+    z-index: 2;
+    .index-section03--titles p{
+      padding-bottom:  .5em;
+      @include variables.jamsil(800, 6em);
+      transition: 0.2s;
+      &:hover {
+        letter-spacing: .1em;
+      }
+    }
   }
 }
 
@@ -832,22 +855,15 @@
   width: 100%;
   height: 50%;
   margin-bottom: 1%;
-  .index-section03--titleWrapper {
-    position: absolute;
-    left: 0;
-    top: -90px;
-    .index-section03--titles p{
-      padding-bottom:  30px;
-      @include variables.jamsil(800, 85px);
-    }
-  }
+
+
 
   .index-section03--whyDoIMade {
     width: 40%;
     p{
-      @include variables.jamsil(400, 15px);
-      word-spacing: 6px;
-      line-height: 26px;
+      @include variables.jamsil(400, 1.3em);
+      word-spacing: .6em;
+      line-height: 1.2em;
     }
   }
 }

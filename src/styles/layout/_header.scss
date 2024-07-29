@@ -9,7 +9,7 @@ header {
   @include variables.jamsil(700, 0);
   text-transform: uppercase;
   z-index: 1000;
-
+  font-size: 1em;
   background-color: white;
 }
 
@@ -45,14 +45,14 @@ header {
 .headerNav {
   color: variables.$bua;
   span {
-    display: inline-block;
-    width: 15px;
-    font-size: 12px;
-    transform: scale(1);
-    transform-origin: bottom;
-    transition: 0.25s;
+    // display: inline-block;
+    // width: 15px;
+    // font-size: 12px;
+    // transform: scale(1);
+    // transform-origin: bottom;
+    // transition: 0.25s;
 
-    color: variables.$bua ease-in-out;
+    // color: variables.$bua ease-in-out;
   }
 
   a {
