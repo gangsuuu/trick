@@ -95,6 +95,60 @@ a {
   color: black;
 }
 
+.movePage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+}
+
+.moveDetail {
+  display: flex;
+  flex-direction: column;
+  left: 0;
+}
+.moveDetail .block {
+  width: 100vw;
+  height: 100%;
+  background-color: black;
+  -webkit-clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
+          clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
+}
+
+.moveOther {
+  display: flex;
+  justify-content: space-between;
+}
+.moveOther .left, .moveOther .right {
+  width: 50vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.moveOther .left {
+  -webkit-clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
+          clip-path: polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%);
+}
+.moveOther .right {
+  -webkit-clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%);
+          clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%);
+}
+.moveOther .left-Inner, .moveOther .right-Inner {
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+}
+.moveOther .left-text, .moveOther .right-text {
+  position: fixed;
+  text-transform: uppercase;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 21em;
+}
+
 .footer-info--emailWrp .footer-info-email, .footer-info--phone .footer-info--number {
   margin-top: 8px;
   font-size: 25px;
@@ -114,6 +168,7 @@ footer {
   height: 100vh;
   -webkit-clip-path: polygon(0 0, 0 0, 100% 0, 100% 0);
           clip-path: polygon(0 0, 0 0, 100% 0, 100% 0);
+  background-color: red;
 }
 
 .footer-infomation--Wrapper {
@@ -247,6 +302,15 @@ header {
 
 .headerNav {
   color: rgba(0, 0, 0, 0.5);
+}
+.headerNav span {
+  display: inline-block;
+  width: 15px;
+  font-size: 12px;
+  transform: scale(1);
+  transform-origin: bottom;
+  transition: 0.25s;
+  color: rgba(0, 0, 0, 0.5) ease-in-out;
 }
 .headerNav a {
   color: rgba(0, 0, 0, 0.5);
@@ -1187,6 +1251,7 @@ header {
 }
 
 .tricks-list--row {
+  position: relative;
   width: 100%;
   height: 200px;
   display: flex;
@@ -1196,6 +1261,13 @@ header {
 }
 .tricks-list--row.close {
   height: 0px;
+}
+.tricks-list--row .animate {
+  position: absolute;
+  top: 0;
+  width: 0vw;
+  height: 100%;
+  background-color: black;
 }
 
 .tricks-list--entrance {
@@ -1378,4 +1450,40 @@ header {
 .trick-showMore-BtnBox .trick-showMore--end {
   font-family: "jsLight";
   font-size: 1.5em;
+}
+
+.trickDetail {
+  width: 100%;
+  height: 100vh;
+  padding-top: 5vh;
+}
+
+.trickDetail--wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.trickDetail-content--left {
+  width: 50%;
+}
+.trickDetail-content--left .trickDetail-content--title {
+  font-family: "jsRegular";
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+.trickDetail-content--left .trickDetail-content--skills {
+  display: flex;
+  gap: 15px;
+}
+.trickDetail-content--left .trickDetail-content--skills span {
+  font-family: "jsLight";
+  font-size: 1em;
+}
+
+.trickDetail-content--right {
+  width: 50%;
+  height: 100%;
+  background-color: chocolate;
 }/*# sourceMappingURL=main.css.map */

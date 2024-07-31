@@ -45,14 +45,14 @@ header {
 .headerNav {
   color: variables.$bua;
   span {
-    // display: inline-block;
-    // width: 15px;
-    // font-size: 12px;
-    // transform: scale(1);
-    // transform-origin: bottom;
-    // transition: 0.25s;
+    display: inline-block;
+    width: 15px;
+    font-size: 12px;
+    transform: scale(1);
+    transform-origin: bottom;
+    transition: 0.25s;
 
-    // color: variables.$bua ease-in-out;
+    color: variables.$bua ease-in-out;
   }
 
   a {

@@ -1,0 +1,56 @@
+@use '../abstracts/variables';
+@use "sass:math";
+
+
+.movePage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+}
+
+
+.moveDetail {
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  .block {
+    width: 100vw;
+    height: 100%;
+    background-color: black;
+    clip-path: polygon(0% 0%, 0% 100%,0% 100%, 0% 0%);
+  }
+}
+
+.moveOther {
+  display: flex;
+  justify-content: space-between;
+
+  .left, .right {
+    width: 50vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .left {
+    clip-path: polygon(0% 0%, 0% 100%,0% 100%, 0% 0%);
+  }
+  .right {
+    clip-path: polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%);
+  }
+  .left-Inner, .right-Inner{
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+
+  }
+  .left-text, .right-text {
+    position: fixed;
+    text-transform: uppercase;
+    color: white;
+    @include variables.center();
+    @include variables.jamsil(600,21em)
+  }
+
+}

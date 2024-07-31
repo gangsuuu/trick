@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 
 export default function Tricks (first){
   let [contents,setContents] = useState([])
-  let [pages,setPages] = useState(13)
-  let [row,setRow] = useState(3)
+  let [pages,setPages] = useState(18)
+  let [row,setRow] = useState(4)
   let [limite,setLimite] = useState(false)
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Tricks (first){
     .catch((e) => {
     })
   },[])
-  
+
   useEffect(() => {
     const closes = document.querySelectorAll('.close')
     if(!closes) return
@@ -75,12 +75,12 @@ export default function Tricks (first){
                           <TrickComponent type={'content'} contents={contents} index={1}></TrickComponent>
                           <TrickComponent type={'content'} contents={contents} index={2}></TrickComponent>
                         </div>
-                      : <div className={`tricks-list--row ${i < 3 ?'':'close'}`}>
-                          <TrickComponent type={'content'} contents={contents} index={(i * 5) - 3}></TrickComponent>
+                      : <div className={`tricks-list--row ${i < 4 ?'':'close'}`}>
                           <TrickComponent type={'content'} contents={contents} index={(i * 5) - 2}></TrickComponent>
                           <TrickComponent type={'content'} contents={contents} index={(i * 5) - 1}></TrickComponent>
                           <TrickComponent type={'content'} contents={contents} index={(i * 5) }></TrickComponent>
                           <TrickComponent type={'content'} contents={contents} index={(i * 5) + 1}></TrickComponent>
+                          <TrickComponent type={'content'} contents={contents} index={(i * 5) + 2}></TrickComponent>
                         </div>
                   )})
             }

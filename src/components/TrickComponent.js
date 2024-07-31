@@ -1,6 +1,56 @@
+import gsap from "gsap";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { MoveDetail } from "../Utils/PageMove";
+import { useNavigate } from "react-router-dom"
+
+
 export default function TrickComponent(props){
+  let [index, setIndex] = useState()
+  let navigate = useNavigate()
   if(props.contents.length != 0){
+  }
+  
+  useEffect(() => {
+
+  },[])
+
+  function movePage (index) {
+    const body = document.querySelector('body')
+    const toDetailWrapper = document.createElement('div')
+    const count = 5
+  
+    toDetailWrapper.classList.add('moveDetail')
+    toDetailWrapper.classList.add('movePage')
+  
+    for(let i = 0; i < count;i++){
+      const block  = document.createElement('div')
+      block.classList.add('block')
+      toDetailWrapper.appendChild(block)
+    }
+  
+    body.appendChild(toDetailWrapper)
+    const blocks = toDetailWrapper.querySelectorAll('.block')
+    gsap.to(blocks,{
+      clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)',
+      stagger: .03,
+      duration: .8,
+      ease:'power4.inOut',
+      onComplete : () => {
+        navigate(`${index}`)
+        gsap.to(blocks,{
+          clipPath: 'polygon(0% 0%, 0% 100%,0% 100%, 0% 0%)',
+          stagger: .03,
+          duration: .8,
+          ease:'power4.inOut',
+          onComplete:() => {
+            toDetailWrapper.remove()
+          }
+        })
+      }
+    })
   } 
+
   return(
     <div className="trickWrapper">
       <div className="trick"
@@ -11,7 +61,7 @@ export default function TrickComponent(props){
           if(video == null) return;
 
           if(video.id !== 'video noChannel' || video != null){
-              video.pause()
+              // video.pause()
            }
         }}
         onMouseEnter={(e) => {
@@ -20,7 +70,7 @@ export default function TrickComponent(props){
           : e.target.querySelector('video#video')
           if(video == null) return;
           if(video.id !== 'video noChannel' || video != null){
-              video.play()
+              // video.play()
            }
         }}
       >
@@ -36,11 +86,6 @@ export default function TrickComponent(props){
               }
             >
             </video>
-          </div>
-          <div className="trick-video--controllWrapper">
-            <div className="trick-video--play"></div>
-            <div className="trick-video--pause"></div>
-            <div className="trick-video--full"></div>
           </div>
         </div>
         <div className="trick-content--Wrapper">
@@ -85,7 +130,13 @@ export default function TrickComponent(props){
               {
                 props.index < props.contents.length
                 ? <div className="trick-content--OpenDetailBtn">
-                    <button>Detail</button>
+                    {/* <Link 
+                      to={{
+                        pathname:props.index.toString(),
+                      }}
+                     > */}
+                       <button onClick={() =>{movePage(props.index.toString())}}>Detail</button>
+                    {/* </Link> */}
                   </div>
                 :''
               }

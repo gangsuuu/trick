@@ -53,6 +53,7 @@
   padding:  0 2.5vw;
 }
 .tricks-list--row {
+  position: relative;
   width: 100%;
   height: 200px;
   display: flex;
@@ -62,6 +63,16 @@
   &.close {
     height: 0px;
   }
+
+  .animate {
+    position: absolute;
+    top: 0;
+    width: 0vw;
+    height: 100%;
+    background-color: black;
+  }
+
+
 }
 
 .tricks-list--entrance{

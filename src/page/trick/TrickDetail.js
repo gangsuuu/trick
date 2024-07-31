@@ -1,31 +1,86 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { useLocation, useParams } from "react-router-dom"
+
+
+
 export default function TrickDetail (){
+  let [asd,setProps] = useState([]) 
+  let [colors,setColors] = useState(['#FFBE98','#FFA750','#E781A6','#CE3375','#62C8B3','#299C9F','#6EA2D4','#1D5091'])
+  let [color,setColor] = useState()
+  let { number } = useParams()
+
+  useEffect(()=> {
+
+    axios.get('https://raw.githubusercontent.com/gangsuuu/trickJson/main/Items.json')
+    .then(r => {
+      setProps(r.data)
+      setColor(colors[Math.floor(Math.random() * (colors.length - 0 + 1) + 0)])
+    })
+    .catch((e) => {
+
+    })
+  },[])
+
+
+
+
   return(
-    <div className="trickDetail">
-      <div className="trickDetail--wrapper">
+    <div className="trickDetail"
+    style={{'backgroundColor': color}}
+    >
+      <div className="trickDetail--wrapper"
+      >
         <div className="trickDetail-content--left">
           <div className="trickDetail-content--title">
-           <h2>제목입니다</h2>
+           <h2>
+            {
+              asd.length === 0
+              ? '데이터 찾는 중' 
+              : asd[number].title || '데이터 못찾음'
+            }
+           </h2>
           </div>
           <div className="trickDetail-content--skills">
-            <span>GSAP</span>
-            <sapn>GSAPScroll</sapn>
-            <sapn>Polygon</sapn>
+          {
+              asd.length === 0
+              ? <span>데이터 찾는 중</span>
+              : (asd[number].skills.map((t) => {
+                return (
+                  <span>{t}</span>
+                )
+              }))
+            }
           </div>
           <div className="trickDetail-content--date">
             <div>
-              <p>2024_00_00</p>
+              <p>
+                {
+                asd.length === 0
+                  ? '데이터 찾는 중' 
+                  : asd[number].date
+                }
+              </p>
             </div>
           </div>
           <div className="trickDetail-content--goal">
             <div>
               제작목표
-              <span>00기술 구현</span>
+              <span> {
+                asd.length === 0
+                  ? '데이터 찾는 중' 
+                  : asd[number].goal
+                }</span>
             </div>
           </div>
           <div className="trickDetail-content--explanation">
             <div>
               <p>트릭방식</p>
-              <p>gsap의 tl을 이용하여 이러쿵 저러쿵해서 저렇게 구현한다</p>
+              <p> {
+                asd.length === 0
+                  ? '데이터 찾는 중' 
+                  : asd[number].explanation
+                }</p>
             </div>
           </div>
         </div>
