@@ -16,25 +16,103 @@
 
 .trickDetail-content--left{
     width: 50%;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding-left: 2.5vw;
+    overflow: hidden;
+    gap: 1em;
     .trickDetail-content--title{
-        @include variables.jamsil(400, 2em);
-        margin-bottom: .5em;
+        @include variables.jamsil(400, 4.5em);
+        margin-bottom: .2em;
     }
-
     .trickDetail-content--skills {
         display: flex;
         gap: 15px;
         span{
-            @include variables.jamsil(300, 1em)
+            @include variables.jamsil(300, 1.3em)
+        }
+    }
+
+    .trickDetail-content--date {
+        span{
+            @include variables.jamsil(300, 1.3em)
+        }
+    }
+
+    .trickDetail-content--goal {
+        span{
+            @include variables.jamsil(300, 1.3em)
+        }
+    }
+
+    .trickDetail-content--explanation {
+        margin-bottom: 3em;
+        width: 80%;
+        p{
+            @include variables.jamsil(300, 1.4em);
+            word-spacing: .3em;
+            line-height: 1.1em;
+            padding-top: .3em;
+            &:first-child{
+                font-size: 1.6em;
+            }
         }
     }
 }
 
-
-
 .trickDetail-content--right{
     width:  50%;
     height: 100%;
-    background-color: chocolate;
+    position: relative;
+    .trickDetail-content--videoWrapper{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        .trickDetail-content-videoBackground {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            filter: blur(10px);
+        }
+        .trickDetail-content-video{
+            position: absolute;
+            width: 90%;
+            background-color: white;
+            @include variables.center()
+        }
+
+        video{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    
+    
+}
+
+.trickDetail-content--videoStateWrap {
+    position: fixed;
+    top: -20px;
+    left: 0;
+    pointer-events: none;
+    .trickDetail-content--videoState{
+        span{
+            @include variables.jamsil(400,1.4em);
+            text-transform: uppercase;
+            color: red;
+        }
+    }
+    &.hide{
+        display: none;
+    }
+    &.show {
+        display: block;
+    }
 }

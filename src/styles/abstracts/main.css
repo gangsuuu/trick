@@ -1467,11 +1467,17 @@ header {
 
 .trickDetail-content--left {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding-left: 2.5vw;
+  overflow: hidden;
+  gap: 1em;
 }
 .trickDetail-content--left .trickDetail-content--title {
   font-family: "jsRegular";
-  font-size: 2em;
-  margin-bottom: 0.5em;
+  font-size: 4.5em;
+  margin-bottom: 0.2em;
 }
 .trickDetail-content--left .trickDetail-content--skills {
   display: flex;
@@ -1479,11 +1485,82 @@ header {
 }
 .trickDetail-content--left .trickDetail-content--skills span {
   font-family: "jsLight";
-  font-size: 1em;
+  font-size: 1.3em;
+}
+.trickDetail-content--left .trickDetail-content--date span {
+  font-family: "jsLight";
+  font-size: 1.3em;
+}
+.trickDetail-content--left .trickDetail-content--goal span {
+  font-family: "jsLight";
+  font-size: 1.3em;
+}
+.trickDetail-content--left .trickDetail-content--explanation {
+  margin-bottom: 3em;
+  width: 80%;
+}
+.trickDetail-content--left .trickDetail-content--explanation p {
+  font-family: "jsLight";
+  font-size: 1.4em;
+  word-spacing: 0.3em;
+  line-height: 1.1em;
+  padding-top: 0.3em;
+}
+.trickDetail-content--left .trickDetail-content--explanation p:first-child {
+  font-size: 1.6em;
 }
 
 .trickDetail-content--right {
   width: 50%;
   height: 100%;
-  background-color: chocolate;
+  position: relative;
+}
+.trickDetail-content--right .trickDetail-content--videoWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.trickDetail-content--right .trickDetail-content--videoWrapper .trickDetail-content-videoBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  filter: blur(10px);
+}
+.trickDetail-content--right .trickDetail-content--videoWrapper .trickDetail-content-video {
+  position: absolute;
+  width: 90%;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.trickDetail-content--right .trickDetail-content--videoWrapper video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.trickDetail-content--videoStateWrap {
+  position: fixed;
+  top: -20px;
+  left: 0;
+  pointer-events: none;
+}
+.trickDetail-content--videoStateWrap .trickDetail-content--videoState span {
+  font-family: "jsRegular";
+  font-size: 1.4em;
+  text-transform: uppercase;
+  color: red;
+}
+.trickDetail-content--videoStateWrap.hide {
+  display: none;
+}
+.trickDetail-content--videoStateWrap.show {
+  display: block;
 }/*# sourceMappingURL=main.css.map */

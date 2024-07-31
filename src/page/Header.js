@@ -48,7 +48,7 @@ export default function Header(){
         gsap.to(moveWrapper.children, {
           clipPath: (i) => clipPath[i],
           duration:.5,
-          delay:.2,
+          delay:.5,
           ease: 'power4.inOut',
           onComplete: () => {
             moveWrapper.remove()
