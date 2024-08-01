@@ -1,7 +1,8 @@
 
-import { useRef,useEffect } from 'react'
+import { useRef,useEffect, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import { useSelector } from 'react-redux'
 
 export default function Footer(){
   gsap.registerPlugin(ScrollTrigger)
@@ -9,12 +10,23 @@ export default function Footer(){
   let infomationRef = useRef(null)
   let imageRef = useRef(null)
   let WrapperRef = useRef(null)
+
+  const state = useSelector((state) => {return state})
   
 
+
   useEffect(() => {
+    if(state.pageSize ==='') return
+    animate()
+  },[state])
+
+  function animate (){
+    let top = state.pageSize === 'mobile'
+    ? '0'
+    : '300'
     ScrollTrigger.create({
       trigger:footerRef.current,
-      start: 'top 90%',
+      start: '98% bottom',
       scrub: true,
       onEnter: () => {
         gsap.to(infomationRef.current,{
@@ -30,7 +42,7 @@ export default function Footer(){
       },
       onLeaveBack : () => {
         gsap.to(infomationRef.current,{
-          top: 300,
+          top: top,
           duration: .66,
           ease: 'power4.inOut'
         })
@@ -39,7 +51,7 @@ export default function Footer(){
 
     ScrollTrigger.create({
       trigger:WrapperRef.current,
-      start: 'bottom bottom',
+      start: 'top bottom',
       scrub: true,
       onEnter: () => {
         gsap.to(imageRef.current,{
@@ -61,9 +73,7 @@ export default function Footer(){
       }
     })
 
-
-
-  },[])
+  }
 
   return(
     <footer

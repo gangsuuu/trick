@@ -11,6 +11,11 @@ header {
   z-index: 1000;
   font-size: 1em;
   background-color: white;
+
+  @include variables.wz(small){
+    display: none;
+  }
+
 }
 
 .headerWrapper {

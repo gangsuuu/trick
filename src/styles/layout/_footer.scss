@@ -20,6 +20,9 @@ footer {
   height: 100vh;
   clip-path: polygon(0 0, 0 0, 100% 0, 100% 0);
   background-color: red;
+  
+  @include variables.wz(small) {
+  }
 }
 
 .footer-infomation--Wrapper {
@@ -38,6 +41,10 @@ footer {
   bottom: 0;
   @include variables.flexjc(space-between);
   align-items: flex-start;
+  
+  @include variables.wz(small){
+    top: 0;
+  }
 }
 
 .footer-left { 

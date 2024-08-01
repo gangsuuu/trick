@@ -1,20 +1,22 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 
-let page = createSlice({
-    name: 'page',
+let pageSize = createSlice({
+    name: 'pageSize',
     initialState : '',
     reducers: {
-        changePage(state,actions) {
+        changePageSize(state,actions) {
           return  actions.payload
         }
 
     }
 })
 
-export let { changePage } = page.actions
+
+
+export let { changePageSize } = pageSize.actions
 
 export default configureStore({
   reducer: { 
-    page : page.reducer
+    pageSize : pageSize.reducer
   }
 }) 

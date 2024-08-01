@@ -4,6 +4,8 @@ import axios from 'axios'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import { getValue, wait } from '@testing-library/user-event/dist/utils'
+import { useSelector } from 'react-redux'
+import { changePageSize } from '../../store/page'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -23,11 +25,14 @@ function SectionFirst (){
   let [audioMute,setAudioMute] = useState(false)
   let [play,setPlay] = useState(false)
   
+
   const closeBtnRef = useRef()
   const videoRef = useRef()
   const progressControlRef = useRef()
   const rangePassedRef = useRef()
   const rangeRef = useRef()
+  const state = useSelector((state) => {return state})
+  
   let closeBtn
   let clicked
 
@@ -69,7 +74,6 @@ function SectionFirst (){
     progressControlRef.current.style.left = range + '%'
     rangePassedRef.current.style.width = range + '%'
   }
-
 
   useEffect(() => {
     closeBtn = closeBtnRef.current
@@ -144,7 +148,10 @@ function SectionFirst (){
         <div className={`index-section01--videoControlsWrapper
            ${showControl === true
             ? ''
-            : 'hide'
+            : state.pageSize === 'mobile'
+              ? ''
+              : 'hide'
+            
           }`}
           onMouseMove ={(e) => {
             moveCloseBtn(e.clientX,e.clientY)
@@ -252,10 +259,10 @@ function SectionSecond (){
   const titleSpanWrapRef = useRef(null)
   const textRef = useRef([])
   const LargeBoxRef = useRef(null)
-  
+  const state = useSelector((state) => {return state})
+
 
   useEffect(()=>{
-    
     const content = async () => {
       Promise.all([
         axios.get('https://raw.githubusercontent.com/gangsuuu/trick/main/src/assets/json/index.json')
@@ -369,9 +376,7 @@ function SectionSecond (){
               ? ''
               :contents.map((c,i) =>{
                 return (
-                  <div className={`index-section02--textWrapper
-                    ${textShowed[i] === true ? 'open' : ''}
-                    `}
+                  <div className={`index-section02--textWrapper ${textShowed[i] === true ? 'open' : ''}`}
                     onClick={(e) => 
                       showText(e.currentTarget.children[1],i)
                     }
@@ -386,9 +391,11 @@ function SectionSecond (){
                       >{c.content}</p>
                     </div>
                     <div className='index-section02--showIconWrapper'>
-                      <div className={`index-section02--showText
-                        ${textShowed[i] === true ? 'open' : ''}
-                      `}>
+                      <div className={`index-section02--showText ${
+                          state.pageSize === 'mobile'
+                          ? 'open'
+                          : textShowed[i] === true ? 'open' : ''
+                        }`}>
                         <p>{textShowed[i] === true ? '닫기' : '보기'}</p>
                       </div>
                       <div className='index-section02--icon'>
@@ -502,24 +509,42 @@ function SectionSecond (){
 }
 
 function SectionThird (){
+  const [texts, setTexts] = useState(null)
   const grayRef = useRef(null)
   const blackRef = useRef(null)
+  const state = useSelector((state)=> {return state})
 
 
   useEffect(() => {
     const words = blackRef.current.firstChild.innerHTML.split(' ')
+    setTexts(words)
+
+  },[])
+
+  useEffect(()=>{
+    if(texts === null) return
+    texting()
+
+    window.addEventListener('resize', texting)
+    return ()=>{
+      window.removeEventListener('resize',texting)
+    }
+
+  },[texts])
+
+  function texting () {
     let pG = document.createElement('p')
     let pB = document.createElement('p')
+    let start, end
+    blackRef.current.innerHTML = ''
+    grayRef.current.innerHTML = ''
     
-    blackRef.current.firstChild.innerHTML = ''
-    
-    // blackRef.current.appendChild(divB)
-    // grayRef.current.appendChild(divG)
+
     grayRef.current.appendChild(pG)
     blackRef.current.appendChild(pB)
     
     
-    words.map((w,i) => {
+    texts.map((w,i) => {
       const spanG = document.createElement('span')
       const spanB = document.createElement('span')
       let prevWord, prevBottom, prevTop, lastChildB, lastChildG
@@ -568,6 +593,13 @@ function SectionThird (){
     })
     
 
+    if(state.pageSize === 'mobile'){
+      start = '30%'
+      end =  '0%'
+    } else {
+      start =  '80%'
+      end =  '50%'
+    }
 
 
     let blackText = blackRef.current.children
@@ -575,8 +607,8 @@ function SectionThird (){
 
     ScrollTrigger.create({
       trigger: blackRef.current,
-      start:'top 70%',
-      end:'top 25%',
+      start:`top ${start}`,
+      end:`top ${end}`,
       onUpdate: (e) => {
         const progress = Math.floor((e.progress)*100)
         const currentNum =   Math.floor(progress / (100 / count));
@@ -589,9 +621,7 @@ function SectionThird (){
 
       }
     })
-
-  },[])
-
+  }
 
   return(
     <section className="index-section-03">

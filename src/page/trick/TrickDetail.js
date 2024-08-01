@@ -1,10 +1,7 @@
 import axios from "axios"
 import gsap from "gsap"
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useLocation, useNavigate, useParams } from "react-router-dom"
-import { changePage } from "../../store/page"
-import { current } from "@reduxjs/toolkit"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 
@@ -15,9 +12,6 @@ export default function TrickDetail (){
   let [played, setPlayed] = useState(false)
   let [entered, setEntered] = useState(false)
   let [page, setPage] = useState('')
-
-  let selected = useSelector((state) => {return state})
-  let dispatch = useDispatch()
 
   let navigate = useNavigate()
   let { number } = useParams()

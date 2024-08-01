@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { MoveDetail } from "../Utils/PageMove";
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux";
-import { changePage } from "../store/page.js";
 
 
 export default function TrickComponent(props){
@@ -34,12 +33,8 @@ export default function TrickComponent(props){
     }
   
     body.appendChild(toDetailWrapper)
-    dispatch(changePage(index))
-
-
 
     localStorage.setItem('page',index)
-
 
     const blocks = toDetailWrapper.querySelectorAll('.block')
     gsap.to(blocks,{

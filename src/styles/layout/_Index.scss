@@ -63,21 +63,42 @@
 @keyframes scrollBall {
     0% {
       opacity: 0%;
-      top:62%
+      top:62%;
     }
     30% {
       opacity: 100%;
-      top:62%
+      top:62%;
     }
     70%{
       opacity: 100%;
-      top:6%
+      top:6%;
     }
     100% {
       opacity: 0%;
-      top:6%
+      top:6%;
     } 
 }
+@keyframes scrollBallSmall {
+  0% {
+    opacity: 0%;
+    top:49%;
+  }
+  30% {
+    opacity: 100%;
+    top:49%;
+  }
+  70%{
+    opacity: 100%;
+    top:6%;
+  }
+  100% {
+    opacity: 0%;
+    top:6%;
+  } 
+}
+
+
+
 
 @mixin borderHover ($i){
   animation: borderColor 1.5s ease-in-out #{$i} infinite;
@@ -143,14 +164,10 @@
 
 
   @include variables.wz(small){
-    display: none;
+    width: 100vw;
+    bottom: 10vh;
   }
-  @include variables.wz(medium){
-    display: none;
-  }
-  @include variables.wz(large){
-    display: none;
-  }
+
 
   .index-section01--welcome,
   .index-section01--title {
@@ -168,12 +185,17 @@
     letter-spacing: 3px;
     line-height: 35px;
 
-
+    @include variables.wz(small){
+      font-size: 1em;
+    }
   }
   .index-section01--title h3{
     @include variables.jamsil(500, 32px);
 
-
+    @include variables.wz(small){
+      font-size: 1.7em;
+      word-spacing: .2em;
+    }
   }
   
 }
@@ -191,7 +213,9 @@
   justify-content: start;
   align-items: center;
 
-
+  @include variables.wz(small) {
+    display: none;
+  }
   .index-section01--openBtnWrp {
     position: relative;
     width: 25px;
@@ -262,6 +286,10 @@
   // background-color: blue;
   @include variables.centerX();
 
+  @include variables.wz(small){
+    bottom: 1vh;
+  }
+
   .index-section01-scrollIcon {
     position: absolute;
     width: 30px;
@@ -272,6 +300,11 @@
     // border-right: 2px solid rgba(255,255,255,1);
     // border-left : 2px solid rgba(255,255,255,1);
 
+    @include variables.wz(small){
+      width: 25px;
+      height: 42px;
+    }
+
     &::after{
       content: '';
       position: relative;
@@ -281,7 +314,17 @@
       border-radius: 100%;
       background-color: white;
       @include variables.centerX();
-      animation: scrollBall 1.7s ease-in-out .7s infinite;
+      animation: 1.7s ease-in-out .7s infinite;
+      @include variables.wz(xlarge){
+        animation-name: scrollBall;
+      }
+      @include variables.wz(small){
+        width: 18px;
+        height: 18px;
+        animation-name: scrollBallSmall;
+      }
+
+      
     }
   }
 }
@@ -306,6 +349,10 @@
     left: 0;
     width: 100%;
     height: 20%;
+
+    @include variables.wz(small){
+      top: 0;
+    }
   }
   .index-section01--controls--videoRangeWrapper {
     width: 100%;
@@ -320,6 +367,9 @@
       height: 23px;
       border-radius: 1px;
 
+      @include variables.wz(small) {
+        display: none;
+      }
       .index-section01--controls--range{
         position: absolute;
         top: 0;
@@ -368,6 +418,10 @@
   
   transform: scale(1);
   // transition: .1s;
+
+  @include variables.wz(small) {
+    display: none;
+  }
   button {
     @include variables.flexjc(center);
     display: inline-block;
@@ -447,6 +501,10 @@
   margin-right: 2.5vw;
   overflow: hidden;
   
+  @include variables.wz(small){
+    left: 0;
+    width: 4.5em;
+  }
   .index-section01--controls--Btn--effect{
     position: absolute;
     width: 100%;
@@ -476,13 +534,19 @@
 .index-section-02{
   @extend %index-section;
   position: relative;
+
+ @include variables.wz(small){
+    height: auto;
+  } 
 }
 
 .index-section02--wrapper {
   position: relative;
   width: 100%;
   height: 100%;
-
+  @include variables.wz(small){
+    height: 100vh;
+  } 
 }
 
 .index-section02--title {
@@ -521,6 +585,12 @@
   position: relative;
   z-index: 2;
 
+  @include variables.wz(small){
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
   .index-section02--textWrapper {
     width: 220px;
     border: 1px solid variables.$bd-01;
@@ -530,6 +600,10 @@
     transition: .5s;
     &.open{
       border: 1px solid rgba(0,0,0,.5);
+    }
+
+    @include variables.wz(small){
+      width: 80%;
     }
     .index-section02--subTitle{
       @include variables.jamsil(500, 13px);
@@ -649,6 +723,11 @@
   display: flex;
   justify-content: space-between;
   // z-index: -1;
+
+  @include variables.wz(small) {
+    display: none;
+  }
+  
   .index-section02--imageSlides{
     display: flex;
     align-items: end;
@@ -791,48 +870,94 @@
   flex-direction: column;
   display: flex;
   justify-content: end;
-  .index-section03--reasonFirst,
-  .index-section03--reasonFirst {
-    @extend %index-FJcSbR
+
+  @include variables.wz(small) {
+    display: block !important;
+    height: auto;
   }
+  
+
+    
+
 
 }
 .index-section03--reasonFirst {
+  @extend %index-FJcSbR;
   width: 100%;
   height: 40%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
+  @include variables.wz(small){
+    // align-items: center;
+    // justify-content: center;
+    display: block !important;
+
+    height: 520vh;
+    padding: 100vh 0;
+    position: relative;
+  }
   .index-section03--whatIsAnimation {
     // width: 400px;
     width: 50%;
     position: relative;
+
+    @include variables.wz(small){
+      display: block;
+      width: 100%;
+      position: sticky;
+      top: 50%;
+      transform: translateY(-50%);
+    }
     .index-section03--whatIsAnimation-black,
     .index-section03--whatIsAnimation-gray {
       position: absolute;
       top: 0;
       left: 0;
+
       p,span {
         @include variables.jamsil(400, 1.4em);
         // @include variables.jamsil(400, 20px);
         // @include variables.jamsil(400, 1.4em);
         word-spacing: .5em;
         line-height: 1.2em;
+
+        @include variables.wz(small){
+          font-size: 1.15em;
+        }
       }
     }
-    .index-section03--whatIsAnimation-black p{
-      width: 100%;
-      clip-path: polygon(0 0, 0% 0%, 0% 0%, 0% 0%);
-      transition: .5s;
-      color: #000;
+
+
+    .index-section03--whatIsAnimation-black{
+        
+      @include variables.wz(small){
+        position: absolute;
+        text-align: center;
+        width: 100%;
+      }
+      p {
+        width: 100%;
+        clip-path: polygon(0 0, 0% 0%, 0% 0%, 0% 0%);
+        transition: .5s;
+        color: #000;
+      }
     }
-    .index-section03--whatIsAnimation-gray p{
-      transition: .5s;
-      color: #6c6c6c;
-      span{
+    .index-section03--whatIsAnimation-gray{
+      @include variables.wz(small){
+        position: relative;
+        text-align: center
+      }
+      p {
+        transition: .5s;
         color: #6c6c6c;
-        opacity: 0.3;
+        span{
+          color: #6c6c6c;
+          opacity: 0.3;
+        }
       }
+
     }
 
 
@@ -843,6 +968,17 @@
     height: 100%;
     background-color: blue;
     opacity: 0.5;
+
+    @include variables.wz(small){
+      position: absolute;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/10;
+      top: 0;
+      left: 0;
+      opacity: .3;
+      @include variables.center()
+    }
   }
 
   .index-section03--titleWrapper {
@@ -850,10 +986,20 @@
     top: 100%;
     
     z-index: 2;
+
+    
+    @include variables.wz(small){
+      display: none;
+    }
     .index-section03--titles p{
       padding-bottom:  .5em;
       @include variables.jamsil(800, 6em);
       transition: 0.2s;
+
+
+      @include variables.wz(small){
+        font-size: 1em;
+      }
       &:hover {
         letter-spacing: .1em;
       }
@@ -870,14 +1016,28 @@
   height: 50%;
   margin-bottom: 1%;
 
+  @include variables.wz(small){
 
-
+    height: 320vh;
+    display: block;
+  }
   .index-section03--whyDoIMade {
     width: 40%;
+
+    @include variables.wz(small) {
+      width: 100%;
+      position: sticky;
+      top: 50%;
+      transform: translateY(-50%);
+    }
     p{
       @include variables.jamsil(400, 1.3em);
       word-spacing: .6em;
       line-height: 1.2em;
+
+      @include variables.wz(small) {
+        font-size: 1.2em;
+      }
     }
   }
 }
