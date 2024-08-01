@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MoveDetail } from "../Utils/PageMove";
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux";
+import { changePage } from "../store/page.js";
 
 
 export default function TrickComponent(props){
@@ -10,6 +12,8 @@ export default function TrickComponent(props){
   let navigate = useNavigate()
   if(props.contents.length != 0){
   }
+  
+  let dispatch = useDispatch()
   
   useEffect(() => {
 
@@ -30,6 +34,13 @@ export default function TrickComponent(props){
     }
   
     body.appendChild(toDetailWrapper)
+    dispatch(changePage(index))
+
+
+
+    localStorage.setItem('page',index)
+
+
     const blocks = toDetailWrapper.querySelectorAll('.block')
     gsap.to(blocks,{
       clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)',

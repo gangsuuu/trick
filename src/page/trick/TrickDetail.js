@@ -1,7 +1,10 @@
 import axios from "axios"
 import gsap from "gsap"
 import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { changePage } from "../../store/page"
+import { current } from "@reduxjs/toolkit"
 
 
 
@@ -11,14 +14,23 @@ export default function TrickDetail (){
   let [color,setColor] = useState()
   let [played, setPlayed] = useState(false)
   let [entered, setEntered] = useState(false)
-  let [current,setCurrent] = useState(null)
+  let [page, setPage] = useState('')
 
-  let location = useLocation()
+  let selected = useSelector((state) => {return state})
+  let dispatch = useDispatch()
+
   let navigate = useNavigate()
   let { number } = useParams()
   let animated = false;
   
+  
+
   useEffect(()=> {
+    let currentPage = localStorage.getItem('page')
+    if(currentPage === null) {
+      localStorage.setItem('page',number)
+    }
+    setPage(parseInt(JSON.parse(currentPage)))
 
     axios.get('https://raw.githubusercontent.com/gangsuuu/trickJson/main/Items.json')
     .then(r => {
@@ -28,48 +40,46 @@ export default function TrickDetail (){
     .catch((e) => {
     })
 
-    
   },[])
-  useEffect(() => {
-    return() => {
-      window.removeEventListener('wheel',wheelEvent)
-    }
-  },[current])
-
 
   useEffect(() => {
     window.addEventListener('wheel',wheelEvent)
+
     return () => {
       window.removeEventListener('wheel',wheelEvent)
     }
   },[data])
-  
 
 
   const wheelEvent = (e) => {
-    console.log(location.state.num);
-    
     if (animated === true) return
     animated = true
     if (data.length === 0) return
-    let dir, nextNum
+    let dir
     
+    let currentPage =  localStorage.getItem('page')
+    currentPage = parseInt(JSON.parse(currentPage))
+
+
     if(e.deltaY >= 100){
       dir = 1
     } else if (e.deltaY <= 0){
       dir = -1
     }
-    
-    nextNum =  parseInt(number) + dir;
-    if (nextNum === -1) {
-      nextNum = data.length - 1
-    }else if(nextNum > data.length-1) {
-      nextNum = 0
+
+    currentPage =  currentPage + dir;
+    if (currentPage === -1) {
+      currentPage = data.length - 1
+    }else if(currentPage > data.length-1) {
+      currentPage = 0
     }
-    movePage(nextNum)
+    setPlayed(false)
+    setPage(currentPage)
+    localStorage.setItem('page',currentPage)
+    movePage(currentPage)
   }
 
-  function movePage (nextNum) {
+  function movePage (index) {
     const body = document.querySelector('body')
     const toDetailWrapper = document.createElement('div')
     const count = 5
@@ -94,7 +104,7 @@ export default function TrickDetail (){
         setTimeout(() => {
           setColor(colors[Math.floor(Math.random() * (colors.length - 0 + 1) + 0)])
         },200)
-        navigate(`/tricks/${nextNum}`, {state:{num:nextNum}})
+        navigate(`/tricks/${index}`)
         gsap.to(blocks,{
           clipPath: 'polygon(0% 0%, 0% 100%,0% 100%, 0% 0%)',
           stagger: .03, 
@@ -141,7 +151,7 @@ export default function TrickDetail (){
             {
               data.length === 0
               ? '데이터 찾는 중' 
-              : data[number].title || '데이터 못찾음'
+              : data[page].title || '데이터 못찾음'
             }
            </h2>
           </div>
@@ -149,7 +159,7 @@ export default function TrickDetail (){
           {
               data.length === 0
               ? <span>데이터 찾는 중</span>
-              : (data[number].skills.map((t) => {
+              : (data[page].skills.map((t) => {
                 return (
                   <span>{t}</span>
                 )
@@ -163,7 +173,7 @@ export default function TrickDetail (){
                 {
                 data.length === 0
                   ? '데이터 찾는 중' 
-                  : data[number].date
+                  : data[page].date
                 }
               </span>
             </div>
@@ -174,7 +184,7 @@ export default function TrickDetail (){
               <span> {
                 data.length === 0
                   ? '데이터 찾는 중' 
-                  : data[number].goal
+                  : data[page].goal
                 }</span>
             </div>
           </div>
@@ -184,7 +194,7 @@ export default function TrickDetail (){
               <p> {
                 data.length === 0
                   ? '데이터 찾는 중' 
-                  : data[number].explanation
+                  : data[page].explanation
                 }</p>
             </div>
           </div>
@@ -196,11 +206,11 @@ export default function TrickDetail (){
         >
           <div className="trickDetail-content--videoWrapper">
             <div className="trickDetail-content-videoBackground">
-              <video id={`video${data.length===0?' noChannel':number <data.length?'':' noChannel'}`} muted loop preload=""
+              <video id={`video${data.length===0?' noChannel':page <data.length?'':' noChannel'}`} muted loop preload=""
               src={
                 data.length === 0
                 ? ''
-                : (data[number] && data[number].src) || ''
+                : (data[page] && data[page].src) || ''
               }
             >
             </video>
@@ -211,11 +221,11 @@ export default function TrickDetail (){
                 playOrPause()
               }}
             >
-            <video id={`video${data.length===0?' noChannel':number <data.length?'':' noChannel'}`} muted loop preload=""
+            <video id={`video${data.length===0?' noChannel':page <data.length?'':' noChannel'}`} muted loop preload=""
               src={
                 data.length === 0
                 ? ''
-                : (data[number] && data[number].src) || ''
+                : (data[page] && data[page].src) || ''
               }
             >
             </video>

@@ -122,7 +122,6 @@
     opacity: 0;
     z-index: -10;
   }
-
 }
 
 .index-section01-playBtn {
@@ -142,6 +141,17 @@
   bottom: 22vh;
   @include variables.centerX();
 
+
+  @include variables.wz(small){
+    display: none;
+  }
+  @include variables.wz(medium){
+    display: none;
+  }
+  @include variables.wz(large){
+    display: none;
+  }
+
   .index-section01--welcome,
   .index-section01--title {
     position: relative;
@@ -157,9 +167,13 @@
     @include variables.jamsil(400, 18px);
     letter-spacing: 3px;
     line-height: 35px;
+
+
   }
   .index-section01--title h3{
     @include variables.jamsil(500, 32px);
+
+
   }
   
 }

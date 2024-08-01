@@ -422,6 +422,21 @@ header {
   left: 50%;
   transform: translateX(-50%);
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .index-section01--textWrapper {
+    display: none;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .index-section01--textWrapper {
+    display: none;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section01--textWrapper {
+    display: none;
+  }
+}
 .index-section01--textWrapper .index-section01--welcome,
 .index-section01--textWrapper .index-section01--title {
   position: relative;
