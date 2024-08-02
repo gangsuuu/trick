@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.15ed24a4.css",
+    "main.js": "/static/js/main.5fbba6c1.js",
+    "static/js/453.b52109b7.chunk.js": "/static/js/453.b52109b7.chunk.js",
+    "static/media/videoAssets.mp4": "/static/media/videoAssets.78d91130bc8b5b31cb6b.mp4",
+    "static/media/The_Jamsil_OTF_Regular.otf": "/static/media/The_Jamsil_OTF_Regular.fc59b1e715166a259eb5.otf",
+    "static/media/The_Jamsil_OTF_Medium.otf": "/static/media/The_Jamsil_OTF_Medium.adb26882aeb95e913328.otf",
+    "static/media/The_Jamsil_OTF_ExtraBold.otf": "/static/media/The_Jamsil_OTF_ExtraBold.9390e8291a539cf25b06.otf",
+    "static/media/The_Jamsil_OTF_Bold.otf": "/static/media/The_Jamsil_OTF_Bold.a5ac2e292ec84c0ff3bf.otf",
+    "static/media/The_Jamsil_OTF_Light.otf": "/static/media/The_Jamsil_OTF_Light.f35ac7c0ec42801cd631.otf",
+    "static/media/The_Jamsil_OTF_Thin.otf": "/static/media/The_Jamsil_OTF_Thin.a24bec553a2022d182e1.otf",
+    "index.html": "/index.html",
+    "main.15ed24a4.css.map": "/static/css/main.15ed24a4.css.map",
+    "main.5fbba6c1.js.map": "/static/js/main.5fbba6c1.js.map",
+    "453.b52109b7.chunk.js.map": "/static/js/453.b52109b7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.15ed24a4.css",
+    "static/js/main.5fbba6c1.js"
+  ]
+}
