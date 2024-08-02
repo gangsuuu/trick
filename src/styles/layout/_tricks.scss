@@ -42,7 +42,15 @@
 }
 
 %showTexts{
-  animation: showTexts .7s ease-in forwards;
+  animation: .7s ease-in forwards;
+  
+  @include variables.wz(small){
+
+  }
+
+  @include variables.wz(xlarge){
+    animation-name: showTexts;
+  }
 }
 
 .tricksList{
@@ -60,6 +68,13 @@
   border-bottom: 1px solid variables.$zzz04;
   overflow: hidden;
   transition: 0.25s ease-in-out;
+
+  @include variables.wz(small){
+    display: block;
+    overflow: visible;
+    height: auto;
+    border: none;
+  }
   &.close {
     height: 0px;
   }
@@ -71,8 +86,6 @@
     height: 100%;
     background-color: black;
   }
-
-
 }
 
 .tricks-list--entrance{
@@ -82,27 +95,52 @@
   @include variables.flexjc(space-between);
   flex-direction: column;
   border-radius: 5px;
-  .tricks-list--title {
 
+
+  @include variables.wz(small){
+    width: 100%;
+  }
+
+  .tricks-list--title {
     h1 {
       @include variables.jamsil(100, 80px);
       text-transform: uppercase;
       letter-spacing: 20px;
+
+      @include variables.wz(small){
+        @include variables.jamsil(500,70px);
+        margin-bottom: 20px;
+      }
     }
   }
   .tricks-list--whatIs {
     @include variables.flexjc(space-between);
+
+    @include variables.wz(small){
+      display: block;
+    }
 
     .tricks-list--intro{
       p{
         @include variables.jamsil(100, 17px);
         letter-spacing: 1px;
         text-transform: uppercase;
+
+        @include variables.wz(small){
+          font-size: 1.1em;
+          margin-bottom: 10px;
+        }
       }
     }
     .tricks-list--count {
       @include variables.jamsil(300, 18px);
       color: variables.$zzz04;
+
+      @include variables.wz(small){
+        text-align: right;
+        padding-bottom: 5px;
+        border-bottom: 1px solid variables.$zzz04;
+      }
     }
   }
 }
@@ -113,7 +151,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 3 px 0;
+
+  @include variables.wz(small){
+    width: 100%;
+    border-bottom: 1px solid variables.$zzz04;
+  }
 }
 
 .trick {
@@ -124,6 +166,14 @@
   border-radius: 5px;
   overflow: hidden;
 
+
+  @include variables.wz(small){
+    width: 100%;
+    height: 90%;
+    display: flex;    
+    border: none;
+  }
+  
   .trick-content--Wrapper {
     position: absolute;
     bottom: -80px;
@@ -135,9 +185,29 @@
     border-top: 1px dashed rgba(0, 0, 0, 0.4);
     border-top-right-radius: 100%;
     border-top-left-radius: 100%;
+
+    @include variables.wz(small){
+      position: relative;
+      border-radius: 0;
+      border: none;
+      bottom: 0;
+    }
     .trick-content--title {
       @include variables.jamsil(700, 17px);
       margin-bottom: 6px;
+
+      @include variables.wz(small){
+        display: inline-block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 1.3em;
+
+        h2{
+          margin: 0;
+        }
+      }
     }
     .trick-content--infos {
       width: 100%;
@@ -147,9 +217,22 @@
       align-items: center;
       margin-bottom: 4px;
 
+      @include variables.wz(small){
+        flex-direction: column;
+        align-items: start;
+        height: 140px
+      
+      }
+
       .trick-content--right{
         @include variables.flexjc(space-between);
         align-items: center;
+
+        @include variables.wz(small){
+          width: 100%;
+          justify-content: end;
+        
+        }
         button {
           outline: none;
           background: transparent;
@@ -159,6 +242,10 @@
           @include variables.jamsil(700, 12px);
           cursor: pointer;
           transition: .25s;
+
+          @include variables.wz(small){
+            font-size: 1.3em;
+          }
         }
       }
 
@@ -171,21 +258,31 @@
     }
   }
   
+
   &:hover .trick-content--Wrapper{
-    animation: showContent 1s forwards;
+
+    animation: 1s forwards;
+
+    @include variables.wz(xlarge) {
+      animation-name: showContent;
+    }
+    
     .trick-content--title,
-    .trick-content--infos
-    {
+    .trick-content--infos {
       @extend %showTexts;
     }
+
     button {
-      animation: showBtn .7s ease-in forwards;
+      // animation: showBtn .7s ease-in forwards;
 
       &:hover{
         color: black !important;
       }
     }
+
+
   }
+
 
   &:hover .trick-video--Wrapper {
     width: 100%;
@@ -194,12 +291,20 @@
       width: 98%;
       height: 98%;
       border-radius: 5px;
+
+
+
     }
     video {
       width: 100%;
       height: 100%;
     }
   }
+
+
+
+
+
 }
 
 .trick-video--Wrapper {
@@ -207,9 +312,12 @@
   width: 100%;
   height: 100%;
   transition: 1s;
+  align-items: center;
 
   @include variables.flexjc(center);
-  align-items: center;
+  @include variables.wz(small){
+    position: relative;
+  }
 }
 .trick-video--video {
   width: 94%;
@@ -218,6 +326,13 @@
   border-radius: 20px;
   overflow: hidden;
   transition: .25s;
+
+  @include variables.wz(small){
+    width: 98%;
+    height: 98%;
+    border-radius: 5px;
+  }
+
   video {
     width: 130%;
     height: 130%;

@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/all'
 import { getValue, wait } from '@testing-library/user-event/dist/utils'
 import { useSelector } from 'react-redux'
 import { changePageSize } from '../../store/page'
+import Footer from '../Footer'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -15,6 +16,7 @@ export default function Index () {
       <SectionFirst></SectionFirst>
       <SectionSecond></SectionSecond>
       <SectionThird></SectionThird>
+      <Footer />
     </>
   )
 }

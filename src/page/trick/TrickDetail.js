@@ -1,6 +1,7 @@
 import axios from "axios"
 import gsap from "gsap"
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 
 
@@ -17,7 +18,7 @@ export default function TrickDetail (){
   let { number } = useParams()
   let animated = false;
   
-  
+  let state = useSelector((state) => {return state})
 
   useEffect(()=> {
     let currentPage = localStorage.getItem('page')
@@ -46,6 +47,7 @@ export default function TrickDetail (){
 
 
   const wheelEvent = (e) => {
+    if(state.pageSize === 'mobile') return
     if (animated === true) return
     animated = true
     if (data.length === 0) return
@@ -98,7 +100,9 @@ export default function TrickDetail (){
         setTimeout(() => {
           setColor(colors[Math.floor(Math.random() * (colors.length - 0 + 1) + 0)])
         },200)
-        navigate(`/tricks/${index}`)
+        index === 'tricks'
+        ? navigate(`/tricks`)
+        : navigate(`/tricks/${index}`)
         gsap.to(blocks,{
           clipPath: 'polygon(0% 0%, 0% 100%,0% 100%, 0% 0%)',
           stagger: .03, 
@@ -139,6 +143,11 @@ export default function TrickDetail (){
     >
       <div className="trickDetail--wrapper"
       >
+        <div className="trickDetail-option">
+          <button
+            onClick={()=> { movePage('tricks')}}
+          >뒤로가기</button>
+        </div>
         <div className="trickDetail-content--left">
           <div className="trickDetail-content--title">
            <h2>

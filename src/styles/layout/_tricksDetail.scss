@@ -1,10 +1,29 @@
 @use '../abstracts/variables';
 @use "sass:math";
 
+%width{
+    width: 50%;
+    @include variables.wz(small){
+        width: 100%;
+    }
+}
+@mixin fz($n,$m){
+    @include variables.jamsil(300, $n);
+
+    @include variables.wz(small){
+        font-size: $m;
+    }
+}
+
+
 .trickDetail{
     width: 100%;
     height: 100vh;
     padding-top: 5vh;
+
+    @include variables.wz(small){
+        padding-top: 5vh;
+    }
 }
 
 .trickDetail--wrapper{
@@ -12,59 +31,104 @@
     height: 100%;
     display: flex;
     justify-content: space-between;
+    position: relative;
+    @include variables.wz(small){
+        flex-direction: column;
+    }
+}
+
+.trickDetail-option {
+    position: absolute;
+    top: 10px;
+    left: 2.5vw;
+
+    @include variables.wz(small){
+        position: fixed;
+        top: .6em;
+        left: 1vw;
+    }
+    button {
+        @include variables.resBtn();
+        @include fz(1.2em, 1.1em);
+    }
 }
 
 .trickDetail-content--left{
-    width: 50%;
+    // width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: end;
     padding-left: 2.5vw;
     overflow: hidden;
     gap: 1em;
+    @extend %width;
+    @include variables.wz(small){
+        padding-right: 2.5vw;
+        overflow: visible;
+    }
+    
     .trickDetail-content--title{
         @include variables.jamsil(400, 4.5em);
         margin-bottom: .2em;
+        @include fz(4.5em,1.5em)
     }
     .trickDetail-content--skills {
         display: flex;
         gap: 15px;
+        width: 100%;
+        
+        @include variables.wz(small){
+            font-size: 1em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            gap: 6px;
+        }
         span{
-            @include variables.jamsil(300, 1.3em)
+           @include fz(1.3em,1em);
         }
     }
 
     .trickDetail-content--date {
         span{
-            @include variables.jamsil(300, 1.3em)
+            @include fz(1.3em,1em);
         }
     }
 
     .trickDetail-content--goal {
         span{
-            @include variables.jamsil(300, 1.3em)
+            @include fz(1.3em,1em);
         }
     }
 
     .trickDetail-content--explanation {
         margin-bottom: 3em;
         width: 80%;
+
+        @include variables.wz(small){
+            width: 100%;
+        }
         p{
-            @include variables.jamsil(300, 1.4em);
+            @include fz(1.4em,1.1em);
             word-spacing: .3em;
             line-height: 1.1em;
             padding-top: .3em;
             &:first-child{
                 font-size: 1.6em;
+                @include variables.wz(small){
+                    font-size: 1.2em;
+                }
             }
         }
     }
 }
 
 .trickDetail-content--right{
-    width:  50%;
+    // width:  50%;
     height: 100%;
     position: relative;
+
+    @extend %width;
     .trickDetail-content--videoWrapper{
         width: 100%;
         height: 100%;

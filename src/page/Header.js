@@ -72,7 +72,7 @@ export default function Header(){
         <div className="headerNavWrapper">
           <div className="headerNav">
             <a
-              onClick={() =>movePage('index')}
+              onClick={() =>movePage('')}
             ><span>●</span>Index</a>
           </div>
           <div className="headerNav">

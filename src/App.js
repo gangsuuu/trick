@@ -41,28 +41,15 @@ function App() {
   }
 
 
-
-
-
-
-
   return (
     <>  
-      
       <Header />
-      
       <Routes>
-        <Route path="/index" element={<Index></Index>} />
+        <Route path="/" element={<Index></Index>} />
         <Route path="/tricks" element={<Tricks></Tricks>} />
         <Route path="/tricks/:number" element={<TrickDetail/>} />
         <Route path="*" element={<div>잘 못 된 접속경로 입니다.</div>} />
       </Routes>
-      {/* <TrickDetail></TrickDetail> */}
-
-      
-      
-      
-      <Footer />
     </>
 
   );

@@ -1461,7 +1461,13 @@ header {
 }
 .trick:hover .trick-content--Wrapper .trick-content--title,
 .trick:hover .trick-content--Wrapper .trick-content--infos {
-  animation: showTexts 0.7s ease-in forwards;
+  animation: 0.7s ease-in forwards;
+}
+@media (min-width: 1280px) {
+  .trick:hover .trick-content--Wrapper .trick-content--title,
+  .trick:hover .trick-content--Wrapper .trick-content--infos {
+    animation-name: showTexts;
+  }
 }
 
 .tricksList {
@@ -1481,6 +1487,14 @@ header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   overflow: hidden;
   transition: 0.25s ease-in-out;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .tricks-list--row {
+    display: block;
+    overflow: visible;
+    height: auto;
+    border: none;
+  }
 }
 .tricks-list--row.close {
   height: 0px;
@@ -1502,15 +1516,32 @@ header {
   flex-direction: column;
   border-radius: 5px;
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .tricks-list--entrance {
+    width: 100%;
+  }
+}
 .tricks-list--entrance .tricks-list--title h1 {
   font-family: "jsThin";
   font-size: 80px;
   text-transform: uppercase;
   letter-spacing: 20px;
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .tricks-list--entrance .tricks-list--title h1 {
+    font-family: "jsMedium";
+    font-size: 70px;
+    margin-bottom: 20px;
+  }
+}
 .tricks-list--entrance .tricks-list--whatIs {
   display: flex;
   justify-content: space-between;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .tricks-list--entrance .tricks-list--whatIs {
+    display: block;
+  }
 }
 .tricks-list--entrance .tricks-list--whatIs .tricks-list--intro p {
   font-family: "jsThin";
@@ -1518,10 +1549,23 @@ header {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .tricks-list--entrance .tricks-list--whatIs .tricks-list--intro p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
+}
 .tricks-list--entrance .tricks-list--whatIs .tricks-list--count {
   font-family: "jsLight";
   font-size: 18px;
   color: rgba(0, 0, 0, 0.4);
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .tricks-list--entrance .tricks-list--whatIs .tricks-list--count {
+    text-align: right;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
 }
 
 .trickWrapper {
@@ -1530,7 +1574,12 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 3 px 0;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trickWrapper {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
 }
 
 .trick {
@@ -1540,6 +1589,14 @@ header {
   border: 1px dashed rgba(0, 0, 0, 0.4);
   border-radius: 5px;
   overflow: hidden;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trick {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    border: none;
+  }
 }
 .trick .trick-content--Wrapper {
   position: absolute;
@@ -1554,10 +1611,31 @@ header {
   border-top-right-radius: 100%;
   border-top-left-radius: 100%;
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .trick .trick-content--Wrapper {
+    position: relative;
+    border-radius: 0;
+    border: none;
+    bottom: 0;
+  }
+}
 .trick .trick-content--Wrapper .trick-content--title {
   font-family: "jsBold";
   font-size: 17px;
   margin-bottom: 6px;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trick .trick-content--Wrapper .trick-content--title {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.3em;
+  }
+  .trick .trick-content--Wrapper .trick-content--title h2 {
+    margin: 0;
+  }
 }
 .trick .trick-content--Wrapper .trick-content--infos {
   width: 100%;
@@ -1569,10 +1647,23 @@ header {
   align-items: center;
   margin-bottom: 4px;
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .trick .trick-content--Wrapper .trick-content--infos {
+    flex-direction: column;
+    align-items: start;
+    height: 140px;
+  }
+}
 .trick .trick-content--Wrapper .trick-content--infos .trick-content--right {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trick .trick-content--Wrapper .trick-content--infos .trick-content--right {
+    width: 100%;
+    justify-content: end;
+  }
 }
 .trick .trick-content--Wrapper .trick-content--infos .trick-content--right button {
   outline: none;
@@ -1585,15 +1676,22 @@ header {
   cursor: pointer;
   transition: 0.25s;
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .trick .trick-content--Wrapper .trick-content--infos .trick-content--right button {
+    font-size: 1.3em;
+  }
+}
 .trick .trick-content--Wrapper .trick-content--infos .trick-content--skills span {
   font-family: "jsBold";
   font-size: 11px;
 }
 .trick:hover .trick-content--Wrapper {
-  animation: showContent 1s forwards;
+  animation: 1s forwards;
 }
-.trick:hover .trick-content--Wrapper button {
-  animation: showBtn 0.7s ease-in forwards;
+@media (min-width: 1280px) {
+  .trick:hover .trick-content--Wrapper {
+    animation-name: showContent;
+  }
 }
 .trick:hover .trick-content--Wrapper button:hover {
   color: black !important;
@@ -1617,9 +1715,14 @@ header {
   width: 100%;
   height: 100%;
   transition: 1s;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trick-video--Wrapper {
+    position: relative;
+  }
 }
 
 .trick-video--video {
@@ -1628,6 +1731,13 @@ header {
   border-radius: 20px;
   overflow: hidden;
   transition: 0.25s;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trick-video--video {
+    width: 98%;
+    height: 98%;
+    border-radius: 5px;
+  }
 }
 .trick-video--video video {
   width: 130%;
@@ -1675,10 +1785,24 @@ header {
   font-size: 1.5em;
 }
 
+.trickDetail-content--right, .trickDetail-content--left {
+  width: 50%;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-content--right, .trickDetail-content--left {
+    width: 100%;
+  }
+}
+
 .trickDetail {
   width: 100%;
   height: 100vh;
   padding-top: 5vh;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail {
+    padding-top: 5vh;
+  }
 }
 
 .trickDetail--wrapper {
@@ -1686,10 +1810,41 @@ header {
   height: 100%;
   display: flex;
   justify-content: space-between;
+  position: relative;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail--wrapper {
+    flex-direction: column;
+  }
+}
+
+.trickDetail-option {
+  position: absolute;
+  top: 10px;
+  left: 2.5vw;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-option {
+    position: fixed;
+    top: 0.6em;
+    left: 1vw;
+  }
+}
+.trickDetail-option button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: "jsLight";
+  font-size: 1.2em;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-option button {
+    font-size: 1.1em;
+  }
 }
 
 .trickDetail-content--left {
-  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -1697,30 +1852,73 @@ header {
   overflow: hidden;
   gap: 1em;
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-content--left {
+    padding-right: 2.5vw;
+    overflow: visible;
+  }
+}
 .trickDetail-content--left .trickDetail-content--title {
   font-family: "jsRegular";
   font-size: 4.5em;
   margin-bottom: 0.2em;
+  font-family: "jsLight";
+  font-size: 4.5em;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-content--left .trickDetail-content--title {
+    font-size: 1.5em;
+  }
 }
 .trickDetail-content--left .trickDetail-content--skills {
   display: flex;
   gap: 15px;
+  width: 100%;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-content--left .trickDetail-content--skills {
+    font-size: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    gap: 6px;
+  }
 }
 .trickDetail-content--left .trickDetail-content--skills span {
   font-family: "jsLight";
   font-size: 1.3em;
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-content--left .trickDetail-content--skills span {
+    font-size: 1em;
+  }
+}
 .trickDetail-content--left .trickDetail-content--date span {
   font-family: "jsLight";
   font-size: 1.3em;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-content--left .trickDetail-content--date span {
+    font-size: 1em;
+  }
 }
 .trickDetail-content--left .trickDetail-content--goal span {
   font-family: "jsLight";
   font-size: 1.3em;
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-content--left .trickDetail-content--goal span {
+    font-size: 1em;
+  }
+}
 .trickDetail-content--left .trickDetail-content--explanation {
   margin-bottom: 3em;
   width: 80%;
+}
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-content--left .trickDetail-content--explanation {
+    width: 100%;
+  }
 }
 .trickDetail-content--left .trickDetail-content--explanation p {
   font-family: "jsLight";
@@ -1729,12 +1927,21 @@ header {
   line-height: 1.1em;
   padding-top: 0.3em;
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-content--left .trickDetail-content--explanation p {
+    font-size: 1.1em;
+  }
+}
 .trickDetail-content--left .trickDetail-content--explanation p:first-child {
   font-size: 1.6em;
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .trickDetail-content--left .trickDetail-content--explanation p:first-child {
+    font-size: 1.2em;
+  }
+}
 
 .trickDetail-content--right {
-  width: 50%;
   height: 100%;
   position: relative;
 }
