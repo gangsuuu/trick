@@ -611,6 +611,7 @@ function SectionThird (){
       trigger: blackRef.current,
       start:`top ${start}`,
       end:`top ${end}`,
+      markers : true,
       onUpdate: (e) => {
         const progress = Math.floor((e.progress)*100)
         const currentNum =   Math.floor(progress / (100 / count));

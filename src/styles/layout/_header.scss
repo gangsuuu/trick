@@ -73,6 +73,13 @@ header {
 }
 .headerNav {
   color: variables.$bua;
+
+  @include variables.wz(small){
+    position: relative;
+    top: -10px;
+    left: -10px;
+    opacity: 0;
+  }
   span {
     display: inline-block;
     width: 15px;

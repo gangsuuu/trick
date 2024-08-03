@@ -375,6 +375,14 @@ header {
 .headerNav {
   color: rgba(0, 0, 0, 0.5);
 }
+@media (min-width: 0) and (max-width: 480px) {
+  .headerNav {
+    position: relative;
+    top: -10px;
+    left: -10px;
+    opacity: 0;
+  }
+}
 .headerNav span {
   display: inline-block;
   width: 15px;
@@ -1590,7 +1598,7 @@ header {
 @media (min-width: 0) and (max-width: 480px) {
   .tricks-list--entrance .tricks-list--title h1 {
     font-family: "jsMedium";
-    font-size: 70px;
+    font-size: 5em;
     margin-bottom: 20px;
   }
 }

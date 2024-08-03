@@ -108,7 +108,7 @@
       letter-spacing: 20px;
 
       @include variables.wz(small){
-        @include variables.jamsil(500,70px);
+        @include variables.jamsil(500,5em);
         margin-bottom: 20px;
       }
     }

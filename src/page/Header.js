@@ -8,30 +8,53 @@ export default function Header(){
   
   const navigate = useNavigate()
   let state = useSelector((state) => {return state})
+  let [tl,setTl] = useState()
 
     useEffect(()=>{
       if(state.pageSize === '') return 
+      const target = document.querySelector('.headerNavWrapper')
+      let timeline = gsap.timeline()
 
-      
-    },[state])
-
-  function menuHover() {
-    const target = document.querySelector('.headerNavWrapper')
-    console.log(target);
-    if(menuOpened){
-      console.log(menuOpened);
-      gsap.to(target,{
+      timeline.to(target, {
         clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)',
         duration: 0.5,
         ease: 'power4.inOut'
-      })
+      },"<")
+      timeline.to(target.children,{
+        opacity:1,
+        top:0,
+        left:0,
+        duration:.3,
+        stagger:0.1
+      },'<.5')
+
+      setTl(timeline)
+
+      return () => {
+      }
+    },[state])
+
+
+
+
+
+
+  function menuHover() {
+    const target = document.querySelector('.headerNavWrapper')
+    if(menuOpened){
+      tl.play()
+      // gsap.to(target,{
+        //   clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)',
+        //   duration: 0.5,
+        //   ease: 'power4.inOut'
+        // })
     } else {
-      console.log(menuOpened);
-      gsap.to(target,{
-        clipPath: 'polygon(100% 0%, 100% 0%,  100% 0%, 100% 0%)',
-        duration: 0.5,
-        ease: 'power4.inOut'
-      })
+        tl.reverse()
+      // gsap.to(target,{
+      //   clipPath: 'polygon(100% 0%, 100% 0%,  100% 0%, 100% 0%)',
+      //   duration: 0.5,
+      //   ease: 'power4.inOut'
+      // })
     }
     setMenuOpened(!menuOpened)
   }
