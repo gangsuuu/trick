@@ -1,11 +1,51 @@
 import gsap from "gsap"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 export default function Header(){
+  const [menuOpened,setMenuOpened] = useState(false)
+  
+  
   const navigate = useNavigate()
+  let state = useSelector((state) => {return state})
+
+    useEffect(()=>{
+      if(state.pageSize === '') return 
+
+      
+    },[state])
+
+  function menuHover() {
+    const target = document.querySelector('.headerNavWrapper')
+    console.log(target);
+    if(menuOpened){
+      console.log(menuOpened);
+      gsap.to(target,{
+        clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)',
+        duration: 0.5,
+        ease: 'power4.inOut'
+      })
+    } else {
+      console.log(menuOpened);
+      gsap.to(target,{
+        clipPath: 'polygon(100% 0%, 100% 0%,  100% 0%, 100% 0%)',
+        duration: 0.5,
+        ease: 'power4.inOut'
+      })
+    }
+    setMenuOpened(!menuOpened)
+  }
+
+
+  
+
+
+
 
   function movePage(page){
     let clipPath = ['polygon(0% 0%, 0% 100%,0% 100%, 0% 0%)','polygon(100% 0%, 100% 100%, 100% 100%, 100% 0%)']
   
+
     const body = document.querySelector('body')
     const moveWrapper = document.createElement('div')
     const leftDiv = document.createElement('div')
@@ -57,18 +97,22 @@ export default function Header(){
       }
     })
 
-
   }
 
 
   return(
     <header>
       <div className="headerWrapper">
-        <div className="headerLogoWrapper">
-          <div className="headerLogo">
-            
+      {
+        state.pageSize === 'mobile'
+        ? <div className="headerMenu">
+            <div onClick={() => { menuHover()}}>menu</div>
           </div>
-        </div>
+        :  <div className="headerLogoWrapper">
+            <div className="headerLogo"></div>
+          </div>
+      }
+
         <div className="headerNavWrapper">
           <div className="headerNav">
             <a
@@ -86,6 +130,13 @@ export default function Header(){
             ><span>●</span>About</a>
           </div>
         </div>
+        {
+        state.pageSize === 'mobile'
+        ? <div className="headerCreate">
+            <div>Create by Huck</div>
+          </div>
+        : ''
+        }
       </div>
     </header>
   )

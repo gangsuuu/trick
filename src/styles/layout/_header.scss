@@ -13,7 +13,8 @@ header {
   background-color: white;
 
   @include variables.wz(small){
-    display: none;
+    top: -5vh;
+    // display: none;
   }
 
 }
@@ -42,10 +43,33 @@ header {
   }
 }
 
+.headerMenu {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  mix-blend-mode: multiply;
+  color: white;
+  background-color: red;
+  z-index: 10;
+}
+
 .headerNavWrapper {
   display: flex;
   gap: 5vw;
 
+  @include variables.wz(small){
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: gray;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    clip-path: polygon(100% 0%, 100% 100%,  100% 100%, 100% 0);
+  }
 }
 .headerNav {
   color: variables.$bua;
@@ -65,7 +89,6 @@ header {
   }
 }
 .headerNav:hover {
-
   span {
     transform: scale(1.4);
     color: variables.$ba;
@@ -73,5 +96,16 @@ header {
   
   a {
     color: variables.$ba;
+  }
+}
+.headerCreate {
+  display: none;
+
+  @include variables.wz(small){
+    display: block;
+    position: fixed;
+    bottom: 2vw;
+    left: 2vw;
+    color: white;
   }
 }
