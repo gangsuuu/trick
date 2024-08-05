@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/trick/static/css/main.30518ffc.css",
-    "main.js": "/trick/static/js/main.4d28d533.js",
+    "main.css": "/trick/static/css/main.0860ba88.css",
+    "main.js": "/trick/static/js/main.cc5c4d2a.js",
     "static/js/453.b52109b7.chunk.js": "/trick/static/js/453.b52109b7.chunk.js",
     "static/media/videoAssets.mp4": "/trick/static/media/videoAssets.78d91130bc8b5b31cb6b.mp4",
     "static/media/The_Jamsil_OTF_Regular.otf": "/trick/static/media/The_Jamsil_OTF_Regular.fc59b1e715166a259eb5.otf",
@@ -11,12 +11,12 @@
     "static/media/The_Jamsil_OTF_Light.otf": "/trick/static/media/The_Jamsil_OTF_Light.f35ac7c0ec42801cd631.otf",
     "static/media/The_Jamsil_OTF_Thin.otf": "/trick/static/media/The_Jamsil_OTF_Thin.a24bec553a2022d182e1.otf",
     "index.html": "/trick/index.html",
-    "main.30518ffc.css.map": "/trick/static/css/main.30518ffc.css.map",
-    "main.4d28d533.js.map": "/trick/static/js/main.4d28d533.js.map",
+    "main.0860ba88.css.map": "/trick/static/css/main.0860ba88.css.map",
+    "main.cc5c4d2a.js.map": "/trick/static/js/main.cc5c4d2a.js.map",
     "453.b52109b7.chunk.js.map": "/trick/static/js/453.b52109b7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.30518ffc.css",
-    "static/js/main.4d28d533.js"
+    "static/css/main.0860ba88.css",
+    "static/js/main.cc5c4d2a.js"
   ]
 }
