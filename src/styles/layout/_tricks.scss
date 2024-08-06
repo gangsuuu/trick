@@ -74,6 +74,7 @@
     overflow: visible;
     height: auto;
     border: none;
+    width: 98%;
   }
   &.close {
     height: 0px;
@@ -100,6 +101,9 @@
   @include variables.wz(small){
     width: 100%;
   }
+  @include variables.wz(medium){
+    width: 100%;
+  }
 
   .tricks-list--title {
     h1 {
@@ -110,6 +114,9 @@
       @include variables.wz(small){
         @include variables.jamsil(500,5em);
         margin-bottom: 20px;
+      }
+      @include variables.wz(medium){
+        @include variables.jamsil(400,8em);
       }
     }
   }
@@ -156,6 +163,10 @@
     width: 100%;
     border-bottom: 1px solid variables.$zzz04;
   }
+  @include variables.wz(medium){
+    width: 50%;
+    border-bottom: 1px solid variables.$zzz04;
+  }
 }
 
 .trick {
@@ -176,8 +187,9 @@
   
   .trick-content--Wrapper {
     position: absolute;
-    bottom: -80px;
+    bottom: -100px;
     overflow: hidden;
+    height: 40%;
     width: 100%;
     padding: 2% 3%;
     background-color: rgba(255,255,255,.4);
@@ -186,28 +198,48 @@
     border-top-right-radius: 100%;
     border-top-left-radius: 100%;
 
+
+    @include variables.wz(large){
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
     @include variables.wz(small){
       position: relative;
       border-radius: 0;
       border: none;
       bottom: 0;
+      overflow:visible;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 1% 0% 0% 3%;
     }
+    @include variables.wz(medium){
+      position: absolute;
+      border-radius: 0;
+      bottom: 0;
+      height: 40%;
+      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
+    }
+
     .trick-content--title {
       @include variables.jamsil(700, 17px);
       margin-bottom: 6px;
 
+
+      @include variables.fz(17px,1.4em,1.7em,1.3em);
+
       @include variables.wz(small){
         display: inline-block;
         width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: 1.3em;
-
         h2{
           margin: 0;
         }
       }
+      
     }
     .trick-content--infos {
       width: 100%;
@@ -220,8 +252,8 @@
       @include variables.wz(small){
         flex-direction: column;
         align-items: start;
-        height: 140px
-      
+        height: 140px;
+        margin: 0;
       }
 
       .trick-content--right{
@@ -234,6 +266,7 @@
         
         }
         button {
+
           outline: none;
           background: transparent;
           border: none;
@@ -250,7 +283,9 @@
       }
 
       .trick-content--skills{
-          
+        @include variables.wz(large){
+          display: none;
+        }
         span{
           @include variables.jamsil(700, 11px);
         }
@@ -260,10 +295,12 @@
   
 
   &:hover .trick-content--Wrapper{
-
     animation: 1s forwards;
 
     @include variables.wz(xlarge) {
+      animation-name: showContent;
+    }
+    @include variables.wz(large) {
       animation-name: showContent;
     }
     
@@ -353,9 +390,9 @@
   justify-content: center;
 
   button {
+    @include variables.resBtn();
     width: 120px;
     height: 40px;
-    @include variables.resBtn();
     border-radius: 5px;
     border: 1px solid variables.$zzz04;
     transition: .4s;

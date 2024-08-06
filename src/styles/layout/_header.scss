@@ -16,7 +16,9 @@ header {
     top: -5vh;
     // display: none;
   }
-
+  @include variables.wz(large){
+    font-size: 1.7em;
+  }
 }
 
 .headerWrapper {
@@ -112,6 +114,7 @@ header {
     display: block;
     position: fixed;
     bottom: 2vw;
+    opacity: 0;
     left: 2vw;
     color: white;
   }

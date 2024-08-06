@@ -29,11 +29,11 @@ function App() {
     }else if(wh <= 1279 && wh > 768){
       maxfz = 1279;
       dispatch(changePageSize('laptop'))
-    } else if (wh <= 768 && wh > 480){
+    } else if (wh <= 768 && wh > 501){
       maxfz = 768;
       dispatch(changePageSize('tablet'))
-    } else if (wh <= 480){
-      maxfz = 480;
+    } else if (wh <= 501){
+      maxfz = 501;
       dispatch(changePageSize('mobile'))
     }
   

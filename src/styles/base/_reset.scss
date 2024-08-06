@@ -21,17 +21,24 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-  box-sizing: border-box;
+  	box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+::-webkit-scrollbar {
+  display: none; /* 스크롤바 숨김 */
+}
 html {
 	width: 100vw;
   overflow-x: hidden;
+
 	@include variables.wz(small){
+		overflow-x: visible;
+	}
+	@include variables.wz(medium){
 		overflow-x: visible;
 	}
 }

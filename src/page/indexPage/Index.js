@@ -26,7 +26,6 @@ function SectionFirst (){
   let [onControler,setOnControler] = useState(false)
   let [audioMute,setAudioMute] = useState(false)
   let [play,setPlay] = useState(false)
-  
 
   const closeBtnRef = useRef()
   const videoRef = useRef()
@@ -40,6 +39,7 @@ function SectionFirst (){
 
   const moveCloseBtn = (x,y,p) =>{
     if(closeBtn === undefined) return
+    if(state.pageSize === 'mobile' || state.pageSize === 'tablet') return
     if(closeBtn === p) {
       closeBtn.style.transition = `0s`
       closeBtn.style.transform = `translate(${x}px,${y}px) scale(0.2)`
@@ -129,6 +129,7 @@ function SectionFirst (){
             >
               <div className='index-section01--openBtnContainer'>
                 <button 
+                  aria-label="video controll open butn"
                   className='index-section01--openBtn'
                   onClick={(e)=> {
                     setShowControl(true)
@@ -202,6 +203,8 @@ function SectionFirst (){
               className='index-section01--controls--BtnWrapper'
             >
               <div 
+                aria-label="video play button"
+                role='button'
                 className={`index-section01--controls--Btn ${
                   play === true
                   ? 'play'
@@ -213,14 +216,14 @@ function SectionFirst (){
                 <span></span>
               </div>
               <div className='index-section01--controls--Btn--mute'>
-                <div className={`index-section01--controls--Btn--effect
-                  ${
+                <div className={`index-section01--controls--Btn--effect ${
                     audioMute === true
                     ? 'mute'
                     : ''
                   }`}>
                 </div>
                 <button
+                  aria-label="video mute button"
                   onClick={() => {setAudioMute(!audioMute)}}
                 >
                   <span>mute</span>
@@ -228,8 +231,7 @@ function SectionFirst (){
               </div>
             </div>
           </div>
-          <div className={`index-section01--controls--closeBtn
-            ${
+          <div className={`index-section01--controls--closeBtn${
               onControler === true
               ? 'hide'
               : ''
@@ -237,8 +239,9 @@ function SectionFirst (){
             }
             ref = {closeBtnRef}>
               <button
+              aria-label="video controler close button"
               onClick={() => {setShowControl(false)}}
-              ><span>x</span>
+              ><span aria-hidden='true'>x</span>
               </button>
           </div>
         </div>
@@ -384,16 +387,22 @@ function SectionSecond (){
                     }
                     key={i}
                   >
-                    <p className={`index-section02--subTitle ${
+                    <p 
+                      aria-label={`number ${i+1} subtitle`}
+                      className={`index-section02--subTitle ${
                       textShowed[i] === true ? 'show' : ''
                     }`}>{c.subtitle}</p>
                     <div className='index-section02--subWrapper'>
-                      <p className='index-section02--content'
-                      ref={(e) =>{textRef.current[i] = e}}
+                      <p 
+                        aria-label={`number ${i+1} content`}  
+                        className='index-section02--content'
+                        ref={(e) =>{textRef.current[i] = e}}
                       >{c.content}</p>
                     </div>
                     <div className='index-section02--showIconWrapper'>
-                      <div className={`index-section02--showText ${
+                      <div 
+                          aria-hidden='true'
+                          className={`index-section02--showText ${
                           state.pageSize === 'mobile'
                           ? 'open'
                           : textShowed[i] === true ? 'open' : ''
@@ -418,7 +427,9 @@ function SectionSecond (){
               })
           }
         </div>
-        <div className='index-section02--imagesWrapper'>
+        <div className='index-section02--imagesWrapper'
+          aria-hidden="true"
+        >
           <div className='index-section02--imageLargeBoxWrapper'>
             <div className='index-section02--imageLargeBox'
                  ref={LargeBoxRef}
@@ -512,8 +523,11 @@ function SectionSecond (){
 
 function SectionThird (){
   const [texts, setTexts] = useState(null)
+  const whatRef = useRef(null)
   const grayRef = useRef(null)
   const blackRef = useRef(null)
+  const imageRef = useRef(null)
+  const shadowRef = useRef(null)
   const state = useSelector((state)=> {return state})
 
 
@@ -594,24 +608,24 @@ function SectionThird (){
       pB.appendChild(spanB)
     })
     
-
-    if(state.pageSize === 'mobile'){
-      start = '30%'
-      end =  '0%'
+    let target
+    if(state.pageSize === 'mobile' || state.pageSize === 'tablet'){
+      start = '40%'
+      end =  '-40%'
+      target = whatRef.current
     } else {
       start =  '80%'
       end =  '50%'
+      target = blackRef.current
     }
-
 
     let blackText = blackRef.current.children
     let count = blackText.length
-
+    
     ScrollTrigger.create({
-      trigger: blackRef.current,
+      trigger: target,
       start:`top ${start}`,
       end:`top ${end}`,
-      markers : true,
       onUpdate: (e) => {
         const progress = Math.floor((e.progress)*100)
         const currentNum =   Math.floor(progress / (100 / count));
@@ -625,12 +639,58 @@ function SectionThird (){
       }
     })
   }
+  function imageMove (t,x,y) {
+    if(state.pageSize === 'mobile' || state.pageSize === 'tablet') return 
+    if(imageRef === null) return
+    if(shadowRef === null) return
+    let rY =  (((x - (window.innerWidth/2)) / (window.innerWidth/2)) * 100) * -.4
+    let rX =  (y - (window.innerHeight/2)) / (window.innerHeight/2) * 100 * .4
+    let shodowX = rY * 1.1
+    let shodowY = rX * 1.1
+    gsap.to(imageRef.current,{
+      rotateX: rX,
+      rotateY: rY,
+      duration:0.3,
+    })
 
+    gsap.to(shadowRef.current, {
+      x: shodowX,
+      y: shodowY,
+      duration:0.3,
+    })
+
+  }
+
+
+  function scale (e) {
+    if(e.type == 'mouseleave') {
+      gsap.to(e.target,{
+        width: '110%',
+        height: '110%',
+        duration: .4,
+        opacity: .7,
+        ease:'power4.out'
+      })
+    } else if (e.type == 'mouseenter'){
+      gsap.to(e.target,{
+        width: '100%',
+        height: '100%',
+        duration: .4,
+        opacity: 1,
+        ease:'power4.out'
+      })
+    }
+  }
   return(
-    <section className="index-section-03">
+    <section className="index-section-03"
+      onMouseMove={(e) => { imageMove(e.currentTarget,e.clientX,e.clientY)}}
+    >
       <div className='index-section03--wrapper'>
         <div className='index-section03--reasonFirst'>
-          <div className='index-section03--whatIsAnimation'>
+          <div
+           className='index-section03--whatIsAnimation'
+           ref={whatRef}
+           >
             <div className='index-section03--whatIsAnimation-gray'
             ref={grayRef}>
             </div>
@@ -647,9 +707,19 @@ function SectionThird (){
 
           </div>
           <div className='index-section03--experienceAni'>
+            <div className='index-section03--imagesWrapper'
+            ref={imageRef}>
+                <img src='https://images.shiksha.com/mediadata/shikshaOnline/mailers/2021/naukri-learning/oct/27oct/What-is-UI-UX-Design.jpg'
+                  onMouseEnter={(e) => {scale(e)}}
+                  onMouseLeave={(e) => {scale(e)}}
+                ></img> 
+              <div className='index-section03--imageShadow' ref={shadowRef}></div>
+            </div>
           </div>      
           <div className='index-section03--titleWrapper'>
-            <div className='index-section03--titles'>
+            <div 
+              aria-hidden='true'
+              className='index-section03--titles'>
               <div><p>What Is Animation</p></div>
               <div><p>Animation</p></div>
               <div><p>Why Do I Made</p></div>
@@ -660,7 +730,7 @@ function SectionThird (){
 
           <div className='index-section03--whyDoIMade'>
             <div>
-              <p>
+              <p aria-content='why i make webpage'>
                 처음 웹페이지의 매력을 느끼게 되었던 것은 2022년 7월 30일, 'theFWA'의 site of day 에 선정된 '60fps'와 'immersive-garden'이 함께 제작한 브랜드 'DIOR'의 웹페이지 'Dioriviera'를 접했을 때 입니다.
                 디올의 첫 여성 디렉터인 '마리아 그라우치'의 'Dioriviera' 컬렉션을 홍보하기 위한 3d 랜딩페이지로서, 스크롤에 따라 카메라가 움직이면 진행되며 Dioriviera 컬렉션을 하나의 여행이라는 컨셉으로 즐길 수있었고,
                 이 경험을 통해서 개발자로서 진로를 확고히 하였고, 웹 개발자로서 추구하는 마음가짐의 기반을 다듬게 되었습니다. 

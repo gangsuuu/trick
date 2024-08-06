@@ -1,18 +1,13 @@
 import gsap from "gsap";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { MoveDetail } from "../Utils/PageMove";
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux";
 
 
 export default function TrickComponent(props){
-  let [index, setIndex] = useState()
   let navigate = useNavigate()
   if(props.contents.length != 0){
   }
   
-  let dispatch = useDispatch()
   
   useEffect(() => {
 
@@ -67,7 +62,7 @@ export default function TrickComponent(props){
           if(video == null) return;
 
           if(video.id !== 'video noChannel' || video != null){
-              // video.pause()
+              video.pause()
            }
         }}
         onMouseEnter={(e) => {
@@ -76,12 +71,14 @@ export default function TrickComponent(props){
           : e.target.querySelector('video#video')
           if(video == null) return;
           if(video.id !== 'video noChannel' || video != null){
-              // video.play()
+              video.play()
            }
         }}
       >
         <div className='trick-video--Wrapper'>
-          <div className="trick-video--video">
+          <div 
+            aria-hidden='true'
+            className="trick-video--video">
             <video id={`video${props.contents.length===0?' noChannel': props.index < props.contents.length?'':' noChannel'}`} muted loop preload=""
               src={
                 props.contents.length === 0
@@ -108,7 +105,9 @@ export default function TrickComponent(props){
           </div>
           <div className="trick-content--infos">
             <div className="trick-content--left">
-            <div className="trick-content--skills">
+            <div 
+              aria-label='used skills'
+              className="trick-content--skills">
               {
                 props.contents.length === 0
                 ? <span>로딩중....</span>
@@ -136,12 +135,9 @@ export default function TrickComponent(props){
               {
                 props.index < props.contents.length
                 ? <div className="trick-content--OpenDetailBtn">
-                    {/* <Link 
-                      to={{
-                        pathname:props.index.toString(),
-                      }}
-                     > */}
-                       <button onClick={() =>{movePage(props.index.toString())}}>Detail</button>
+                       <button 
+                       aria-label="look this item"
+                       onClick={() =>{movePage(props.index.toString())}}>Detail</button>
                     {/* </Link> */}
                   </div>
                 :''

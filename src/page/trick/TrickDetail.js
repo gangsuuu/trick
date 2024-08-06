@@ -47,7 +47,9 @@ export default function TrickDetail (){
 
 
   const wheelEvent = (e) => {
-    if(state.pageSize === 'mobile') return
+    if(state.pageSize === 'mobile'
+      || state.pageSize === 'tablet'
+    ) return
     if (animated === true) return
     animated = true
     if (data.length === 0) return
@@ -145,12 +147,13 @@ export default function TrickDetail (){
       >
         <div className="trickDetail-option">
           <button
+            aria-label='page back'
             onClick={()=> { movePage('tricks')}}
           >뒤로가기</button>
         </div>
         <div className="trickDetail-content--left">
           <div className="trickDetail-content--title">
-           <h2>
+           <h2 aria-label='title'>
             {
               data.length === 0
               ? '데이터 찾는 중' 
@@ -158,8 +161,10 @@ export default function TrickDetail (){
             }
            </h2>
           </div>
-          <div className="trickDetail-content--skills">
-          {
+          <div 
+            aria-label="skills"
+            className="trickDetail-content--skills">
+            {
               data.length === 0
               ? <span>데이터 찾는 중</span>
               : (data[page].skills.map((t) => {
@@ -170,7 +175,7 @@ export default function TrickDetail (){
             }
           </div>
           <div className="trickDetail-content--date">
-            <div>
+            <div aria-label='crated day'>
               <span>제작날짜</span>
               <span>
                 {
@@ -182,7 +187,7 @@ export default function TrickDetail (){
             </div>
           </div>
           <div className="trickDetail-content--goal">
-            <div>
+            <div aria-label='crate goal'>
               <span>제작목표 : </span>
               <span> {
                 data.length === 0
@@ -192,7 +197,7 @@ export default function TrickDetail (){
             </div>
           </div>
           <div className="trickDetail-content--explanation">
-            <div>
+            <div aria-label='how to made it'>
               <p>트릭방식</p>
               <p> {
                 data.length === 0
@@ -202,7 +207,9 @@ export default function TrickDetail (){
             </div>
           </div>
         </div>
-        <div className="trickDetail-content--right"
+        <div 
+          aria-hidden='ture'
+          className="trickDetail-content--right"
           onMouseEnter={()=>{setEntered(true)}}
           onMouseLeave={()=>{setEntered(false)}}
           onMouseMove={(e)=>{moveMouse(e.clientX,e.clientY)}}

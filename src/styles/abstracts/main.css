@@ -63,11 +63,20 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
+::-webkit-scrollbar {
+  display: none; /* 스크롤바 숨김 */
+}
+
 html {
   width: 100vw;
   overflow-x: hidden;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  html {
+    overflow-x: visible;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   html {
     overflow-x: visible;
   }
@@ -81,7 +90,7 @@ body {
   -moz-user-select: none;
   user-select: none;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   body {
     overflow-x: visible;
   }
@@ -174,6 +183,7 @@ footer {
   width: 100%;
   position: relative;
   z-index: 100;
+  height: 300px;
 }
 
 .footer-imagesContent {
@@ -185,7 +195,15 @@ footer {
   -webkit-clip-path: polygon(0 0, 0 0, 100% 0, 100% 0);
           clip-path: polygon(0 0, 0 0, 100% 0, 100% 0);
   background-color: red;
+  overflow: hidden;
 }
+.footer-imagesContent img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .footer-infomation--Wrapper {
   position: absolute;
   width: 100%;
@@ -205,7 +223,12 @@ footer {
   justify-content: space-between;
   align-items: flex-start;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .footer-infomation {
+    flex-direction: column;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .footer-infomation {
     flex-direction: column;
   }
@@ -219,7 +242,18 @@ footer {
   flex-direction: column;
   padding-right: 10%;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .footer-left {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .footer-left .footer-navToFrist {
+    display: none;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .footer-left {
     width: 100%;
     align-items: center;
@@ -238,9 +272,15 @@ footer {
   letter-spacing: -1px;
   width: 100%;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .footer-title p {
     font-size: 3em;
+    letter-spacing: 1px;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .footer-title p {
+    font-size: 4em;
     letter-spacing: 1px;
   }
 }
@@ -263,9 +303,15 @@ footer {
   font-family: "jsRegular";
   font-size: 13px;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .footer-right {
     flex-direction: column;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .footer-right {
+    flex-direction: column;
+    gap: 10px;
   }
 }
 
@@ -291,8 +337,12 @@ footer {
   text-transform: uppercase;
 }
 
-.footer-info--SNS p {
+.footer-info--SNS a {
+  display: block;
   margin-bottom: 8px;
+}
+.footer-info--SNS a:hover {
+  color: beige;
 }
 
 .footer-info-secondeDown {
@@ -312,9 +362,14 @@ header {
   font-size: 1em;
   background-color: white;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   header {
     top: -5vh;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  header {
+    font-size: 1.7em;
   }
 }
 
@@ -356,7 +411,7 @@ header {
   display: flex;
   gap: 5vw;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .headerNavWrapper {
     position: fixed;
     top: 0;
@@ -375,7 +430,7 @@ header {
 .headerNav {
   color: rgba(0, 0, 0, 0.5);
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .headerNav {
     position: relative;
     top: -10px;
@@ -407,11 +462,12 @@ header {
 .headerCreate {
   display: none;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .headerCreate {
     display: block;
     position: fixed;
     bottom: 2vw;
+    opacity: 0;
     left: 2vw;
     color: white;
   }
@@ -491,6 +547,7 @@ header {
 .index-section01-video {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 .index-section01-video video {
   width: 100%;
@@ -530,10 +587,11 @@ header {
   color: white;
   position: absolute;
   bottom: 22vh;
+  width: 100%;
   left: 50%;
   transform: translateX(-50%);
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section01--textWrapper {
     width: 100vw;
     bottom: 10vh;
@@ -555,19 +613,53 @@ header {
   letter-spacing: 3px;
   line-height: 35px;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 1280px) {
   .index-section01--textWrapper .index-section01--welcome p {
-    font-size: 1em;
+    font-size: 2em;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section01--textWrapper .index-section01--welcome p {
+    font-size: 2em;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section01--textWrapper .index-section01--welcome p {
+    font-size: 1.2em;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section01--textWrapper .index-section01--welcome p {
+    font-size: 1.2em;
   }
 }
 .index-section01--textWrapper .index-section01--title h3 {
   font-family: "jsMedium";
   font-size: 32px;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section01--textWrapper .index-section01--title h3 {
+    word-spacing: 0.2em;
+  }
+}
+@media (min-width: 1280px) {
+  .index-section01--textWrapper .index-section01--title h3 {
+    font-size: 3em;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section01--textWrapper .index-section01--title h3 {
+    font-size: 3em;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section01--textWrapper .index-section01--title h3 {
+    font-size: 1.2em;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
   .index-section01--textWrapper .index-section01--title h3 {
     font-size: 1.7em;
-    word-spacing: 0.2em;
   }
 }
 
@@ -581,9 +673,15 @@ header {
   justify-content: start;
   align-items: center;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section01--videoControls--OpenWrapper {
     display: none;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section01--videoControls--OpenWrapper {
+    top: 0;
+    bottom: 0;
   }
 }
 .index-section01--videoControls--OpenWrapper .index-section01--openBtnWrp {
@@ -681,7 +779,7 @@ header {
   left: 50%;
   transform: translateX(-50%);
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section01--howToUse {
     bottom: 1vh;
   }
@@ -694,7 +792,7 @@ header {
   transform: translateY(-100%);
   border: 2px solid rgb(255, 255, 255);
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section01--howToUse .index-section01-scrollIcon {
     width: 25px;
     height: 42px;
@@ -717,7 +815,17 @@ header {
     animation-name: scrollBall;
   }
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section01--howToUse .index-section01-scrollIcon::after {
+    animation-name: scrollBall;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section01--howToUse .index-section01-scrollIcon::after {
+    animation-name: scrollBall;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
   .index-section01--howToUse .index-section01-scrollIcon::after {
     width: 18px;
     height: 18px;
@@ -747,7 +855,7 @@ header {
   width: 100%;
   height: 20%;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section01--videoControlsWrapper .index-section01--detailControls {
     top: 0;
   }
@@ -765,7 +873,7 @@ header {
   height: 23px;
   border-radius: 1px;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section01--videoControlsWrapper .index-section01--controls--videoRangeWrapper .index-section01--controls--rangeLow {
     display: none;
   }
@@ -811,9 +919,25 @@ header {
   align-items: center;
   transform: scale(1);
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section01--controls--closeBtn {
     display: none;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section01--controls--closeBtn {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 2.5vw;
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%);
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section01--controls--closeBtn {
+    width: 80px;
+    height: 80px;
   }
 }
 .index-section01--controls--closeBtn button {
@@ -836,6 +960,26 @@ header {
   font-family: "jsThin";
   font-size: 22px;
   margin-top: -2px;
+}
+@media (min-width: 1280px) {
+  .index-section01--controls--closeBtn button span {
+    font-size: 22px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section01--controls--closeBtn button span {
+    font-size: 1.6em;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section01--controls--closeBtn button span {
+    font-size: 2em;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section01--controls--closeBtn button span {
+    font-size: 1em;
+  }
 }
 .index-section01--controls--closeBtn.hide {
   pointer-events: none;
@@ -869,6 +1013,12 @@ header {
   transform-origin: right;
   transition: 0.3s;
 }
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section01--controls--BtnWrapper .index-section01--controls--Btn span {
+    width: 30px;
+    border: 1px solid white;
+  }
+}
 .index-section01--controls--BtnWrapper .index-section01--controls--Btn.pause span:nth-child(1) {
   transform: rotate(-20deg);
 }
@@ -889,7 +1039,7 @@ header {
   margin-right: 2.5vw;
   overflow: hidden;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section01--controls--Btn--mute {
     left: 0;
     width: 5.5em;
@@ -918,11 +1068,42 @@ header {
   font-size: 20px;
   color: white;
 }
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section01--controls--Btn--mute button span {
+    font-size: 1.4em;
+    margin-right: 10px;
+  }
+}
+@media (min-width: 1280px) {
+  .index-section01--controls--Btn--mute button span {
+    font-size: 20px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section01--controls--Btn--mute button span {
+    font-size: 1.3em;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section01--controls--Btn--mute button span {
+    font-size: 1.4em;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section01--controls--Btn--mute button span {
+    font-size: 1em;
+  }
+}
 
 .index-section-02 {
   position: relative;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section-02 {
+    height: auto;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .index-section-02 {
     height: auto;
   }
@@ -933,9 +1114,14 @@ header {
   width: 100%;
   height: 100%;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section02--wrapper {
-    height: 100vh;
+    min-height: 100vh;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section02--wrapper {
+    min-height: 100vh;
   }
 }
 
@@ -979,11 +1165,23 @@ header {
   position: relative;
   z-index: 2;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section02--textWrappers {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section02--textWrappers {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section02--textWrappers {
+    gap: 5vw;
   }
 }
 .index-section02--textWrappers .index-section02--textWrapper {
@@ -997,7 +1195,12 @@ header {
 .index-section02--textWrappers .index-section02--textWrapper.open {
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section02--textWrappers .index-section02--textWrapper {
+    width: 80%;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .index-section02--textWrappers .index-section02--textWrapper {
     width: 80%;
   }
@@ -1107,9 +1310,19 @@ header {
   display: flex;
   justify-content: space-between;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section02--imagesWrapper {
     display: none;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section02--imagesWrapper {
+    display: none;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section02--imagesWrapper {
+    gap: 2vw;
   }
 }
 .index-section02--imagesWrapper .index-section02--imageSlides {
@@ -1117,6 +1330,12 @@ header {
   align-items: end;
   gap: 10px;
   width: 50%;
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section02--imagesWrapper .index-section02--imageSlides {
+    width: 100%;
+    overflow: hidden;
+  }
 }
 .index-section02--imagesWrapper .index-section02--imageSlides .index-section02--imageSlide {
   position: relative;
@@ -1154,6 +1373,11 @@ header {
   height: 100%;
   overflow: hidden;
   position: relative;
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section02--imagesWrapper .index-section02--imageLargeBoxWrapper .index-section02--imageLargeBox {
+    min-width: 300px;
+  }
 }
 .index-section02--imagesWrapper .index-section02--imageLargeBoxWrapper .index-section02--imageLargeBox .index-section02--imageLarge {
   position: absolute;
@@ -1245,6 +1469,11 @@ header {
   border-bottom-color: transparent;
   border-right: none;
 }
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section02--animationControll .index-section02--right {
+    right: -12px;
+  }
+}
 .index-section02--animationControll .index-section02--bottom {
   position: absolute;
   width: 18px;
@@ -1323,7 +1552,13 @@ header {
   display: flex;
   justify-content: end;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section03--wrapper {
+    display: block !important;
+    height: auto;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .index-section03--wrapper {
     display: block !important;
     height: auto;
@@ -1337,7 +1572,15 @@ header {
   align-items: flex-start;
   justify-content: space-between;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section03--reasonFirst {
+    display: block !important;
+    height: 520vh;
+    padding: 100vh 0;
+    position: relative;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .index-section03--reasonFirst {
     display: block !important;
     height: 520vh;
@@ -1349,7 +1592,16 @@ header {
   width: 50%;
   position: relative;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section03--reasonFirst .index-section03--whatIsAnimation {
+    display: block;
+    width: 100%;
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .index-section03--reasonFirst .index-section03--whatIsAnimation {
     display: block;
     width: 100%;
@@ -1372,14 +1624,42 @@ header {
   word-spacing: 0.5em;
   line-height: 1.2em;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 1280px) {
+  .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black p, .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black span,
+  .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray p,
+  .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray span {
+    font-size: 1.4em;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black p, .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black span,
+  .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray p,
+  .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray span {
+    font-size: 1.2em;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black p, .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black span,
+  .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray p,
+  .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray span {
+    font-size: 1.5em;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
   .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black p, .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black span,
   .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray p,
   .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray span {
     font-size: 1.15em;
   }
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-black {
     position: absolute;
     text-align: center;
@@ -1393,7 +1673,13 @@ header {
   transition: 0.5s;
   color: #000;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray {
+    position: relative;
+    text-align: center;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .index-section03--reasonFirst .index-section03--whatIsAnimation .index-section03--whatIsAnimation-gray {
     position: relative;
     text-align: center;
@@ -1410,10 +1696,9 @@ header {
 .index-section03--reasonFirst .index-section03--experienceAni {
   width: 50%;
   height: 100%;
-  background-color: blue;
-  opacity: 0.5;
+  position: relative;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .index-section03--reasonFirst .index-section03--experienceAni {
     position: absolute;
     width: 100%;
@@ -1427,12 +1712,78 @@ header {
     transform: translate(-50%, -50%);
   }
 }
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section03--reasonFirst .index-section03--experienceAni {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/10;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.index-section03--reasonFirst .index-section03--experienceAni .index-section03--imagesWrapper {
+  position: absolute;
+  min-width: 500px;
+  height: 300px;
+  aspect-ratio: 16/9;
+  transform-style: preserve-3d;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section03--reasonFirst .index-section03--experienceAni .index-section03--imagesWrapper {
+    width: 100%;
+    min-width: 200px;
+    max-width: 450px;
+  }
+}
+.index-section03--reasonFirst .index-section03--experienceAni .index-section03--imagesWrapper .index-section03--imagebox {
+  position: absolute;
+  min-width: 500px;
+  height: 300px;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.index-section03--reasonFirst .index-section03--experienceAni .index-section03--imagesWrapper img {
+  position: absolute;
+  opacity: 0.7;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110%;
+  height: 110%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.index-section03--reasonFirst .index-section03--experienceAni .index-section03--imagesWrapper .index-section03--imageShadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  filter: blur(5px);
+  background-color: black;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) translateZ(-3px) scale(1.1);
+}
 .index-section03--reasonFirst .index-section03--titleWrapper {
   position: absolute;
   top: 100%;
   z-index: 2;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section03--reasonFirst .index-section03--titleWrapper {
+    display: none;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .index-section03--reasonFirst .index-section03--titleWrapper {
     display: none;
   }
@@ -1443,7 +1794,12 @@ header {
   font-size: 6em;
   transition: 0.2s;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section03--reasonFirst .index-section03--titleWrapper .index-section03--titles p {
+    font-size: 3.4em;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
   .index-section03--reasonFirst .index-section03--titleWrapper .index-section03--titles p {
     font-size: 1em;
   }
@@ -1461,7 +1817,13 @@ header {
   height: 50%;
   margin-bottom: 1%;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section03--reasonSecond {
+    height: 320vh;
+    display: block;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .index-section03--reasonSecond {
     height: 320vh;
     display: block;
@@ -1470,7 +1832,15 @@ header {
 .index-section03--reasonSecond .index-section03--whyDoIMade {
   width: 40%;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .index-section03--reasonSecond .index-section03--whyDoIMade {
+    width: 100%;
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .index-section03--reasonSecond .index-section03--whyDoIMade {
     width: 100%;
     position: sticky;
@@ -1484,7 +1854,22 @@ header {
   word-spacing: 0.6em;
   line-height: 1.2em;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 1280px) {
+  .index-section03--reasonSecond .index-section03--whyDoIMade p {
+    font-size: 1.3em;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .index-section03--reasonSecond .index-section03--whyDoIMade p {
+    font-size: 1.24em;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .index-section03--reasonSecond .index-section03--whyDoIMade p {
+    font-size: 1.8em;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
   .index-section03--reasonSecond .index-section03--whyDoIMade p {
     font-size: 1.2em;
   }
@@ -1556,12 +1941,13 @@ header {
   overflow: hidden;
   transition: 0.25s ease-in-out;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .tricks-list--row {
     display: block;
     overflow: visible;
     height: auto;
     border: none;
+    width: 98%;
   }
 }
 .tricks-list--row.close {
@@ -1584,7 +1970,12 @@ header {
   flex-direction: column;
   border-radius: 5px;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .tricks-list--entrance {
+    width: 100%;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .tricks-list--entrance {
     width: 100%;
   }
@@ -1595,18 +1986,24 @@ header {
   text-transform: uppercase;
   letter-spacing: 20px;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .tricks-list--entrance .tricks-list--title h1 {
     font-family: "jsMedium";
     font-size: 5em;
     margin-bottom: 20px;
   }
 }
+@media (min-width: 502px) and (max-width: 768px) {
+  .tricks-list--entrance .tricks-list--title h1 {
+    font-family: "jsRegular";
+    font-size: 8em;
+  }
+}
 .tricks-list--entrance .tricks-list--whatIs {
   display: flex;
   justify-content: space-between;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .tricks-list--entrance .tricks-list--whatIs {
     display: block;
   }
@@ -1617,7 +2014,7 @@ header {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .tricks-list--entrance .tricks-list--whatIs .tricks-list--intro p {
     font-size: 1.1em;
     margin-bottom: 10px;
@@ -1628,7 +2025,7 @@ header {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.4);
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .tricks-list--entrance .tricks-list--whatIs .tricks-list--count {
     text-align: right;
     padding-bottom: 5px;
@@ -1643,9 +2040,15 @@ header {
   align-items: center;
   justify-content: center;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickWrapper {
     width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .trickWrapper {
+    width: 50%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   }
 }
@@ -1658,7 +2061,7 @@ header {
   border-radius: 5px;
   overflow: hidden;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trick {
     width: 100%;
     height: 90%;
@@ -1668,8 +2071,9 @@ header {
 }
 .trick .trick-content--Wrapper {
   position: absolute;
-  bottom: -80px;
+  bottom: -100px;
   overflow: hidden;
+  height: 40%;
   width: 100%;
   padding: 2% 3%;
   background-color: rgba(255, 255, 255, 0.4);
@@ -1679,12 +2083,35 @@ header {
   border-top-right-radius: 100%;
   border-top-left-radius: 100%;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 769px) and (max-width: 1279px) {
+  .trick .trick-content--Wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
   .trick .trick-content--Wrapper {
     position: relative;
     border-radius: 0;
     border: none;
     bottom: 0;
+    overflow: visible;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1% 0% 0% 3%;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .trick .trick-content--Wrapper {
+    position: absolute;
+    border-radius: 0;
+    bottom: 0;
+    height: 40%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
   }
 }
 .trick .trick-content--Wrapper .trick-content--title {
@@ -1692,14 +2119,30 @@ header {
   font-size: 17px;
   margin-bottom: 6px;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 1280px) {
+  .trick .trick-content--Wrapper .trick-content--title {
+    font-size: 17px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .trick .trick-content--Wrapper .trick-content--title {
+    font-size: 1.4em;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .trick .trick-content--Wrapper .trick-content--title {
+    font-size: 1.7em;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
+  .trick .trick-content--Wrapper .trick-content--title {
+    font-size: 1.3em;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
   .trick .trick-content--Wrapper .trick-content--title {
     display: inline-block;
     width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 1.3em;
   }
   .trick .trick-content--Wrapper .trick-content--title h2 {
     margin: 0;
@@ -1715,11 +2158,12 @@ header {
   align-items: center;
   margin-bottom: 4px;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trick .trick-content--Wrapper .trick-content--infos {
     flex-direction: column;
     align-items: start;
     height: 140px;
+    margin: 0;
   }
 }
 .trick .trick-content--Wrapper .trick-content--infos .trick-content--right {
@@ -1727,7 +2171,7 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trick .trick-content--Wrapper .trick-content--infos .trick-content--right {
     width: 100%;
     justify-content: end;
@@ -1744,9 +2188,14 @@ header {
   cursor: pointer;
   transition: 0.25s;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trick .trick-content--Wrapper .trick-content--infos .trick-content--right button {
     font-size: 1.3em;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .trick .trick-content--Wrapper .trick-content--infos .trick-content--skills {
+    display: none;
   }
 }
 .trick .trick-content--Wrapper .trick-content--infos .trick-content--skills span {
@@ -1757,6 +2206,11 @@ header {
   animation: 1s forwards;
 }
 @media (min-width: 1280px) {
+  .trick:hover .trick-content--Wrapper {
+    animation-name: showContent;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
   .trick:hover .trick-content--Wrapper {
     animation-name: showContent;
   }
@@ -1787,7 +2241,7 @@ header {
   display: flex;
   justify-content: center;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trick-video--Wrapper {
     position: relative;
   }
@@ -1800,7 +2254,7 @@ header {
   overflow: hidden;
   transition: 0.25s;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trick-video--video {
     width: 98%;
     height: 98%;
@@ -1826,12 +2280,12 @@ header {
   justify-content: center;
 }
 .trick-showMore-BtnBox button {
-  width: 120px;
-  height: 40px;
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
+  width: 120px;
+  height: 40px;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.4);
   transition: 0.4s;
@@ -1856,7 +2310,7 @@ header {
 .trickDetail-content--right, .trickDetail-content--left {
   width: 50%;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail-content--right, .trickDetail-content--left {
     width: 100%;
   }
@@ -1867,7 +2321,7 @@ header {
   height: 100vh;
   padding-top: 5vh;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail {
     padding-top: 5vh;
   }
@@ -1880,7 +2334,12 @@ header {
   justify-content: space-between;
   position: relative;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
+  .trickDetail--wrapper {
+    flex-direction: column;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
   .trickDetail--wrapper {
     flex-direction: column;
   }
@@ -1891,7 +2350,7 @@ header {
   top: 10px;
   left: 2.5vw;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail-option {
     position: fixed;
     top: 0.6em;
@@ -1906,7 +2365,7 @@ header {
   font-family: "jsLight";
   font-size: 1.2em;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail-option button {
     font-size: 1.1em;
   }
@@ -1920,22 +2379,41 @@ header {
   overflow: hidden;
   gap: 1em;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail-content--left {
     padding-right: 2.5vw;
     overflow: visible;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .trickDetail-content--left {
+    width: 100%;
+    height: 50%;
   }
 }
 .trickDetail-content--left .trickDetail-content--title {
   font-family: "jsRegular";
   font-size: 4.5em;
   margin-bottom: 0.2em;
-  font-family: "jsLight";
-  font-size: 4.5em;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 1280px) {
   .trickDetail-content--left .trickDetail-content--title {
     font-size: 1.5em;
+  }
+}
+@media (min-width: 769px) and (max-width: 1279px) {
+  .trickDetail-content--left .trickDetail-content--title {
+    font-size: 1.5em;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .trickDetail-content--left .trickDetail-content--title {
+    font-size: 3.5em;
+  }
+}
+@media (min-width: 0) and (max-width: 501px) {
+  .trickDetail-content--left .trickDetail-content--title {
+    font-size: 4.5em;
   }
 }
 .trickDetail-content--left .trickDetail-content--skills {
@@ -1943,7 +2421,7 @@ header {
   gap: 15px;
   width: 100%;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail-content--left .trickDetail-content--skills {
     font-size: 1em;
     white-space: nowrap;
@@ -1956,7 +2434,7 @@ header {
   font-family: "jsLight";
   font-size: 1.3em;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail-content--left .trickDetail-content--skills span {
     font-size: 1em;
   }
@@ -1965,7 +2443,7 @@ header {
   font-family: "jsLight";
   font-size: 1.3em;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail-content--left .trickDetail-content--date span {
     font-size: 1em;
   }
@@ -1974,7 +2452,7 @@ header {
   font-family: "jsLight";
   font-size: 1.3em;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail-content--left .trickDetail-content--goal span {
     font-size: 1em;
   }
@@ -1983,9 +2461,14 @@ header {
   margin-bottom: 3em;
   width: 80%;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail-content--left .trickDetail-content--explanation {
     width: 100%;
+  }
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .trickDetail-content--left .trickDetail-content--explanation {
+    width: 95%;
   }
 }
 .trickDetail-content--left .trickDetail-content--explanation p {
@@ -1995,7 +2478,7 @@ header {
   line-height: 1.1em;
   padding-top: 0.3em;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail-content--left .trickDetail-content--explanation p {
     font-size: 1.1em;
   }
@@ -2003,7 +2486,7 @@ header {
 .trickDetail-content--left .trickDetail-content--explanation p:first-child {
   font-size: 1.6em;
 }
-@media (min-width: 0) and (max-width: 480px) {
+@media (min-width: 0) and (max-width: 501px) {
   .trickDetail-content--left .trickDetail-content--explanation p:first-child {
     font-size: 1.2em;
   }
@@ -2012,6 +2495,12 @@ header {
 .trickDetail-content--right {
   height: 100%;
   position: relative;
+}
+@media (min-width: 502px) and (max-width: 768px) {
+  .trickDetail-content--right {
+    height: 50%;
+    width: 100%;
+  }
 }
 .trickDetail-content--right .trickDetail-content--videoWrapper {
   width: 100%;

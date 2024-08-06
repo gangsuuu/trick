@@ -38,11 +38,11 @@
 
 @mixin wz($breakpoint) {
   @if $breakpoint == small {
-    @media (min-width: 0) and (max-width: 480px) {
+    @media (min-width: 0) and (max-width: 501px) {
         @content; 
     }
 } @else if $breakpoint == medium {
-    @media (min-width: 481px) and (max-width: 768px) {
+    @media (min-width: 502px) and (max-width: 768px) {
         @content; 
     }
 } @else if $breakpoint == large {
@@ -54,6 +54,22 @@
         @content; 
     }
 }
+}
+
+
+@mixin fz($f1, $f2, $f3, $f4) {
+  @include wz(xlarge){
+    font-size: $f1;
+  }
+  @include wz(large){
+    font-size: $f2;
+  }
+  @include wz(medium){
+    font-size: $f3;
+  }
+  @include wz(small){
+    font-size: $f4;
+  }
 }
 
 

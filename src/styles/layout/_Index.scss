@@ -122,6 +122,7 @@
 .index-section01-video {
   width: 100%;
   height: 100%;
+  overflow: hidden;
   video {
     width: 100%;
     height: 100%;
@@ -160,6 +161,7 @@
   color: white;
   position: absolute;
   bottom: 22vh;
+  width: 100%;
   @include variables.centerX();
 
 
@@ -185,19 +187,17 @@
     letter-spacing: 3px;
     line-height: 35px;
 
-    @include variables.wz(small){
-      font-size: 1em;
-    }
+
+    @include variables.fz(2em,2em,1.2em,1.2em)
+
   }
   .index-section01--title h3{
     @include variables.jamsil(500, 32px);
-
     @include variables.wz(small){
-      font-size: 1.7em;
       word-spacing: .2em;
     }
+    @include variables.fz(3em,3em,1.2em,1.7em)
   }
-  
 }
 
 
@@ -216,6 +216,12 @@
   @include variables.wz(small) {
     display: none;
   }
+  @include variables.wz(medium) {
+    top: 0;
+    bottom: 0;
+  }
+
+
   .index-section01--openBtnWrp {
     position: relative;
     width: 25px;
@@ -317,6 +323,12 @@
       animation: 1.7s ease-in-out .7s infinite;
       @include variables.wz(xlarge){
         animation-name: scrollBall;
+      }
+      @include variables.wz(large){
+        animation-name: scrollBall;  
+      }
+      @include variables.wz(medium){
+        animation-name: scrollBall;  
       }
       @include variables.wz(small){
         width: 18px;
@@ -422,6 +434,19 @@
   @include variables.wz(small) {
     display: none;
   }
+  @include  variables.wz(medium) {
+    width: 50px;
+    height: 50px;
+    top: 50%;;
+    left: 2.5vw;
+    background-color: rgba(255,255,255, .3);
+    transform: translateY(-50%);
+  }
+  @include variables.wz(large) {
+    width: 80px;
+    height: 80px;
+  }
+
   button {
     @include variables.flexjc(center);
     display: inline-block;
@@ -437,6 +462,7 @@
     transition: .25s;
     span{
       @include variables.jamsil(100, 22px);
+      @include variables.fz(22px,1.6em,2em,1em);
       margin-top: -2px;
     }
   }
@@ -465,6 +491,9 @@
     @include variables.centerX();
     cursor: pointer;
 
+
+
+
     span{
       position: absolute;
       width: 40px;
@@ -472,6 +501,10 @@
       background-color: white;
       transform-origin: right;
       transition: .3s;
+      @include variables.wz(medium){
+        width: 30px;
+        border: 1px solid white;
+      }
     }
 
     &.pause{
@@ -524,6 +557,13 @@
       text-transform: uppercase;
       @include variables.jamsil(300, 20px);
       color: white;
+
+      @include variables.wz(medium){
+        font-size: 1.4em;
+        margin-right: 10px;
+      }
+      
+      @include variables.fz(20px,1.3em,1.4em,1em)
     }
   }
 }
@@ -538,6 +578,9 @@
  @include variables.wz(small){
     height: auto;
   } 
+ @include variables.wz(medium){
+    height: auto;
+  } 
 }
 
 .index-section02--wrapper {
@@ -545,7 +588,10 @@
   width: 100%;
   height: 100%;
   @include variables.wz(small){
-    height: 100vh;
+    min-height: 100vh;
+  } 
+  @include variables.wz(medium){
+    min-height: 100vh;
   } 
 }
 
@@ -554,7 +600,6 @@
   position: relative;
   h2 {
     @include variables.textHide();
-
   }
 
   .index-section02--titleSpans{
@@ -591,6 +636,16 @@
     gap: 20px;
   }
 
+  @include variables.wz(medium){
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  @include variables.wz(large){
+    gap: 5vw;
+  }
+
+
   .index-section02--textWrapper {
     width: 220px;
     border: 1px solid variables.$bd-01;
@@ -605,6 +660,11 @@
     @include variables.wz(small){
       width: 80%;
     }
+    @include variables.wz(medium){
+      width: 80%;
+    }
+
+
     .index-section02--subTitle{
       @include variables.jamsil(500, 13px);
       color: rgba(0,0,0,.5);
@@ -702,8 +762,6 @@
       color: #000;
     }
 
-
-
     .arrowOne{
       transform: translate(150%,-150%);    
     }
@@ -727,12 +785,24 @@
   @include variables.wz(small) {
     display: none;
   }
+  @include variables.wz(medium) {
+    display: none;
+  }
+  @include variables.wz(large) {
+    gap: 2vw;
+  }
   
   .index-section02--imageSlides{
     display: flex;
     align-items: end;
     gap: 10px;
-    width: 50%;
+    width: 50%;  
+    
+    @include variables.wz(large) {
+      width: 100%;
+      overflow: hidden;
+    }
+    
     .index-section02--imageSlide {
       position: relative;
       width: 110px;
@@ -774,6 +844,12 @@
       height: 100%;
       overflow: hidden;
       position: relative;
+
+
+      @include variables.wz(large){
+        min-width: 300px;
+      }
+
       .index-section02--imageLarge{
         position: absolute;
         width: 100%;
@@ -808,6 +884,9 @@
   }
   .index-section02--right{
     @include angle(top,bottom,right,-4px);
+    @include variables.wz(large){
+      right: -12px;
+    }
   }
   .index-section02--bottom{
     @include angle(left,right,bottom,-4px);
@@ -862,6 +941,7 @@
   @extend %index-section;
   height: auto;
 }
+
 .index-section03--wrapper {
   width: 100%;
   height: 100vh;
@@ -875,10 +955,10 @@
     display: block !important;
     height: auto;
   }
-  
-
-    
-
+  @include variables.wz(medium) {
+    display: block !important;
+    height: auto;
+  }
 
 }
 .index-section03--reasonFirst {
@@ -890,14 +970,19 @@
   justify-content: space-between;
 
   @include variables.wz(small){
-    // align-items: center;
-    // justify-content: center;
     display: block !important;
-
     height: 520vh;
     padding: 100vh 0;
     position: relative;
   }
+  @include variables.wz(medium){
+    display: block !important;
+    height: 520vh;
+    padding: 100vh 0;
+    position: relative;
+  }
+
+
   .index-section03--whatIsAnimation {
     // width: 400px;
     width: 50%;
@@ -910,6 +995,17 @@
       top: 50%;
       transform: translateY(-50%);
     }
+    @include variables.wz(medium){
+      display: block;
+      width: 100%;
+      position: sticky;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+
+
+    
     .index-section03--whatIsAnimation-black,
     .index-section03--whatIsAnimation-gray {
       position: absolute;
@@ -918,14 +1014,10 @@
 
       p,span {
         @include variables.jamsil(400, 1.4em);
-        // @include variables.jamsil(400, 20px);
-        // @include variables.jamsil(400, 1.4em);
         word-spacing: .5em;
         line-height: 1.2em;
 
-        @include variables.wz(small){
-          font-size: 1.15em;
-        }
+        @include variables.fz(1.4em,1.2em,1.5em,1.15em)
       }
     }
 
@@ -937,6 +1029,13 @@
         text-align: center;
         width: 100%;
       }
+
+      @include variables.wz(medium){
+        position: absolute;
+        text-align: center;
+        width: 100%;
+      }
+
       p {
         width: 100%;
         clip-path: polygon(0 0, 0% 0%, 0% 0%, 0% 0%);
@@ -946,6 +1045,10 @@
     }
     .index-section03--whatIsAnimation-gray{
       @include variables.wz(small){
+        position: relative;
+        text-align: center
+      }
+      @include variables.wz(medium){
         position: relative;
         text-align: center
       }
@@ -966,8 +1069,7 @@
   .index-section03--experienceAni {
     width: 50%;
     height: 100%;
-    background-color: blue;
-    opacity: 0.5;
+    position: relative;
 
     @include variables.wz(small){
       position: absolute;
@@ -979,6 +1081,65 @@
       opacity: .3;
       @include variables.center()
     }
+    @include variables.wz(medium){
+      position: absolute;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/10;
+      top: 0;
+      left: 0;
+      opacity: .3;
+      @include variables.center()
+    }
+
+
+    .index-section03--imagesWrapper{
+      position: absolute;
+      min-width: 500px;
+      height: 300px;
+      aspect-ratio: 16 / 9;
+      transform-style : preserve-3d;
+
+      @include variables.center();
+      @include variables.wz(large){
+        width: 100%;
+        min-width: 200px;
+        max-width: 450px;
+      }
+
+      .index-section03--imagebox{
+        position: absolute;
+        min-width: 500px;
+        height: 300px;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+      }
+
+      img {
+        position: absolute;
+        opacity: 0.7;
+        @include variables.center();
+        width: 110%;
+        height: 110%;
+        object-fit: cover;
+      }
+
+      .index-section03--imageShadow{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+        filter: blur(5px);
+        background-color: black;
+        transform-style : preserve-3d;
+        transform: rotateX(0deg) translateZ(-3px) scale(1.1);
+      }
+
+    }
+
+
   }
 
   .index-section03--titleWrapper {
@@ -991,11 +1152,16 @@
     @include variables.wz(small){
       display: none;
     }
+    @include variables.wz(medium){
+      display: none;
+    }
     .index-section03--titles p{
       padding-bottom:  .5em;
       @include variables.jamsil(800, 6em);
       transition: 0.2s;
-
+      @include variables.wz(large){
+        font-size: 3.4em;
+      }
 
       @include variables.wz(small){
         font-size: 1em;
@@ -1017,7 +1183,10 @@
   margin-bottom: 1%;
 
   @include variables.wz(small){
-
+    height: 320vh;
+    display: block;
+  }
+  @include variables.wz(medium){
     height: 320vh;
     display: block;
   }
@@ -1030,14 +1199,18 @@
       top: 50%;
       transform: translateY(-50%);
     }
+    @include variables.wz(medium) {
+      width: 100%;
+      position: sticky;
+      top: 50%;
+      transform: translateY(-50%);
+    }
     p{
       @include variables.jamsil(400, 1.3em);
       word-spacing: .6em;
       line-height: 1.2em;
 
-      @include variables.wz(small) {
-        font-size: 1.2em;
-      }
+      @include variables.fz(1.3em,1.24em,1.8em,1.2em)
     }
   }
 }

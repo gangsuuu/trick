@@ -12,22 +12,31 @@ export default function Footer(){
   let WrapperRef = useRef(null)
 
   const state = useSelector((state) => {return state})
-  
-
 
   useEffect(() => {
     if(state.pageSize ==='') return
     animate()
+    return () => {
+    }
   },[state])
 
+  
+
+
+
   function animate (){
-    let top = state.pageSize === 'mobile'
-    ? '0'
-    : '300'
+    let top
+    if(state.pageSize === 'mobile' || state.pageSize === 'tablet'){
+      top = '20'
+    } else {
+      top = '300'
+    }
+
     ScrollTrigger.create({
-      trigger:footerRef.current,
-      start: '98% bottom',
+      trigger:WrapperRef.current,
+      start: '95% bottom',
       scrub: true,
+      // markers: true,
       onEnter: () => {
         gsap.to(infomationRef.current,{
             top: 0,
@@ -51,7 +60,7 @@ export default function Footer(){
 
     ScrollTrigger.create({
       trigger:WrapperRef.current,
-      start: 'top bottom',
+      start: '95% bottom',
       scrub: true,
       onEnter: () => {
         gsap.to(imageRef.current,{
@@ -76,15 +85,15 @@ export default function Footer(){
   }
 
   return(
-    <footer
-    ref={footerRef}
-    >
-      <div className="footer-imagesContent" ref={imageRef}></div>
+    <footer>
+      <div className="footer-imagesContent" ref={imageRef}>
+        <img src='https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2022%2F11%2Fhypebeast-editor-job-opening-2022-1.jpg?cbr=1&q=90' />
+      </div>
       <div className="footer-infomation--Wrapper" ref={WrapperRef}>
         <div className="footer-infomation" ref={infomationRef}>
           <div className="footer-left">
             <div className="footer-title">
-            <p>ContactWithMe</p>
+            <p aria-label='infomation how to contact with me'>ContactWithMe</p>
             </div>
             <div className="footer-navToFrist">
               <a>처음으로</a>
@@ -95,15 +104,15 @@ export default function Footer(){
               <div className="footer-info--phone">
                 <p>Number</p>
                 <div className="footer-info--number">
-                  <p>82+ 10-5400-6870</p>
+                  <p aria-label='phone number'>82+ 10-5400-6870</p>
                 </div>
               </div>
               <div className="footer-info--addressWra">
                 <div className="footer-info--address">
-                  <p>
+                  <p aria-label='addres'>
                     대한민국 수원시 탑동로 11번길
                   </p>
-                  <p>
+                  <p aria-label='left addres'>
                     58-5 탑캐슬아파트 602호
                   </p>
                 </div>
@@ -113,11 +122,11 @@ export default function Footer(){
               <div className="footer-info-secondeUp">
                 <div className="footer-info--emailWrp">
                   <p>email</p>
-                  <p className="footer-info-email">gangsuuu02@gmail.com</p>
+                  <p aria-label='email'className="footer-info-email">gangsuuu02@gmail.com</p>
                 </div>
                 <div className="footer-info--SNS">
-                  <p>INSTAGRAM</p>
-                  <p>TSTORY</p>
+                    <a role='link' aria-label='instargram link' href='https://www.instagram.com/'>INSTAGRAM</a>
+                    <a role='link' aria-label='tistory page' href='https://huckcent.tistory.com/'>TSTORY</a>
                 </div>
               </div>
               <div className="footer-info-secondeDown">

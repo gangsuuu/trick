@@ -13,7 +13,8 @@ export default function Header(){
     useEffect(()=>{
       if(state.pageSize === '') return 
       const target = document.querySelector('.headerNavWrapper')
-      let timeline = gsap.timeline()
+      const create = document.querySelector('.headerCreate')
+      let timeline = gsap.timeline({ paused: true })
 
       timeline.to(target, {
         clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)',
@@ -27,7 +28,13 @@ export default function Header(){
         duration:.3,
         stagger:0.1
       },'<.5')
-
+      if(create) {
+        timeline.to(create,{
+          opacity:1,
+          duration:.3,
+          ease:'power4.inOut'
+        },'<=')
+      }
       setTl(timeline)
 
       return () => {
@@ -43,18 +50,8 @@ export default function Header(){
     const target = document.querySelector('.headerNavWrapper')
     if(menuOpened){
       tl.play()
-      // gsap.to(target,{
-        //   clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)',
-        //   duration: 0.5,
-        //   ease: 'power4.inOut'
-        // })
     } else {
         tl.reverse()
-      // gsap.to(target,{
-      //   clipPath: 'polygon(100% 0%, 100% 0%,  100% 0%, 100% 0%)',
-      //   duration: 0.5,
-      //   ease: 'power4.inOut'
-      // })
     }
     setMenuOpened(!menuOpened)
   }
@@ -86,8 +83,8 @@ export default function Header(){
     
     const rightText = document.createElement('p')
     const leftText = document.createElement('p')
-    leftText.innerHTML = page
-    rightText.innerHTML = page
+    leftText.innerHTML = page === '' ? 'index' : page
+    rightText.innerHTML = page === '' ? 'index' : page
     leftText.classList.add('left-text')
     rightText.classList.add('right-text')
   
@@ -101,6 +98,10 @@ export default function Header(){
     moveWrapper.appendChild(rightDiv)
     body.appendChild(moveWrapper)
 
+
+    if(state.pageSize === 'mobile'){
+      menuHover()
+    }
 
     gsap.to(moveWrapper.children,{
       clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)',
@@ -129,34 +130,43 @@ export default function Header(){
       {
         state.pageSize === 'mobile'
         ? <div className="headerMenu">
-            <div onClick={() => { menuHover()}}>menu</div>
+            <div 
+              aria-label="open link menu bar"
+              role='button'
+              onClick={() => { menuHover()}}>menu</div>
           </div>
         :  <div className="headerLogoWrapper">
             <div className="headerLogo"></div>
           </div>
       }
 
-        <div className="headerNavWrapper">
+        <nav className="headerNavWrapper">
           <div className="headerNav">
             <a
+              aria-label="link to index page"
               onClick={() =>movePage('')}
             ><span>●</span>Index</a>
           </div>
           <div className="headerNav">
             <a
+              aria-label="link to index tricks"
               onClick={() =>movePage('tricks')}
             ><span>●</span>Tricks</a>
           </div>
           <div className="headerNav">
             <a
+               aria-label="link to index about"
               onClick={() =>movePage('about')}
             ><span>●</span>About</a>
           </div>
-        </div>
+        </nav>
         {
         state.pageSize === 'mobile'
         ? <div className="headerCreate">
-            <div>Create by Huck</div>
+            <div
+              aria-label="this page creates by hyuck"
+
+            ><p>Create by Hyuck</p></div>
           </div>
         : ''
         }
