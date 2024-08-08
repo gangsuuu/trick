@@ -24,6 +24,10 @@
     @include variables.wz(small){
         padding-top: 5vh;
     }
+
+    h1 {
+        @include variables.textHide()
+    }
 }
 
 .trickDetail--wrapper{

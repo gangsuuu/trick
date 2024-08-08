@@ -50,6 +50,7 @@ export default function Tricks (first){
 
   return(
     <div className="tricksList">
+      <h1>혁의 트릭 리스트 페이지</h1>
       <div className="tricksWrapper"
         aria-label='trick lists'
         role='main'
@@ -90,7 +91,6 @@ export default function Tricks (first){
                         <TrickComponent type={'skeleton'} contents={[]}></TrickComponent>
                       </div>
                 )})
-
               : 
                   Array.from({length:row},(_,i) =>{
                     return(
@@ -123,10 +123,11 @@ export default function Tricks (first){
                               <TrickComponent type={'content'} contents={contents} index={(i * 5) + 1}></TrickComponent>
                               <TrickComponent type={'content'} contents={contents} index={(i * 5) + 2}></TrickComponent>
                             </div>
-                    )})
+                    )
+                  }
+                )
             }
       </div>
-
       <div className="trick-showMore">
         <div className="trick-showMore-BtnBox">
           {

@@ -13,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function Index () {
   return (
     <>
+      <h1 className='index-h1'>혁의 인덱스 페이지</h1>
       <SectionFirst></SectionFirst>
       <SectionSecond></SectionSecond>
       <SectionThird></SectionThird>
@@ -91,6 +92,7 @@ function SectionFirst (){
 
   return(
     <section className="index-section-01">
+      <h2>인덱스 첫번째 섹션</h2>
       <div className="index-section01-videoWrapper">
         <div className="index-section01-video">
           <video 
@@ -370,8 +372,9 @@ function SectionSecond (){
     <section className="index-section-02">
       <div className="index-section02--wrapper">
         <div className='index-section02--title'>
-          <h2 ref={titleH2Ref}>what i made in</h2>
+          <h2 >인덱스 두번째 섹션</h2>
           <div className='index-section02--titleSpans' ref={titleSpanWrapRef}>
+            <h3 ref={titleH2Ref}>what i made in</h3>
 
           </div>
         </div>
@@ -471,7 +474,9 @@ function SectionSecond (){
                     /> <span>{duration}</span>
                   </div>
                 </div>
-                <div className='index-section02--ease'>
+                <div className='index-section02--ease'
+                  role="combobox" aria-expanded="false" aria-haspopup="listbox"
+                >
                   <div>Ease</div>
                   <div className='index-section02--easeOption'>
                     <select onChange={(e) => { setPower(e.target.value)}}>
@@ -684,7 +689,8 @@ function SectionThird (){
   return(
     <section className="index-section-03"
       onMouseMove={(e) => { imageMove(e.currentTarget,e.clientX,e.clientY)}}
-    >
+    > 
+      <h2>인덱스 세번째 섹션</h2>
       <div className='index-section03--wrapper'>
         <div className='index-section03--reasonFirst'>
           <div

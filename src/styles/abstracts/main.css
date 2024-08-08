@@ -406,6 +406,12 @@ header {
   background-color: red;
   z-index: 10;
 }
+.headerMenu button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 
 .headerNavWrapper {
   display: flex;
@@ -532,9 +538,28 @@ header {
     top: 6%;
   }
 }
+.index-h1 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 0);
+          clip-path: polygon(0 0, 0 0, 0 0);
+}
+
 .index-section-01 {
   height: 100vh;
   position: relative;
+}
+.index-section-01 h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 0);
+          clip-path: polygon(0 0, 0 0, 0 0);
 }
 
 .index-section01-videoWrapper {
@@ -1144,6 +1169,15 @@ header {
   text-align: center;
   overflow: hidden;
 }
+.index-section02--title .index-section02--titleSpans h3 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 0);
+          clip-path: polygon(0 0, 0 0, 0 0);
+}
 .index-section02--title .index-section02--titleSpans span {
   font-family: "jsBold";
   font-size: 25px;
@@ -1542,6 +1576,15 @@ header {
 .index-section-03 {
   height: auto;
 }
+.index-section-03 h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 0);
+          clip-path: polygon(0 0, 0 0, 0 0);
+}
 
 .index-section03--wrapper {
   width: 100%;
@@ -1925,6 +1968,15 @@ header {
 
 .tricksList {
   padding-top: 6vh;
+}
+.tricksList h1 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 0);
+          clip-path: polygon(0 0, 0 0, 0 0);
 }
 
 .tricksWrapper {
@@ -2325,6 +2377,15 @@ header {
   .trickDetail {
     padding-top: 5vh;
   }
+}
+.trickDetail h1 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 0);
+          clip-path: polygon(0 0, 0 0, 0 0);
 }
 
 .trickDetail--wrapper {

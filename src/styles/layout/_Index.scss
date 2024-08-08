@@ -105,11 +105,17 @@
   animation-delay: #{$i}, #{3s + $i};
 }
 
-
+.index-h1 {
+    @include variables.textHide()
+}
 .index-section-01{
   @extend %index-section;
   height: 100vh;
   position: relative;
+
+  h2 {
+    @include variables.textHide();
+  }
 }
 
 .index-section01-videoWrapper {
@@ -608,6 +614,9 @@
     text-align: center;
     overflow: hidden;
 
+    h3 {
+      @include variables.textHide();
+    }
     span{
       @include variables.jamsil(700, 25px);
       text-transform: uppercase;
@@ -940,6 +949,10 @@
 .index-section-03{
   @extend %index-section;
   height: auto;
+
+  h2 {
+    @include variables.textHide();
+  }
 }
 
 .index-section03--wrapper {

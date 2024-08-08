@@ -53,6 +53,9 @@ header {
   color: white;
   background-color: red;
   z-index: 10;
+  button {
+    @include variables.resBtn();
+  }
 }
 
 .headerNavWrapper {

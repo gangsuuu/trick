@@ -143,6 +143,7 @@ export default function TrickDetail (){
     <div className="trickDetail"
     style={{'backgroundColor': color}}
     >
+      <h1>트릭 디테일 페이지</h1>
       <div className="trickDetail--wrapper"
       >
         <div className="trickDetail-option">

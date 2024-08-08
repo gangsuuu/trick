@@ -65,7 +65,7 @@ export default function Footer(){
       onEnter: () => {
         gsap.to(imageRef.current,{
           clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)',
-          duration: 1,
+          duration: 0.36,
           ease: "power4.inOut",
         })
       },
@@ -76,7 +76,7 @@ export default function Footer(){
       onLeaveBack: () => {
         gsap.to(imageRef.current,{
           clipPath: 'polygon(0 0, 0 0%, 100% 0%, 100% 0)',
-          duration: .36,
+          duration: .5,
           ease: 'power4.inOut'
         })
       }
@@ -99,12 +99,12 @@ export default function Footer(){
               <a>처음으로</a>
             </div>
           </div>
-          <div className="footer-right">
+          <address className="footer-right">
             <div className='footer-info--first'>
               <div className="footer-info--phone">
                 <p>Number</p>
                 <div className="footer-info--number">
-                  <p aria-label='phone number'>82+ 10-5400-6870</p>
+                  <p aria-label='phone number'><a href='tel: +811054006870'>82+ 10-5400-6870</a></p>
                 </div>
               </div>
               <div className="footer-info--addressWra">
@@ -122,7 +122,8 @@ export default function Footer(){
               <div className="footer-info-secondeUp">
                 <div className="footer-info--emailWrp">
                   <p>email</p>
-                  <p aria-label='email'className="footer-info-email">gangsuuu02@gmail.com</p>
+                  <p aria-label='email'className="footer-info-email">
+                  <a href='mailto:happy1995virus@naver.com'>happy1995virus@naver.com</a></p>
                 </div>
                 <div className="footer-info--SNS">
                     <a role='link' aria-label='instargram link' href='https://www.instagram.com/'>INSTAGRAM</a>
@@ -133,7 +134,7 @@ export default function Footer(){
                 <p>Web Publisher Huck</p>
               </div>
             </div>
-          </div>
+          </address>
         </div>
       </div>
 

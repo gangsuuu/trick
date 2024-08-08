@@ -41,11 +41,6 @@ export default function Header(){
       }
     },[state])
 
-
-
-
-
-
   function menuHover() {
     const target = document.querySelector('.headerNavWrapper')
     if(menuOpened){
@@ -133,7 +128,7 @@ export default function Header(){
             <div 
               aria-label="open link menu bar"
               role='button'
-              onClick={() => { menuHover()}}>menu</div>
+              onClick={() => { menuHover()}}><button>menu</button></div>
           </div>
         :  <div className="headerLogoWrapper">
             <div className="headerLogo"></div>
@@ -143,18 +138,21 @@ export default function Header(){
         <nav className="headerNavWrapper">
           <div className="headerNav">
             <a
+              href="#"
               aria-label="link to index page"
               onClick={() =>movePage('')}
             ><span>●</span>Index</a>
           </div>
           <div className="headerNav">
             <a
+              href="#"
               aria-label="link to index tricks"
               onClick={() =>movePage('tricks')}
             ><span>●</span>Tricks</a>
           </div>
           <div className="headerNav">
             <a
+              href="#"
                aria-label="link to index about"
               onClick={() =>movePage('about')}
             ><span>●</span>About</a>

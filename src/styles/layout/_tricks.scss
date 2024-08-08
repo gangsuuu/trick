@@ -55,6 +55,9 @@
 
 .tricksList{
   padding-top: 6vh;
+  h1 {
+    @include variables.textHide()
+}
 }
 .tricksWrapper {
   width: 100%;
